@@ -1,5 +1,7 @@
 import { dbfile } from "./db";
 
+console.log(1);
+
 let db;
 let rubikSolves = []
 window.onload = function(){
