@@ -15,6 +15,7 @@ function db_file() {
         console.log(db);
       };
 }
+db_file()
 
 function rubik_set(scramble, time){
   set(scramble, time)
