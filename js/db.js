@@ -1,7 +1,7 @@
-import{
-  get,
-  set
-} from 'https://cdn.jsdelivr.net/npm/idb-keyval@5/dist/iife/index.js'
+// import{
+//   get,
+//   set
+// } from 'https://cdn.jsdelivr.net/npm/idb-keyval@5/dist/iife/index.js'
 
 function dbfile() {
     const request = window.indexedDB.open("database", 1);

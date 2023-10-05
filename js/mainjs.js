@@ -2,7 +2,7 @@ let db;
 let rubikSolves = []
 window.onload = function(){
     
-    dbfile()
+    // dbfile()
     menu()
     timer()
 }
