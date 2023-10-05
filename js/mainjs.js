@@ -1,4 +1,3 @@
-import { dbfile } from "./db";
 
 console.log(1);
 

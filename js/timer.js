@@ -1,4 +1,3 @@
-import { rubik_set } from "./db";
 
 function timer(){
     
