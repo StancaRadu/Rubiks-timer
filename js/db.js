@@ -4,7 +4,7 @@ import {
 }from 'https://cdn.jsdelivr.net/npm/idb-keyval@5/dist/esm/index.js'
 
 
-export function dbfile() {
+function dbfile() {
   console.log("db file callled");
     const request = window.indexedDB.open("database", 1);
     request.onerror = (event) => {
@@ -15,10 +15,13 @@ export function dbfile() {
         console.log(db);
       };
 }
-export function rubik_set(scramble, time){
+function rubik_set(scramble, time){
   set(scramble, time)
     .then(()=>{
       console.log("yay");
     })
     .catch(console.log(":("))
 }
+
+window.dbfile = dbfile;
+window.rubik_set = rubik_set;
