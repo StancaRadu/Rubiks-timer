@@ -1,2 +1,2 @@
-# StancaRadu.github.io
-speed cubing timer
+# Cube Timer
+ speed cube timer

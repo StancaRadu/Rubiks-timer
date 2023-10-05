@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+
+    transition: var(--transition-speed);
+}
+
+:root{
+    --main-color: 200;
+
+    
+    --background-main-divs: hsl(var(--main-color), 35%, 40%);
+
+    --body-color: hsl(var(--main-color), 45%, 15%);
+    --accent1: hsl(var(--main-color), 30%, 25%);
+    --accent2: hsl(var(--main-color), 25%, 0%);
+
+    --cube-internal-color: hsl(var(--main-color), 35%, 22%);
+
+    --timer-size: 10rem;
+    --scramble-size: 3rem;
+    
+    --transition-speed: .5s;
+
+    --timer-font: 'Roboto Mono', cursive;
+    --scramble-font: 'Rubik', cursive;
+}
+
+body{
+    background-color: var(--body-color);
+    
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#menu{
+    background-color: var(--accent1);
+    flex-grow: .1;
+
+    margin: 20px 20px 0 20px;
+
+    font-size: 4rem;
+
+    border-radius: 10px;
+
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: center;
+}
+
+#screens{
+
+    margin: 20px;
+
+    flex-grow: 1;
+    display: flex;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.screen{
+    height: 100%;
+
+    border-radius: 10px;
+}
+
+
+
+#centre-div{
+    border-radius: 10px;
+
+    flex-grow: 1;
+    
+    background-color: var(--background-main-divs);
+
+    display: grid;
+    grid-template-areas: 
+            "scramble scramble scramble"
+            ". time ."
+            ". . cube";
+    grid-template-columns: repeat(3, 1fr);
+
+    font-family: var(--timer-font);
+    font-size: var(--timer-size);
+}
+
+
+

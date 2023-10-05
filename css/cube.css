@@ -1,0 +1,67 @@
+#cube-div{
+    margin: 10px;
+    justify-self: center;
+    align-self: center;
+    grid-area: cube;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas: 
+        ". top . ."
+        "left front right back"
+        ". down . .";
+}
+#top{
+    grid-area: top;
+    grid-template-areas:
+        "tbl tbc tbr"
+        "tcl tcc tcr"
+        "tfl tfc tfr";
+}
+#front{
+    grid-area: front;
+    grid-template-areas:
+    "fbl fbc fbr"
+    "fcl fcc fcr"
+    "ffl ffc ffr";
+}
+#down{
+    grid-area: down;
+    grid-template-areas:
+    "dbl dbc dbr"
+    "dcl dcc dcr"
+    "dfl dfc dfr"
+}
+#back{
+    grid-area: back;
+    grid-template-areas:
+        "bbl bbc bbr"
+        "bcl bcc bcr"
+        "bfl bfc bfr";
+}
+#right{
+    grid-area: right;
+    grid-template-areas:
+        "rbl rbc rbr"
+        "rcl rcc rcr"
+        "rfl rfc rfr";
+}
+#left{
+    grid-area: left;
+    grid-template-areas:
+        "lbl lbc lbr"
+        "lcl lcc lcr"
+        "lfl lfc lfr";
+}
+.cube-face{
+    border-radius: 3px;
+    padding: 3px;
+    aspect-ratio: 1;
+    height: 5rem;
+    display: grid;
+    grid-gap: 3px;
+    background-color: var(--cube-internal-color);
+}
+.cube-piece{
+    border-radius: 3px;
+    transition: 2s;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/idb-keyval@5/dist/iife/index.js"></script> -->
+
+    <script src="js/global_vars.js"></script>
+    <script type="module" src="js/db.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/mainjs.js"></script>
+    <script src="js/colors.js"></script>
+
+    <link rel="stylesheet" href="css/cube.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/stats.css">
+    <link rel="stylesheet" href="css/timer.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <title>Cube Timer</title>
+</head>
+<body>
+    <div id="menu">
+        <div>settings</div>
+        <div>:)</div>
+        <div>w</div>
+        <div>2</div>
+    </div>
+    <div id="screens">
+        <div id="left-bar-div" class="screen">
+            <div id="statistics-div-hidden">
+                <div id="statistics-div">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+            <div id="open-left-bar-div">
+                <img src="img/right-arrow.png" alt="arrow" style="width: 100%;" id="left-bar-open-button">
+            </div>
+        </div>
+        
+        <div id="centre-div" class="screen">
+            <div id="scramble-div">
+                <p id="scramble"></p>
+            </div>
+            <p id="timer-div">
+                <span id="minutes"></span><span id="seconds">00</span>.<span id="tens">00</span>
+            </p>
+            <div id="cube-div">
+                <div class="cube-face" id="top">
+                </div>
+                <div class="cube-face" id="front">
+                </div>
+                <div class="cube-face" id="down">
+                    sd
+                </div>
+                <div class="cube-face" id="back">
+                </div>
+                <div class="cube-face" id="right">
+                </div>
+                <div class="cube-face" id="left">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,26 @@
+
+#timer-div{
+    grid-area: time;
+    align-self: center;
+    justify-self: center;
+
+    font-family: var(--timer-font);
+    font-size: var(--timer-size);
+
+    transition: 0.1s;
+}
+#tens{
+    font-size: calc(0.5*var(--timer-size));
+}
+
+#scramble{
+    font-size: var(--scramble-size);
+}
+#scramble-div{
+    grid-area: scramble;
+
+    display: grid;
+    font-family: var(--scramble-font);
+    text-align: center;
+    
+}
