@@ -15,6 +15,7 @@ function db_file() {
         console.log(db);
       };
 }
+
 function rubik_set(scramble, time){
   set(scramble, time)
     .then(()=>{
@@ -22,6 +23,4 @@ function rubik_set(scramble, time){
     })
     .catch(console.log(":("))
 }
-
-window.db_file = db_file;
 window.rubik_set = rubik_set;
