@@ -13,3 +13,11 @@ function dbfile() {
         console.log(db);
       };
 }
+function rubik_set(scramble, time){
+  set(scramble, time)
+    .then(()=>{
+      console.log("yay");
+    })
+    .catch(console.log(":("))
+}
+rubik_set("asdad", "SDa")
