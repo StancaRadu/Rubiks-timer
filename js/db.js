@@ -1,9 +1,3 @@
-import {
-  get,
-  set
-}from 'https://cdn.jsdelivr.net/npm/idb-keyval@5/dist/esm/index.js'
-
-
 function db_file() {
   console.log("db file callled");
     const request = window.indexedDB.open("database", 1);
@@ -15,7 +9,6 @@ function db_file() {
         console.log(db);
       };
 }
-db_file()
 
 function rubik_set(scramble, time){
   set(scramble, time)
@@ -24,4 +17,3 @@ function rubik_set(scramble, time){
     })
     .catch(console.log(":("))
 }
-window.rubik_set = rubik_set;
