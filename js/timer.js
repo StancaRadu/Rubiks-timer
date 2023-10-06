@@ -62,6 +62,7 @@ function timer(){
                 console.log(rubikSolves);
                 rubikSolves.push(`${minutes}.${seconds}.${tens}`)
                 addData(avgChart, "Avg.5", parseInt(seconds))
+                addTimeDB(scramble, [minutes, parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`)])
             }
             
             if (held < 3 & !reset) htmlTimer.style.color = yellow
@@ -543,7 +544,4 @@ function timer(){
             }
         }
     }
-    
-    
-
 }

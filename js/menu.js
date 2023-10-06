@@ -56,11 +56,7 @@ function menu(){
 }
 
 function addData(chart, label, newData) {
-    // chart.data.datasets.forEach((dataset) => {
-    //     dataset.data.push(newData);
-    // });
     chart.data.datasets[0].data.push(newData)
-    console.log(newData);
 
     console.log(chart.data.datasets[0].data);
 
