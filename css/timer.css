@@ -13,10 +13,9 @@
     font-size: calc(0.5*var(--timer-size));
 }
 
-#scramble{
-    font-size: var(--scramble-size);
-}
+
 #scramble-div{
+    font-size: var(--scramble-size);
     grid-area: scramble;
 
     display: grid;

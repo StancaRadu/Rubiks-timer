@@ -1,40 +1,73 @@
-function db_file() {
-  const request = window.indexedDB.open("database", 1);
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const request = window.indexedDB.open("database", 1);
     request.onerror = (event) => {
       console.log(event);
     };
 
     request.onsuccess = (event) => {
       db = request.result;
+      resolve()
     };
 
     request.onupgradeneeded = (event) => {
       db = request.result;
       const store = db.createObjectStore("solves", { keyPath: 'timeOfSolving' });
       store.createIndex("scramble", ["scramble"], {unique:false})
-      store.createIndex("time", "seconds", {unique:false})
+      store.createIndex("time", ["seconds"], {unique:false})
+      resolve()
     };
+  })
 }
 
-function addTimeDB(scramble, time){
-  const transaction = db.transaction(["solves"], "readwrite");
-  transaction.oncomplete = (event) => {
-    console.log(event);
+function getConnectionToStore(store){
+  const transaction = db.transaction([store], "readwrite");
+  transaction.oncomplete  = (event) => {
   };
   transaction.onerror = (event) => {
     console.log("--error: " + event);
   };
+  const toReturn = transaction.objectStore(store);
 
-  const store = transaction.objectStore("solves");
+  return toReturn
+}
+
+function addTimeDB(scramble, time){
+  const store = getConnectionToStore("solves")
   
-  const putTransaction = store.put({
+  newEntry = {
     timeOfSolving: Date.now(),
     scramble: scramble,
-    seconds: time[0]*60 + time[1]
-  })
-  putTransaction.onsuccess = (event) => {
+    seconds: time
+  }
+  const putTransaction = store.put(newEntry)
+  putTransaction.onsuccess = () => {
+    addTimeToChart(newEntry)
+    addTimeToHistory(newEntry)
   };
   putTransaction.onerror = (event) => {
     console.log("--error: " + event);
   };
+}
+
+function getTimeDB(index = "timeOfSolve", value = NaN){
+  return new Promise((resolve, reject) => {
+    const store = getConnectionToStore("solves")
+    let getRequest;
+
+    if (index == "timeOfSolve"){
+      getRequest = store.getAll()
+    }else console.log("wrong index!");
+
+    getRequest.onsuccess = () =>{
+      resolve(getRequest.result)
+    }
+    getRequest.onerror = (event) =>{
+      console.log(event);
+    }
+  })
+}
+
+function deleteTimeDB(){
+  
 }

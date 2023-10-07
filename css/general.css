@@ -3,27 +3,31 @@
     padding: 0;
 
     transition: var(--transition-speed);
+    
 }
 
 :root{
-    --main-color: 200;
+    font-family: var(--general-font);
 
-    
+    --main-color: 250;
+
     --background-main-divs: hsl(var(--main-color), 35%, 40%);
 
     --body-color: hsl(var(--main-color), 45%, 15%);
     --accent1: hsl(var(--main-color), 30%, 25%);
-    --accent2: hsl(var(--main-color), 25%, 0%);
+    --accent2: hsl(var(--main-color), 35%, 45%);
+    --accent3: hsl(var(--main-color), 80%, 25%);
 
     --cube-internal-color: hsl(var(--main-color), 35%, 22%);
 
     --timer-size: 10rem;
-    --scramble-size: 3rem;
+    --scramble-size: 2.5rem;
     
     --transition-speed: .5s;
 
     --timer-font: 'Roboto Mono', cursive;
     --scramble-font: 'Rubik', cursive;
+    --general-font: 'Titillium Web', sans-serif;;
 }
 
 body{
@@ -52,7 +56,6 @@ body{
 }
 
 #screens{
-
     margin: 20px;
 
     flex-grow: 1;
@@ -64,13 +67,12 @@ body{
 }
 .screen{
     height: 100%;
-
     border-radius: 10px;
 }
 
 
 
-#centre-div{
+#centre-div{    
     border-radius: 10px;
 
     flex-grow: 1;
@@ -86,6 +88,7 @@ body{
 
     font-family: var(--timer-font);
     font-size: var(--timer-size);
+
 }
 
 

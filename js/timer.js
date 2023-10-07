@@ -1,4 +1,3 @@
-
 function timer(){
     
     let ongoing;
@@ -59,10 +58,9 @@ function timer(){
                     newscrable = 0
                 }
                 clearInterval(ongoing)
-                console.log(rubikSolves);
-                rubikSolves.push(`${minutes}.${seconds}.${tens}`)
-                addData(avgChart, "Avg.5", parseInt(seconds))
-                addTimeDB(scramble, [minutes, parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`)])
+                let time = minutes*60+parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`)
+                addTimeDB(scramble, minutes*60+parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`))
+
             }
             
             if (held < 3 & !reset) htmlTimer.style.color = yellow
@@ -133,13 +131,13 @@ function timer(){
             }
             currentMove = [set, side, move]
 
-            scramble += `${moves[set][side][move]} &nbsp;`
+            scramble += `${moves[set][side][move]} `
 
             secondLastMove = lastMove
         }
-        scramble = scramble.slice(0,-7)
+        scramble = scramble.slice(0,-1)
         htmlScramble.innerHTML = scramble
-        let scramble_array = scramble.split(" &nbsp;")
+        let scramble_array = scramble.split(" ")
         showMoves(scramble_array)
         return scramble_array
     }
