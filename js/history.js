@@ -28,5 +28,30 @@ function addTimeToHistory(time) {
         avg5cell.innerHTML = "-";
         avg12cell.innerHTML = "-";
     }
-    options.innerHTML = "";
+    addOptions(options);
+}
+
+function addOptions(cell){
+    const mainDiv = document.createElement("div")
+    mainDiv.style.display = "flex"
+    mainDiv.style.columnGap = "5px"
+    mainDiv.style.width = "200px"
+    mainDiv.style.height = "1rem"
+
+    for (let i = 0; i < 4; i++) {
+        const buttonDiv = document.createElement("div")
+        buttonDiv.style.display = "flex"
+        buttonDiv.style.justifyContent = "center"
+        buttonDiv.style.alignItems = "center"
+        buttonDiv.style.flexGrow = "1"
+        buttonDiv.style.border = "1px solid black"
+        buttonDiv.style.backgroundColor = "var(--accent3)"
+        if (i == 0) {
+            buttonDiv.innerHTML = "X"
+        }
+        mainDiv.append(buttonDiv)
+    }
+    
+
+    cell.append(mainDiv)
 }

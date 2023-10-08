@@ -5,11 +5,11 @@ function createLeftBarOpenButton(){
         
         if(htmlLeftBar.style.width == "500px"){
             htmlLeftBar.style.width = "0"
-            htmlLeftBar.style.visibility = "hidden"
+            htmlLeftBar.style.height = "0"
             htmlLeftBarOpenButton.style.transform = "none"
         }else {
             htmlLeftBar.style.width = "500px"
-            htmlLeftBar.style.visibility = "visible"
+            htmlLeftBar.style.height = "auto"
             htmlLeftBarOpenButton.style.transform = "rotateZ(180deg)"
         }
         

@@ -1,29 +1,34 @@
 #left-bar-div{
     background-color: var(--background-main-divs);
     margin-right: 20px;
-    display: grid;
-    grid-template-columns: 1fr 20px;
-    grid-template-areas: "stats .";
-    padding-left: 20px;
+    display: flex;
     position: relative;
+    width: fit-content;
 }
 
 /* stats */
 
 #statistics-div{
+    padding-right: 20px;
+    padding-left: 20px;
+    
     width: 500px;
     display: grid;
-    grid-template-rows: 400px 400px 1fr;
+    grid-template-rows: 500px 500px 0 0 ;
     grid-template-areas: 
         "avgchart"
         "history"
+        "."
         ".";
     gap: 50px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* canvas */
 
 #canvas-div{
+    max-width: 100%;
     grid-area: avgchart;
 }
 #myChart{
@@ -34,12 +39,15 @@
 /* table */
 
 #history-div{
+    direction: rtl;
     display: flex;
     width: 100%;
     height: 100%;
     overflow-y: scroll;
 }
 #history-table{
+    direction: ltr;
+
     height: fit-content;
     width: 100%;
     border-collapse: collapse;
@@ -66,7 +74,10 @@
     background-color: var(--accent2);
 }
 #history-table tbody tr td:not(:last-child){
-    width: 0;
+    flex-grow: 1;
+}
+#history-table tbody tr td:last-child{
+    width: 20px;
 }
 
 /* control */
