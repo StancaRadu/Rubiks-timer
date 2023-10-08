@@ -1,7 +1,6 @@
 function createChart(){
     
     let htmlChart = document.getElementById("myChart")
-    let statisticsDiv = document.getElementById("statistics-div")
 
     avgChart = new Chart(htmlChart, {
         type: "line",
@@ -56,18 +55,7 @@ function createChart(){
                 }
             }
         }
-    });
-            
-    loadTimesIntoChart()
-}
-
-async function loadTimesIntoChart() {
-    times = await getTimeDB()
-    avgChart.data.labels = []
-    avgChart.data.datasets[0].data = []
-    for (time in times){
-        addTimeToChart(times[time])
-    }
+    });     
 }
 
 function addTimeToChart(time) {
@@ -75,31 +63,24 @@ function addTimeToChart(time) {
     avgChart.data.datasets[0].data.push(time["seconds"])
     avgChart.update();
     if (avgChart.data.labels.length > 4){
-        averageLast(avgChart.data.datasets[0].data.slice(-5))
+        addAverageToChart(avgChart.data.datasets[0].data.slice(-5))
     }
     if (avgChart.data.labels.length > 11){
-        averageLast(avgChart.data.datasets[0].data.slice(-12))
+        addAverageToChart(avgChart.data.datasets[0].data.slice(-12))
     }
     if (avgChart.data.labels.length > 49){
-        averageLast(avgChart.data.datasets[0].data.slice(-50))
+        addAverageToChart(avgChart.data.datasets[0].data.slice(-50))
     }
 }
 
-function averageLast(solves){
-    solves = solves.sort().slice(1,-1)
-    let average = 0
-    for (solve in solves){
-        let time = solves[solve]
-        average += time
-    }
-    average /= solves.length
-
-    if (solves.length == 3){
-        avgChart.data.datasets[1].data.push(average)
-    }else if (solves.length == 10){
-        avgChart.data.datasets[2].data.push(average)
-    }else if (solves.length == 48){
-        avgChart.data.datasets[3].data.push(average)
+function addAverageToChart(solves){
+    let average = doAverage(solves)
+    if (solves.length == 5){
+        avgChart.data.datasets[1].data.push({y:average, x:avgChart.data.labels.length})
+    }else if (solves.length == 12){
+        avgChart.data.datasets[2].data.push({y:average, x:avgChart.data.labels.length})
+    }else if (solves.length == 50){
+        avgChart.data.datasets[3].data.push({y:average, x:avgChart.data.labels.length})
     }
 
     avgChart.update()

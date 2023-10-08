@@ -13,7 +13,6 @@ function openDB() {
     request.onupgradeneeded = (event) => {
       db = request.result;
       const store = db.createObjectStore("solves", { keyPath: 'timeOfSolving' });
-      store.createIndex("scramble", ["scramble"], {unique:false})
       store.createIndex("time", ["seconds"], {unique:false})
       resolve()
     };
@@ -36,11 +35,17 @@ function addTimeDB(scramble, time){
   const store = getConnectionToStore("solves")
   
   newEntry = {
-    timeOfSolving: Date.now(),
-    scramble: scramble,
-    seconds: time
+    "timeOfSolving": Date.now(),
+    "scramble": scramble,
+    "seconds": time,
+    "puzzle": "3x3",
+    "session": "main",
+    "penalty": 0,
+    "dnf": false,
+    "comments": ""
   }
   const putTransaction = store.put(newEntry)
+  
   putTransaction.onsuccess = () => {
     addTimeToChart(newEntry)
     addTimeToHistory(newEntry)
@@ -68,6 +73,14 @@ function getTimeDB(index = "timeOfSolve", value = NaN){
   })
 }
 
-function deleteTimeDB(){
-  
+function deleteTimeDB(id){
+  const store = getConnectionToStore("solves")
+
+  let query = store.delete(id);
+  query.onsuccess = () =>{
+    console.log(id);
+  }
+  query.onerror = (event) =>{
+    console.log(event);
+  }
 }

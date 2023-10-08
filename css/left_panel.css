@@ -1,17 +1,16 @@
 #left-bar-div{
     background-color: var(--background-main-divs);
     margin-right: 20px;
-
     display: grid;
-    grid-template-columns: 1fr 30px;
-    grid-template-areas: "stats button";
-    padding-left: 5px;
+    grid-template-columns: 1fr 20px;
+    grid-template-areas: "stats .";
+    padding-left: 20px;
+    position: relative;
 }
 
 /* stats */
 
 #statistics-div{
-    overflow: hidden;
     width: 500px;
     display: grid;
     grid-template-rows: 400px 400px 1fr;
@@ -27,7 +26,6 @@
 #canvas-div{
     grid-area: avgchart;
 }
-
 #myChart{
     width: 100%;
     font-family: var(--scramble-font);
@@ -40,39 +38,24 @@
     width: 100%;
     height: 100%;
     overflow-y: scroll;
-    border: 1px solid;
-}
-::-webkit-scrollbar{
-    width: 10px;
-    background-color: var(--accent2);
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb{
-    background-color: var(--accent1);
-}
-::-webkit-scrollbar-button{
-    background-color: var(--accent1);
-    height: 8px;
-    color: aliceblue;
-}
-th, td {
-    height: fit-content;
-    padding: 0.25rem;
 }
 #history-table{
     height: fit-content;
-
     width: 100%;
     border-collapse: collapse;
     position: relative;
-
+    box-shadow:  0px -1px 0 0px;
+    
 }
 #history-table th{
+    box-shadow: inset 0px 1px 0 0px, inset 0px -1px 0 0px;
     position: sticky;
     top: 0;
     background-color: var(--background-main-divs);
 }
 #history-table td, th{
+    height: fit-content;
+    padding: 0.25rem;
     border-left: 1px solid;
     border-right: 1px solid;
 }
@@ -82,20 +65,18 @@ th, td {
 #history-table tr:nth-of-type(even){
     background-color: var(--accent2);
 }
+#history-table tbody tr td:not(:last-child){
+    width: 0;
+}
 
 /* control */
 
-#left-bar-control-div{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
 #left-bar-control-open{
     background-color: var(--accent2);
     aspect-ratio: 1;
     position: absolute;
-    width: 100%;
-    left: 10px;
+    width: 30px;
+    right: -10px;
     top: -10px;
     border-radius: 10px;
 }

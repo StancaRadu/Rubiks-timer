@@ -1,6 +1,6 @@
 function createLeftBarOpenButton(){
     let htmlLeftBarOpenButton = document.getElementById("left-bar-control-open")
-    htmlLeftBarOpenButton.addEventListener('click', (event) => {
+    htmlLeftBarOpenButton.addEventListener('click', () => {
         let htmlLeftBar = document.getElementById("statistics-div")
         
         if(htmlLeftBar.style.width == "500px"){
@@ -27,4 +27,24 @@ function scrambleToText(scramble){
 function timeStampToDate(stamp){
     const date = new Date(stamp);
     return date.getDate() + '/' +  (date.getMonth()+1);
+}
+
+async function loadTimes(){
+    times = await getTimeDB()
+    for (time in times){
+        addTimeToHistory(times[time])
+        addTimeToChart(times[time])
+    }
+}
+
+function doAverage(solves){
+    solves = solves.sort().slice(1,-1)
+    let average = 0
+    for (solve in solves){
+        let time = solves[solve]
+        average += time
+    }
+    average /= solves.length
+
+    return average
 }

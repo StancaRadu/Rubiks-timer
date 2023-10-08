@@ -60,7 +60,6 @@ function timer(){
                 clearInterval(ongoing)
                 let time = minutes*60+parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`)
                 addTimeDB(scramble, minutes*60+parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`))
-
             }
             
             if (held < 3 & !reset) htmlTimer.style.color = yellow

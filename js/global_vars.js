@@ -1,6 +1,8 @@
 let db;
 let avgChart
-let rubikSolves = []
+
+let localDB = []
+
 let green = "hsl(100, 90%, 50%)"
 let white = "hsl(0, 0%, 100%)"
 let blue = "hsl(225, 90%, 50%)"

@@ -9,7 +9,7 @@
 :root{
     font-family: var(--general-font);
 
-    --main-color: 250;
+    --main-color: 215;
 
     --background-main-divs: hsl(var(--main-color), 35%, 40%);
 
@@ -38,6 +38,18 @@ body{
     display: flex;
     flex-direction: column;
 }
+
+
+::-webkit-scrollbar{
+    width:14px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--accent1);
+    border: 3px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 10px;
+}
+
 
 #menu{
     background-color: var(--accent1);
