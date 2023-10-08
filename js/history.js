@@ -13,8 +13,7 @@ function addTimeToHistory(time) {
 
     const nbOfSolves = avgChart.data.datasets[0].data
     id.hidden = "hidden"
-
-    id.innerHTML = time["seconds"];
+    id.innerHTML = time["timeOfSolving"];
     index.innerHTML = table.childElementCount;
     seconds.innerHTML = time["seconds"];
     date.innerHTML = timeStampToDate(time["timeOfSolving"]);
@@ -28,10 +27,10 @@ function addTimeToHistory(time) {
         avg5cell.innerHTML = "-";
         avg12cell.innerHTML = "-";
     }
-    addOptions(options);
+    addOptions(options, time["timeOfSolving"]);
 }
 
-function addOptions(cell){
+function addOptions(cell, id){
     const mainDiv = document.createElement("div")
     mainDiv.style.display = "flex"
     mainDiv.style.columnGap = "5px"
@@ -39,7 +38,7 @@ function addOptions(cell){
     mainDiv.style.height = "1rem"
 
     for (let i = 0; i < 4; i++) {
-        const buttonDiv = document.createElement("div")
+        const buttonDiv = document.createElement("button")
         buttonDiv.style.display = "flex"
         buttonDiv.style.justifyContent = "center"
         buttonDiv.style.alignItems = "center"
@@ -48,6 +47,9 @@ function addOptions(cell){
         buttonDiv.style.backgroundColor = "var(--accent3)"
         if (i == 0) {
             buttonDiv.innerHTML = "X"
+            buttonDiv.addEventListener("click", function() {
+                deleteTimeDB(id)
+            }, false);
         }
         mainDiv.append(buttonDiv)
     }

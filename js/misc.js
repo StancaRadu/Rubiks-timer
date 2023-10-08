@@ -31,6 +31,12 @@ function timeStampToDate(stamp){
 
 async function loadTimes(){
     times = await getTimeDB()
+    document.getElementById("history-body").replaceChildren();
+    avgChart.data.datasets[0].data = []
+    avgChart.data.datasets[1].data = []
+    avgChart.data.datasets[2].data = []
+    avgChart.data.datasets[3].data = []
+    avgChart.data.labels = []
     for (time in times){
         addTimeToHistory(times[time])
         addTimeToChart(times[time])

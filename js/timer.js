@@ -56,10 +56,9 @@ function timer(){
                     cube = unscrambledCube()
                     scramble = generateScramble(20)
                     newscrable = 0
+                    addTimeDB(scramble, minutes*60+parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`))
                 }
                 clearInterval(ongoing)
-                let time = minutes*60+parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`)
-                addTimeDB(scramble, minutes*60+parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`))
             }
             
             if (held < 3 & !reset) htmlTimer.style.color = yellow

@@ -78,7 +78,7 @@ function deleteTimeDB(id){
 
   let query = store.delete(id);
   query.onsuccess = () =>{
-    console.log(id);
+    loadTimes()
   }
   query.onerror = (event) =>{
     console.log(event);
