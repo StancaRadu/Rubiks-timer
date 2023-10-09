@@ -11,14 +11,15 @@
     <script src="js/db.js"></script>
     <script src="js/avg_chart.js"></script>
     <script src="js/history.js"></script>
-    <script src="js/timer.js"></script>
+    <script src="js/timer.js" defer></script>
     <script src="js/misc.js"></script>
     <script src="js/initial_loads.js" defer></script> 
 
     <link rel="stylesheet" href="css/cube.css">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/left_panel.css">
-    <link rel="stylesheet" href="css/timer.css">
+    <link rel="stylesheet" href="css/central.css">
+    <link rel="stylesheet" href="css/right_panel.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,10 +69,18 @@
         <div id="centre-div" class="screen">
             <div id="scramble-div">
                 <p id="scramble"></p>
+                <div id="scramble-options-div">
+                    <div id="new-scramble-button" class="scramble-options-button">
+                        <img src="img/refresh.png" alt="refresh">
+                    </div>
+                    <div class="scramble-options-button"></div>
+                    <div class="scramble-options-button"></div>
+                </div>
             </div>
-            <p id="timer-div">
-                <span id="minutes"></span><span id="seconds">00</span>.<span id="tens">00</span>
-            </p>
+            <div id="timer-div">
+                <p><span id="minutes"></span><span id="seconds">00</span>.<span id="tens">00</span></p>
+                <span id="instructions-span">Hold space</span>
+            </div>
             <div id="cube-div">
                 <div class="cube-face" id="top">
                 </div>
@@ -88,6 +97,8 @@
             </div>
         </div>
         
+        <div id="right-bar-div" class="screen">
+        </div>
     </div>
     
 </body>

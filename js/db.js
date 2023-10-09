@@ -3,14 +3,15 @@ function openDB() {
     const request = window.indexedDB.open("database", 1);
     request.onerror = (event) => {
       console.log(event);
+      reject()
     };
 
-    request.onsuccess = (event) => {
+    request.onsuccess = () => {
       db = request.result;
       resolve()
     };
 
-    request.onupgradeneeded = (event) => {
+    request.onupgradeneeded = () => {
       db = request.result;
       const store = db.createObjectStore("solves", { keyPath: 'timeOfSolving' });
       store.createIndex("time", ["seconds"], {unique:false})

@@ -9,6 +9,8 @@
         ". top . ."
         "left front right back"
         ". down . .";
+    align-self: flex-end;
+    justify-self: flex-end;
 }
 #top{
     grid-area: top;
@@ -53,10 +55,11 @@
         "lfl lfc lfr";
 }
 .cube-face{
+    /* display: hidden; */
     border-radius: 3px;
     padding: 3px;
     aspect-ratio: 1;
-    height: 5rem;
+    height: 80px;
     display: grid;
     grid-gap: 3px;
     background-color: var(--cube-internal-color);

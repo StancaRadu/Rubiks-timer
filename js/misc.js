@@ -2,8 +2,8 @@ function createLeftBarOpenButton(){
     let htmlLeftBarOpenButton = document.getElementById("left-bar-control-open")
     htmlLeftBarOpenButton.addEventListener('click', () => {
         let htmlLeftBar = document.getElementById("statistics-div")
-        
-        if(htmlLeftBar.style.width == "500px"){
+        console.log(htmlLeftBar.clientWidth);
+        if(htmlLeftBar.clientWidth > 100){
             htmlLeftBar.style.width = "0"
             htmlLeftBar.style.height = "0"
             htmlLeftBarOpenButton.style.transform = "none"

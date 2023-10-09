@@ -2,6 +2,6 @@ window.onload = async function(){
     await openDB()
     createChart()
     loadTimes()
-    timer()
+    // timer()
     createLeftBarOpenButton()
 }

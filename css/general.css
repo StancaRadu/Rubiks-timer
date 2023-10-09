@@ -51,29 +51,20 @@ body{
     grid-auto-flow: column;
     align-items: center;
     justify-items: center;
-}
-.screen, #menu{
     border-radius: 10px;
-    flex-grow: 1;   
+}
+.screen{
+    border-radius: 10px;
+    height: 100%;
+    background-color: var(--background-main-divs);
+
 }
 #screens{
     height: calc(100% - 120px);
-    display: flex;  
+    display: flex;
+    gap: 20px;
 }
-#centre-div{
-    width: 100%;
-    background-color: var(--background-main-divs);
 
-    display: grid;
-    grid-template-areas: 
-            "scramble scramble scramble"
-            "time time time"
-            ". . cube";
-
-    font-family: var(--timer-font);
-    font-size: var(--timer-size);
-
-}
 
 ::-webkit-scrollbar{
     width:14px;
