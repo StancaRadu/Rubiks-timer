@@ -39,8 +39,9 @@ async function loadTimes(){
     avgChart.data.labels = []
     for (time in times){
         addTimeToHistory(times[time])
-        addTimeToChart(times[time])
+        addTimeToChart(times[time], false)
     }
+    avgChart.update()
 }
 
 function doAverage(solves){

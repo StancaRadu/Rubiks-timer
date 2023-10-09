@@ -58,10 +58,10 @@ function createChart(){
     });     
 }
 
-function addTimeToChart(time) {
+function addTimeToChart(time, update = true) {
     avgChart.data.labels.push(avgChart.data.labels.length + 1)
     avgChart.data.datasets[0].data.push(time["seconds"])
-    avgChart.update();
+    // avgChart.update();
     if (avgChart.data.labels.length > 4){
         addAverageToChart(avgChart.data.datasets[0].data.slice(-5))
     }
@@ -71,6 +71,9 @@ function addTimeToChart(time) {
     if (avgChart.data.labels.length > 49){
         addAverageToChart(avgChart.data.datasets[0].data.slice(-50))
     }
+
+    if (update) avgChart.update()
+
 }
 
 function addAverageToChart(solves){
@@ -82,6 +85,4 @@ function addAverageToChart(solves){
     }else if (solves.length == 50){
         avgChart.data.datasets[3].data.push({y:average, x:avgChart.data.labels.length})
     }
-
-    avgChart.update()
 }
