@@ -10,7 +10,7 @@
     <script src="js/global_vars.js"></script>
     <script src="js/db.js"></script>
     <script src="js/avg_chart.js"></script>
-    <script src="js/history.js"></script>
+    <script src="js/history.js" defer></script>
     <script src="js/timer.js" defer></script>
     <script src="js/misc.js"></script>
     <script src="js/initial_loads.js" defer></script> 
@@ -42,16 +42,18 @@
     <div id="screens">
         <div id="left-bar-div" class="screen">
             <div id="statistics-div">
-                <div id="canvas-div"><canvas id="myChart"></canvas></div>
+                <!-- <div id="canvas-scroll-div"> -->
+                    <div id="canvas-div"><canvas id="myChart"></canvas></div>
+                <!-- </div> -->
                 <div id="history-div">
                     <table id="history-table">
                         <thead>
                             <tr>
-                            <th>No.</th>
-                            <th>Time</th>
+                            <th id="hh1">No.</th>
+                            <th id="hh2">Time</th>
                             <th>Date</th>
-                            <th>Avg.5</th>
-                            <th>Avg.12</th>
+                            <th id="hh4">Avg.5</th>
+                            <th id="hh5">Avg.12</th>
                             <th>Actions</th>
                             </tr>
                         </thead>

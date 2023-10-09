@@ -18,6 +18,7 @@ let htmlTimer = document.getElementById("timer-div")
 let htmlScramble = document.getElementById("scramble")
 let htmlInstructions = document.getElementById("instructions-span")
 let htmlNewScramble = document.getElementById("new-scramble-button")
+
 htmlNewScramble.addEventListener("click", () =>{
     scramble = generateScramble(20)
 })
@@ -59,9 +60,10 @@ document.addEventListener('keydown', (event) => {
         if (reset) {
             if (newscrable){
                 cube = unscrambledCube()
-                scramble = generateScramble(20)
                 newscrable = 0
                 addTimeDB(scramble, minutes*60+parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`))
+                scramble = generateScramble(20)
+
             }
             clearInterval(ongoing)
         }
@@ -144,6 +146,12 @@ function generateScramble(length){
         secondLastMove = lastMove
     }
     scramble = scramble.slice(0,-1)
+    htmlScramble.innerHTML = scramble
+    let scramble_array = scramble.split(" ")
+    showMoves(scramble_array)
+    return scramble_array
+}
+function useScramble(scramble){
     htmlScramble.innerHTML = scramble
     let scramble_array = scramble.split(" ")
     showMoves(scramble_array)

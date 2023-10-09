@@ -34,13 +34,23 @@
 
 /* canvas */
 
+/* #canvas-scroll-div{
+    position: relative;
+    display: flex;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+} */
 #canvas-div{
-    max-width: 100%;
+    /* position: absolute; */
+    width: 100%;
+    height: 100%;
     grid-area: avgchart;
+
+    overflow-x: scroll;
 }
 #myChart{
-    width: 100%;
-    font-family: var(--scramble-font);
+
 }
 
 /* table */
@@ -67,6 +77,10 @@
     position: sticky;
     top: 0;
     background-color: var(--background-main-divs);
+}
+#hh1,#hh2,#hh4,#hh5{
+    cursor: pointer;
+
 }
 #history-table td, th{
     height: fit-content;

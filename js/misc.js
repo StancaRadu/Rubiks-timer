@@ -37,9 +37,11 @@ async function loadTimes(){
     avgChart.data.datasets[2].data = []
     avgChart.data.datasets[3].data = []
     avgChart.data.labels = []
+    avgChart.data.size = 0
     for (time in times){
-        addTimeToHistory(times[time])
         addTimeToChart(times[time], false)
+        addTimeToHistory(times[time])
+
     }
     avgChart.update()
 }

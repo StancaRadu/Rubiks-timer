@@ -6,6 +6,7 @@ function createChart(){
         type: "line",
         data: {
             labels:[],
+            size: 0,
             datasets: [
                 {   
                     label: "Solves",
@@ -41,10 +42,9 @@ function createChart(){
             },
             scales: {
                 x: {
+                    clip: true,
+
                     ticks:{
-                        // callback: function(tick, index, array) {
-                        //     return (index % 5) ? "" : tick;
-                        // },
                         color: "black"
                     }
                 },
@@ -59,16 +59,16 @@ function createChart(){
 }
 
 function addTimeToChart(time, update = true) {
-    avgChart.data.labels.push(avgChart.data.labels.length + 1)
-    avgChart.data.datasets[0].data.push(time["seconds"])
-    // avgChart.update();
-    if (avgChart.data.labels.length > 4){
+    avgChart.data.size += 1
+    avgChart.data.labels.push(avgChart.data.size)
+    avgChart.data.datasets[0].data.push({y:time["seconds"], x:avgChart.data.size})
+    if (avgChart.data.size > 4){
         addAverageToChart(avgChart.data.datasets[0].data.slice(-5))
     }
-    if (avgChart.data.labels.length > 11){
+    if (avgChart.data.size > 11){
         addAverageToChart(avgChart.data.datasets[0].data.slice(-12))
     }
-    if (avgChart.data.labels.length > 49){
+    if (avgChart.data.size > 49){
         addAverageToChart(avgChart.data.datasets[0].data.slice(-50))
     }
 
@@ -76,13 +76,17 @@ function addTimeToChart(time, update = true) {
 
 }
 
-function addAverageToChart(solves){
+function addAverageToChart(solves_p){
+    let solves = [];
+    for (solve in solves_p){
+        solves.push(solves_p[solve]["y"])
+    }
     let average = doAverage(solves)
     if (solves.length == 5){
-        avgChart.data.datasets[1].data.push({y:average, x:avgChart.data.labels.length})
+        avgChart.data.datasets[1].data.push({y:average, x:avgChart.data.size})
     }else if (solves.length == 12){
-        avgChart.data.datasets[2].data.push({y:average, x:avgChart.data.labels.length})
+        avgChart.data.datasets[2].data.push({y:average, x:avgChart.data.size})
     }else if (solves.length == 50){
-        avgChart.data.datasets[3].data.push({y:average, x:avgChart.data.labels.length})
+        avgChart.data.datasets[3].data.push({y:average, x:avgChart.data.size})
     }
 }
