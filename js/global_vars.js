@@ -1,5 +1,5 @@
 let db;
-let avgChart
+let avgChart;
 let localDB = []
 
 let green = "hsl(100, 90%, 50%)"
