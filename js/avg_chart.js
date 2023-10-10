@@ -1,7 +1,6 @@
 function createChart(){
     
     let htmlChart = document.getElementById("myChart")
-
     avgChart = new Chart(htmlChart, {
         type: "line",
         data: {
