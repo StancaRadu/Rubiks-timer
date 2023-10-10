@@ -2,34 +2,64 @@
     background-color: var(--background-main-divs);
     display: flex;
     position: relative;
+    min-width: fit-content;
+    overflow: hidden;
 }
 #left-bar-control-open{
     background-color: var(--accent2);
+    box-shadow: inset 0 0 3px 1px var(--accent1);
     aspect-ratio: 1;
     position: absolute;
     width: 30px;
-    right: -10px;
-    top: -10px;
-    border-radius: 10px;
+    right: 0px;
+    top: 0px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     transform: rotateZ(180deg);
 }
-/* stats */
+#left-bar-control-div{
+    position: absolute;
+    width: 250px;
+    left: 135px;
+    bottom: 0px;
+    height: 40px;
+    background-color: var(--accent2);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    box-shadow: inset 0 0 3px 1px var(--accent1);
 
+}
 #statistics-div{
     padding-right: 20px;
     padding-left: 20px;
     
     width: 500px;
     display: grid;
-    grid-template-rows: 500px 500px 0 0 ;
-    grid-template-areas: 
-        "avgchart"
-        "history"
-        "."
-        ".";
+    grid-auto-rows: 400px;
     gap: 50px;
+    margin: 50px 0 50px;
     overflow-y: auto;
     overflow-x: hidden;
+}
+.left-bar-oc-div{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: inset 0 0 3px 1px var(--accent1);
+    background-color: var(--accent2);
+    padding: 5px;
+    resize: vertical;
+}
+.left-bar-oc-div h1{
+    /* align-self: center; */
+    /* box-shadow: inset 0 0 12px 1px var(--accent1); */
+    /* border-radius: 2px; */
+    width: 100%;
+    height: 60px;
 }
 
 /* canvas */
@@ -42,15 +72,10 @@
     height: 100%;
 } */
 #canvas-div{
-    /* position: absolute; */
     width: 100%;
     height: 100%;
-    grid-area: avgchart;
 
     overflow-x: scroll;
-}
-#myChart{
-
 }
 
 /* table */
@@ -58,9 +83,11 @@
 #history-div{
     direction: rtl;
     display: flex;
-    width: 100%;
+    flex-grow: 1;
     height: 100%;
+    
     overflow-y: scroll;
+    margin-right: 14px;
 }
 #history-table{
     direction: ltr;

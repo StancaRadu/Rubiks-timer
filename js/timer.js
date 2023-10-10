@@ -59,7 +59,6 @@ document.addEventListener('keydown', (event) => {
 
         if (reset) {
             if (newscrable){
-                cube = unscrambledCube()
                 newscrable = 0
                 addTimeDB(scramble, minutes*60+parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`))
                 scramble = generateScramble(20)
@@ -152,6 +151,7 @@ function generateScramble(length){
     return scramble_array
 }
 function useScramble(scramble){
+    cube = unscrambledCube()
     htmlScramble.innerHTML = scramble
     let scramble_array = scramble.split(" ")
     showMoves(scramble_array)

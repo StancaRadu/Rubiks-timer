@@ -14,17 +14,17 @@ function createChart(){
                     tension: 0.1,
                 },
                 {
-                    label: "Avg. 5",
+                    label: "Ao5",
                     data: [],
                     tension: 0.1,
                 },
                 {
-                    label: "Avg. 12",
+                    label: "Ao12",
                     data: [],
                     tension: 0.1,
                 },
                 {
-                    label: "Avg. 50",
+                    label: "Ao50",
                     data: [],
                     tension: 0.1,
                 }
