@@ -53,11 +53,11 @@ function createChart(){
                         color: "black"
                     }
                 }
-            }
+            },
+
         }
     });     
 }
-
 function addTimeToChart(time, update = true) {
     avgChart.data.size += 1
     avgChart.data.labels.push(avgChart.data.size)

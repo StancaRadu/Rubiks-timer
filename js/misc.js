@@ -5,11 +5,11 @@ function createLeftBarOpenButton(){
         console.log(htmlLeftBar.clientWidth);
         if(htmlLeftBar.clientWidth > 100){
             htmlLeftBar.style.width = "0"
-            // htmlLeftBar.style.height = "0"
+            // htmlLeftBar.style.maxHeight = "0"
             htmlLeftBarOpenButton.style.transform = "none"
         }else {
             htmlLeftBar.style.width = "500px"
-            htmlLeftBar.style.height = "auto"
+            // htmlLeftBar.style.maxHeight = "300px"
             htmlLeftBarOpenButton.style.transform = "rotateZ(180deg)"
         }
         
