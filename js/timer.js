@@ -9,6 +9,7 @@ let ready = 0;
 let reset = 0;
 let newscrable = 0;
 let scramble;
+let scrambleLength = 20;
 
 let htmlSeconds = document.getElementById("seconds")
 let htmlTens = document.getElementById("tens")
@@ -20,12 +21,13 @@ let htmlInstructions = document.getElementById("instructions-span")
 let htmlNewScramble = document.getElementById("new-scramble-button")
 
 htmlNewScramble.addEventListener("click", () =>{
-    scramble = generateScramble(20)
+    scramble = generateScramble(scrambleLength)
 })
 
 let cube = unscrambledCube()
 addCubeToHtml(cube)
-scramble = generateScramble(20)
+
+scramble = generateScramble(scrambleLength)
 
 
 document.addEventListener('keyup', (event) => {
@@ -61,7 +63,7 @@ document.addEventListener('keydown', (event) => {
             if (newscrable){
                 newscrable = 0
                 addTimeDB(scramble, minutes*60+parseFloat(`${htmlSeconds.innerHTML}.${htmlTens.innerHTML}`))
-                scramble = generateScramble(20)
+                scramble = generateScramble(scrambleLength)
 
             }
             clearInterval(ongoing)
@@ -147,13 +149,15 @@ function generateScramble(length){
     scramble = scramble.slice(0,-1)
     htmlScramble.innerHTML = scramble
     let scramble_array = scramble.split(" ")
+    cube = unscrambledCube()
     showMoves(scramble_array)
     return scramble_array
 }
-function useScramble(scramble){
+function useScramble(moves){
     cube = unscrambledCube()
-    htmlScramble.innerHTML = scramble
-    let scramble_array = scramble.split(" ")
+    htmlScramble.innerHTML = moves
+    let scramble_array = moves.split(" ")
+    scramble = moves
     showMoves(scramble_array)
     return scramble_array
 }
