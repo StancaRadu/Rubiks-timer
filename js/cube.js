@@ -1,38 +1,38 @@
 class Cube{
     constructor(){
         this.pieces = {
-            "cubl":{"y":"yellow","z":"blue","x":"red"},
-            "cubr":{"y":"yellow","z":"blue","x":"orange"},
-            "cufl":{"y":"yellow","z":"green","x":"red"},
-            "cufr":{"y":"yellow","z":"green","x":"orange"},
+            "cubl":{"y":yellow,"z":blue,"x":red},
+            "cubr":{"y":yellow,"z":blue,"x":orange},
+            "cufl":{"y":yellow,"z":green,"x":red},
+            "cufr":{"y":yellow,"z":green,"x":orange},
 
-            "cdbl":{"y":"white","z":"blue","x":"red"},
-            "cdbr":{"y":"white","z":"blue","x":"orange"},
-            "cdfl":{"y":"white","z":"green","x":"red"},
-            "cdfr":{"y":"white","z":"green","x":"orange"},
+            "cdbl":{"y":white,"z":blue,"x":red},
+            "cdbr":{"y":white,"z":blue,"x":orange},
+            "cdfl":{"y":white,"z":green,"x":red},
+            "cdfr":{"y":white,"z":green,"x":orange},
 
-            "eur":{"y":"yellow","x":"orange"},
-            "eul":{"y":"yellow","x":"red"},
-            "euf":{"y":"yellow","z":"green"},
-            "eub":{"y":"yellow","z":"blue"},
+            "eur":{"y":yellow,"x":orange},
+            "eul":{"y":yellow,"x":red},
+            "euf":{"y":yellow,"z":green},
+            "eub":{"y":yellow,"z":blue},
 
-            "edr":{"y":"white","x":"orange"},
-            "edl":{"y":"white","x":"red"},
-            "edf":{"y":"white","z":"green"},
-            "edb":{"y":"white","z":"blue"},
+            "edr":{"y":white,"x":orange},
+            "edl":{"y":white,"x":red},
+            "edf":{"y":white,"z":green},
+            "edb":{"y":white,"z":blue},
 
-            "efr":{"x":"orange","z":"green"},
-            "ebr":{"x":"orange","z":"blue"},
+            "efr":{"x":orange,"z":green},
+            "ebr":{"x":orange,"z":blue},
 
-            "efl":{"x":"red","z":"green"},
-            "ebl":{"x":"red","z":"blue"},
+            "efl":{"x":red,"z":green},
+            "ebl":{"x":red,"z":blue},
 
-            "mu":{"y":"yellow"},
-            "md":{"y":"white"},
-            "mr":{"x":"orange"},
-            "ml":{"x":"red"},
-            "mf":{"z":"green"},
-            "mb":{"z":"blue"}
+            "mu":{"y":yellow},
+            "md":{"y":white},
+            "mr":{"x":orange},
+            "ml":{"x":red},
+            "mf":{"z":green},
+            "mb":{"z":blue}
         }
         this.sequences = {
             "R":{
@@ -124,6 +124,12 @@ class Cube{
 
     }
 
+    moveFormater(unformated){
+        console.log(this.pieces.length);
+        let slice, move, wide, direction, double;
+
+    }
+
     doMove(move) {
         let modifier = 1
         let antiClockwise = false
@@ -179,22 +185,42 @@ class Cube{
 
     }
     translatePiecesToHTMLID(){
-        for (const [key, value] of Object.entries(this.pieces)) {
-            console.log(key);
+        let HTMLDictionary = {}
+        let HTMLIDs = []
+        for (const [pieceID, piece] of Object.entries(this.pieces)) {
+            HTMLDictionary[pieceID] = {}
+            for (const [squareID, square] of  Object.entries(piece)){
+                const HTMLID = pieceID+squareID
+                HTMLDictionary[pieceID][squareID] = HTMLID
+                HTMLIDs.push(HTMLID)
+            }
         }
+        console.log(HTMLDictionary);
+        return {"dictionry":HTMLDictionary,"array":HTMLIDs}
     }
-    createHTML(divID){
-        div = document.getElementById(divID);
-
+    createHTMLCube(divID){
+        const HTMLIDs = this.translatePiecesToHTMLID()["array"]
+        const size = Math.sqrt(HTMLIDs.length/6)
+        const cubeDiv = document.getElementById(divID);
+        let faces = []
+        for (let i = 0; i < 6; i++) {
+            let gridArea = ["u","d","r","l","f","b"][i]
+            let faceDiv = cubeDiv.getElementsByClassName(`cubeClass${size}-${gridArea}-div`)[0]
+            let faceAreas = (getComputedStyle(faceDiv).gridTemplateAreas.replaceAll(`"`, "")).split(" ")
+            HTMLIDs.forEach(ID => {
+                if(faceAreas.includes(ID)){
+                    let square = document.createElement("div")
+                    square.id = ID
+                    square.style.gridArea = ID                    
+                    faceDiv.appendChild(square)
+                }
+            });
+        }
     }
 }
 
 let cube1 = new Cube()
 cube1.doMove("R2")
-cube1.doMove("L")
-cube1.doMove("F2")
-cube1.doMove("B'")
-cube1.doMove("R")
+cube1.doMove("F'")
 cube1.doMove("M")
-// cube1.doMove("f")
-cube1.translatePiecesToHTMLID()
+cube1.createHTMLCube("class-cube")

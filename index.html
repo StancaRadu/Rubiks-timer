@@ -7,7 +7,7 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="node_modules/chart.js/dist/chart.umd.js"></script>
 
-    <script src="js/cube.js"></script>
+    <script src="js/cube.js" defer></script>
 
     <script src="js/global_vars.js"></script>
     <script src="js/db.js"></script>
@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/left_panel.css">
     <link rel="stylesheet" href="css/central.css">
     <link rel="stylesheet" href="css/right_panel.css">
+    <link rel="stylesheet" href="css/cubeClass.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,9 +69,7 @@
                           </table>
                     </div>
                 </div>
-                <div class="left-bar-oc-div">
-                    <div id="class-cube"></div>
-                </div>
+                
                 
                 
             </div>
@@ -112,6 +111,16 @@
         </div>
         
         <div id="right-bar-div" class="screen">
+            <div class="left-bar-oc-div">
+                <div id="class-cube" class="cubeClass-div">
+                    <div class="cubeClass-face-div cubeClass3-u-div"></div>
+                    <div class="cubeClass-face-div cubeClass3-d-div"></div>
+                    <div class="cubeClass-face-div cubeClass3-r-div"></div>
+                    <div class="cubeClass-face-div cubeClass3-l-div"></div>
+                    <div class="cubeClass-face-div cubeClass3-f-div"></div>
+                    <div class="cubeClass-face-div cubeClass3-b-div"></div>
+                </div>
+            </div>
         </div>
     </div>
     
