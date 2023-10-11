@@ -1,5 +1,7 @@
 #right-bar-div {
-    padding: 10px;
+    width: 40px;
     display: grid;
-    grid-auto-rows: 400px;
+    /* grid-auto-rows: 400px; */
+    overflow: hidden;
+
 }
