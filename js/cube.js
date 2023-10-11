@@ -129,7 +129,6 @@ class Cube{
         let slice, move, wide, direction, double;
 
     }
-
     doMove(move) {
         let modifier = 1
         let antiClockwise = false
@@ -195,7 +194,6 @@ class Cube{
                 HTMLIDs.push(HTMLID)
             }
         }
-        console.log(HTMLDictionary);
         return {"dictionry":HTMLDictionary,"array":HTMLIDs}
     }
     createHTMLCube(divID){
@@ -217,10 +215,15 @@ class Cube{
             });
         }
     }
+    addColorsToHTMLCube(){
+        let HTMLDictionary = this.translatePiecesToHTMLID()["dictionry"]
+        console.log(this.pieces);
+        for (const [piece, value] of Object.entries(this.pieces)) {
+            for (const [key, value] of Object.entries(this.pieces[piece])) {
+                let square = document.getElementById(piece+key)
+                let color = value
+                square.style.backgroundColor = color
+            }
+        }
+    }
 }
-
-let cube1 = new Cube()
-cube1.doMove("R2")
-cube1.doMove("F'")
-cube1.doMove("M")
-cube1.createHTMLCube("class-cube")
