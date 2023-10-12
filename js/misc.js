@@ -23,6 +23,15 @@ function createLeftBarOpenButton(){
             htmlRightBarOpenButton.style.transform = "rotateZ(180deg)"
         }
     });
+    let cubeAreaHtml = document.getElementById("cube-relative-area")
+    cubeAreaHtml.addEventListener('click', (event) => {
+        console.log(getComputedStyle(cubeAreaHtml)["visibility"]);
+        if(getComputedStyle(cubeAreaHtml)["visibility"] == "hidden"){
+            cubeAreaHtml.style.visibility == "visible"
+        }else {
+            cubeAreaHtml.style.visibility == "hidden"
+        }
+    });
 }
 
 function scrambleToText(scramble){
@@ -66,3 +75,4 @@ function doAverage(solves){
 
     return average
 }
+

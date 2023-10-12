@@ -1,16 +1,38 @@
-#cube-div{
-    margin: 10px;
-    justify-self: center;
-    align-self: center;
+#cube-relative-area{
+    width: 300px;
+    height: 200px;
+    position: relative;
+    display: flex;
+    justify-self: end;
+    align-self: end;
     grid-area: cube;
+
+}
+
+#cube-div{
+    pointer-events: none;
+    position: absolute;
     display: grid;
     grid-gap: 10px;
     grid-template-areas: 
         ". top . ."
         "left front right back"
         ". down . .";
-    align-self: flex-end;
-    justify-self: flex-end;
+    grid-template-rows: repeat(3, 50px);
+    grid-template-columns: repeat(4, 50px);
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#cube-relative-area:hover  #cube-div{
+    grid-template-rows: repeat(3, 130px);
+    grid-template-columns: repeat(4, 130px);
+    transform: translate(-75%, -75%);
+    top: 0;
+
+    /* transform: rotateY(180deg); */
 }
 #top{
     grid-area: top;
@@ -56,12 +78,11 @@
 }
 .cube-face{
     /* display: hidden; */
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 3px;
     aspect-ratio: 1;
-    height: 80px;
     display: grid;
-    grid-gap: 3px;
+    grid-gap: 4px;
     background-color: var(--cube-internal-color);
 }
 .cube-piece{
