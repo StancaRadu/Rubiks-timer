@@ -13,7 +13,7 @@ function createLeftBarOpenButton(){
 
     let htmlRightBarOpenButton = document.getElementById("right-bar-control-open")
     htmlRightBarOpenButton.addEventListener('click', () => {
-        let htmlRightBar = document.getElementById("algs-div")
+        let htmlRightBar = document.getElementById("right-wraper-div")
         if(htmlRightBar.clientWidth > 100){
             htmlRightBar.style.width = "0"
             htmlRightBarOpenButton.style.transform = "none"
