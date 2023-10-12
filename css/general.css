@@ -19,8 +19,8 @@
 
     --cube-internal-color: hsl(var(--main-color), 35%, 22%);
 
-    --timer-size: 10rem;
-    --scramble-size: 2.5rem;
+    --timer-size: 7rem;
+    --scramble-size: 2rem;
     
     --transition-speed: .5s;
 
@@ -79,3 +79,21 @@ body{
     background-color: #00000000;
 }
 
+
+.carved{
+    background-color: var(--accent2);
+    box-shadow: inset 0 0 3px 1px var(--accent1);
+}
+.side-bar-div{
+    width: 500px;
+
+    padding: 0 20px 0 20px;
+    margin: 50px 0 50px;
+    
+    display: grid;
+    grid-auto-rows: 400px;
+    gap: 50px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}

@@ -20,6 +20,8 @@
     height: fit-content;
 
     gap: 10px;
+
+    padding: 0 10px 0 10px;
 }
 #scramble-options-div {
     display: flex;

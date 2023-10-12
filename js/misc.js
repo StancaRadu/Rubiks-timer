@@ -2,17 +2,26 @@ function createLeftBarOpenButton(){
     let htmlLeftBarOpenButton = document.getElementById("left-bar-control-open")
     htmlLeftBarOpenButton.addEventListener('click', () => {
         let htmlLeftBar = document.getElementById("statistics-div")
-        console.log(htmlLeftBar.clientWidth);
         if(htmlLeftBar.clientWidth > 100){
             htmlLeftBar.style.width = "0"
-            // htmlLeftBar.style.height = "0"
             htmlLeftBarOpenButton.style.transform = "none"
         }else {
             htmlLeftBar.style.width = "500px"
-            htmlLeftBar.style.height = "auto"
             htmlLeftBarOpenButton.style.transform = "rotateZ(180deg)"
         }
-        
+    });
+
+    let htmlRightBarOpenButton = document.getElementById("right-bar-control-open")
+    htmlRightBarOpenButton.addEventListener('click', () => {
+        let htmlRightBar = document.getElementById("algs-div")
+        if(htmlRightBar.clientWidth > 100){
+            htmlRightBar.style.width = "0"
+            htmlRightBarOpenButton.style.transform = "none"
+        }else {
+            console.log(1);
+            htmlRightBar.style.width = "500px"
+            htmlRightBarOpenButton.style.transform = "rotateZ(180deg)"
+        }
     });
 }
 

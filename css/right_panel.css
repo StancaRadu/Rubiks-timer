@@ -1,6 +1,30 @@
 #right-bar-div {
-    width: 40px;
+    position: relative;
     display: grid;
-    /* grid-auto-rows: 400px; */
     overflow: hidden;
+    min-width: fit-content;
+}
+
+#right-bar-control-open{
+    aspect-ratio: 1;
+    position: absolute;
+    width: 30px;
+    left: 0px;
+    top: 0px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transform: rotateZ(180deg);
+}
+
+#right-bar-control-div{
+    position: absolute;
+    width: 250px;
+    left: 27.5%;
+    bottom: 0px;
+    height: 40px;
+
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+
+
 }
