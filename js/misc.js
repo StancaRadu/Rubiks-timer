@@ -1,25 +1,26 @@
-function createLeftBarOpenButton(){
-    let htmlLeftBarOpenButton = document.getElementById("left-bar-control-open")
+function createScreensOpenButton(){
+    let htmlLeftBarOpenButton = document.getElementById("left-screen-open-button")
     htmlLeftBarOpenButton.addEventListener('click', () => {
-        let htmlLeftBar = document.getElementById("statistics-div")
-        if(htmlLeftBar.clientWidth > 100){
-            htmlLeftBar.style.width = "0"
+        let htmlLeftScreen = document.getElementById("left-screen")
+        let htmlLeftInner = htmlLeftScreen.getElementsByClassName("screen-inner-wrapper")[0]
+        if(htmlLeftInner.clientWidth > 100){
+            htmlLeftInner.style.width = "0"
             htmlLeftBarOpenButton.style.transform = "none"
         }else {
-            htmlLeftBar.style.width = "500px"
+            htmlLeftInner.style.width = "500px"
             htmlLeftBarOpenButton.style.transform = "rotateZ(180deg)"
         }
     });
 
-    let htmlRightBarOpenButton = document.getElementById("right-bar-control-open")
+    let htmlRightBarOpenButton = document.getElementById("right-screen-open-button")
     htmlRightBarOpenButton.addEventListener('click', () => {
-        let htmlRightBar = document.getElementById("right-wraper-div")
-        if(htmlRightBar.clientWidth > 100){
-            htmlRightBar.style.width = "0"
+        let htmlRightScreen = document.getElementById("right-screen")
+        let htmlRightInner = htmlRightScreen.getElementsByClassName("screen-inner-wrapper")[0]
+        if(htmlRightInner.clientWidth > 100){
+            htmlRightInner.style.width = "0"
             htmlRightBarOpenButton.style.transform = "none"
         }else {
-            console.log(1);
-            htmlRightBar.style.width = "500px"
+            htmlRightInner.style.width = "500px"
             htmlRightBarOpenButton.style.transform = "rotateZ(180deg)"
         }
     });

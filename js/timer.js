@@ -10,6 +10,7 @@ let reset = 0;
 let newscrable = 0;
 let scramble;
 let scrambleLength = 20;
+let startTime;
 
 let htmlSeconds = document.getElementById("seconds")
 let htmlTens = document.getElementById("tens")
@@ -42,7 +43,7 @@ document.addEventListener('keyup', (event) => {
             seconds = 0;
             tens = 0;
             minutes = 0;
-
+            startTime = 0
             ongoing = setInterval(startTimer, 10);
             newscrable = 1
             reset = 1
@@ -85,26 +86,27 @@ document.addEventListener('keydown', (event) => {
     }
 });
 function startTimer(){
-    tens++; 
+    timer()
+    // tens++; 
     
-    if(tens <= 9) htmlTens.innerHTML = "0" + tens;
+    // if(tens <= 9) htmlTens.innerHTML = "0" + tens;
     
-    if (tens > 9) htmlTens.innerHTML = tens;
+    // if (tens > 9) htmlTens.innerHTML = tens;
 
     
-    if (tens > 99) {
-        if (seconds < 59) seconds++    
-        else {
-            seconds = 0
-            minutes++
-            htmlMinutes.innerHTML = minutes + ":";
-        }
-        tens = 0;
-        htmlTens.innerHTML = "0" + 0;
-    }
+    // if (tens > 99) {
+    //     if (seconds < 59) seconds++    
+    //     else {
+    //         seconds = 0
+    //         minutes++
+    //         htmlMinutes.innerHTML = minutes + ":";
+    //     }
+    //     tens = 0;
+    //     htmlTens.innerHTML = "0" + 0;
+    // }
     
-    if (seconds > 9) htmlSeconds.innerHTML = seconds;
-    else htmlSeconds.innerHTML = "0" + seconds;
+    // if (seconds > 9) htmlSeconds.innerHTML = seconds;
+    // else htmlSeconds.innerHTML = "0" + seconds;
 
 }
 function generateScramble(length){
@@ -561,4 +563,14 @@ function showMoves(moves){
             }
         }
     }
+}
+function timer(){
+    if(startTime === 0){
+        startTime = new Date().getTime()
+    }
+    let currentTime = ((new Date().getTime() - startTime)/1000).toFixed(2)
+    if (currentTime > 59.99) {
+        minutes++
+    }
+    htmlSeconds.innerHTML = currentTime - parseFloat(currentTime).toFixed(1)
 }

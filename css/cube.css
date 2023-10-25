@@ -1,5 +1,5 @@
 #cube-relative-area{
-    width: 300px;
+    width: 250PX;
     height: 200px;
     position: relative;
     display: flex;
@@ -8,10 +8,8 @@
     grid-area: cube;
 
 }
-
 #cube-div{
     pointer-events: none;
-    position: absolute;
     display: grid;
     grid-gap: 10px;
     grid-template-areas: 
@@ -21,19 +19,15 @@
     grid-template-rows: repeat(3, 50px);
     grid-template-columns: repeat(4, 50px);
     position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    bottom: 10px;
+    right: 10px;
 }
-
 #cube-relative-area:hover  #cube-div{
-    grid-template-rows: repeat(3, 130px);
-    grid-template-columns: repeat(4, 130px);
-    transform: translate(-75%, -75%);
-    top: 0;
+    grid-template-rows: repeat(3, 125px);
+    grid-template-columns: repeat(4, 125px);
 
-    /* transform: rotateY(180deg); */
-}
+}   
+
 #top{
     grid-area: top;
     grid-template-areas:

@@ -17,11 +17,10 @@
     <script src="js/misc.js" defer></script>
     <script src="js/initial_loads.js" defer></script> 
 
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/historyTable.css">
     <link rel="stylesheet" href="css/cube.css">
-    <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/left_panel.css">
-    <link rel="stylesheet" href="css/central.css">
-    <link rel="stylesheet" href="css/right_panel.css">
     <link rel="stylesheet" href="css/cubeClass.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,15 +36,14 @@
 </head>
 <body>
     <div id="menu">
-        <div>settings</div>
-        <div>:)</div>
-        <div>w</div>
-        <div>2:(</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
     </div>
     <div id="screens">
-        <div id="left-bar-div" class="screen">
-            <div id="statistics-div" class="side-bar-div">
-                
+        <div id="left-screen" class="screen">
+            <div id="statistics-div" class="screen-inner-wrapper">
                 <div class="left-bar-oc-div carved">
                     <h1 class="left-oc-header">Chart</h1>
                     <div id="canvas-div"><canvas id="myChart"></canvas></div>
@@ -70,14 +68,14 @@
                           </table>
                     </div>
                 </div>
-                
             </div>
-            <img src="img/right-arrow.png" alt="arrow" id="left-bar-control-open" class="carved">
+
+            <img src="img/right-arrow.png" alt="arrow" id="left-screen-open-button" class="carved open-button">
             <div id="left-bar-control-div" class="carved">Heeeeei iubireeeee ^^</div>
 
         </div>
         
-        <div id="centre-div" class="screen">
+        <div id="centre-screen" class="screen">
             <div id="scramble-div">
                 <p id="scramble"></p>
                 <div id="scramble-options-div">
@@ -110,14 +108,16 @@
             </div>
         </div>
         
-        <div id="right-bar-div" class="screen">
-            <div id="right-wraper-div">
+        <div id="right-screen" class="screen">
+            <div id="right-wraper-div" class="screen-inner-wrapper">
                 <div id="algs-div" class="right-subpanel carved"></div>
                 <div id="tutorial-div" class="right-subpanel carved"></div>
                 <div id="move-div" class="right-subpanel carved"></div>
             </div>
-            <img src="img/left-arrow.png" alt="arrow" id="right-bar-control-open" class="carved">
+
+            <img src="img/left-arrow.png" alt="arrow" id="right-screen-open-button" class="carved open-button">
             <div id="right-bar-control-div" class="carved"></div>
+            
         </div>
     </div>
     
