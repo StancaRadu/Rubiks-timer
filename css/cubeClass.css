@@ -1,24 +1,33 @@
-.cubeClass-div{
-
-    aspect-ratio: 1;
-    height: 100%;
+.cube-wrapper{
+    transition: var(--transition-speed);
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
     ". u . ."
     "l f r b"
     ". d . .";
-    gap: 2px;
+    grid-gap: 10px;
+    
+    width: 100%;
+    aspect-ratio: 4/3;
+
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+}
+#cube-relative-area:hover  #show-scramble{
+    grid-template-rows: repeat(3, 125px);
+    grid-template-columns: repeat(4, 125px);
 }
 .cubeClass-face-div{
     display: grid;
-    width: 100%;
     aspect-ratio: 1;
+    grid-gap: 4px;
+    background-color: var(--cube-internal-color);
+    padding: 3px;
+    border-radius: 5px; 
 }
 .cubeClass-square-div{
-    width: 100%;
-    aspect-ratio: 1;
-    background-color: green;
-    display: flex;
+    border-radius: 3px;
+    transition: 2s;
 }
 .cubeClass3-u-div{
     grid-area: u;
@@ -61,4 +70,45 @@
         "cublz eubz cubrz"
         "eblz mbz ebrz"
         "cdblz edbz cdbrz";          
+}
+
+.cubeClass3-d-div-r{
+    grid-area: d;
+    grid-template-areas: 
+        "cdbly edby cdbry"
+        "edly mdy edry"
+        "cdfly edfy cdfry";          
+}
+.cubeClass3-l-div-r{
+    grid-area: l;
+    grid-template-areas: 
+        "cublx eulx cuflx"
+        "eblx mlx eflx"
+        "cdblx edlx cdflx";          
+}
+.cubeClass3-b-div-r{
+    grid-area: b;
+    grid-template-areas: 
+        "cublz eubz cubrz"
+        "eblz mbz ebrz"
+        "cdblz edbz cdbrz";          
+}
+
+
+#cube-relative-area{
+    width: 250PX;
+    height: 200px;
+    position: relative;
+    display: flex;
+    justify-self: end;
+    align-self: end;
+    grid-area: cube;
+    margin: 10px;
+}
+#show-scramble{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+
 }

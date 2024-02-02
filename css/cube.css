@@ -1,13 +1,4 @@
-#cube-relative-area{
-    width: 250PX;
-    height: 200px;
-    position: relative;
-    display: flex;
-    justify-self: end;
-    align-self: end;
-    grid-area: cube;
 
-}
 #cube-div{
     pointer-events: none;
     display: grid;
@@ -27,7 +18,18 @@
     grid-template-columns: repeat(4, 125px);
 
 }   
-
+.cube-face{
+    border-radius: 5px;
+    padding: 3px;
+    aspect-ratio: 1;
+    display: grid;
+    grid-gap: 4px;
+    background-color: var(--cube-internal-color);
+}
+.cube-piece{
+    border-radius: 3px;
+    transition: 2s;
+}
 #top{
     grid-area: top;
     grid-template-areas:
@@ -70,15 +72,4 @@
         "lcl lcc lcr"
         "lfl lfc lfr";
 }
-.cube-face{
-    border-radius: 5px;
-    padding: 3px;
-    aspect-ratio: 1;
-    display: grid;
-    grid-gap: 4px;
-    background-color: var(--cube-internal-color);
-}
-.cube-piece{
-    border-radius: 3px;
-    transition: 2s;
-}
+
