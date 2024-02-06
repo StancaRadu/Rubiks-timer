@@ -16,8 +16,8 @@ class Timer{
         this.sTime = 0;
         this.nTime = 0;
         this.time = 0;
-        this.waited = false;
         this.held = 0;
+        this.waited = false;
         this.ready = true;
         this.counting = false;
         this.interval;
@@ -46,7 +46,7 @@ class Timer{
         let seconds = time[0] % 60
         let miliseconds = parseInt(time[1])
 
-        let dminutes = minutes > 0 ? `${minutes} : ` : ""
+        let dminutes = minutes > 0 ? `${minutes}:` : ""
         let dseconds = seconds > 9 ? `${seconds}` : `0${seconds}`
         let dmiliseconds = miliseconds > 9 ?  `${miliseconds}` : `0${miliseconds}`
 
@@ -65,8 +65,12 @@ class Timer{
     stop(){
         if (!this.counting) return
         this.counting = false;
-
         clearInterval(this.interval)
+
+        this.log(this.time/1000)
+    }
+    log(time){
+        addTimeDB("sd", time)
     }
 }
 
