@@ -27,24 +27,26 @@ const renderer = new THREE.WebGLRenderer({canvas})
 
 
 function animate(){
-    console.log(1);
     requestAnimationFrame(animate)
-    if (document.getElementById("td").classList.contains("hidden")) return
+    if (document.getElementById("td").classList.contains("hidden")) return;
+    console.log("animating");
     mesh.rotation.x += 0.002
+    mesh.rotation.y += 0.002
     renderer.render(scene, camera)
 }
-
 animate()
 
 
 const resizeObserver = new ResizeObserver((entries) => {
-    let size = {
-        width: td.clientWidth,
-        height: td.clientHeight
+    for(const entry of entries){
+        let size = {
+            width: td.clientWidth,
+            height: td.clientHeight
+        }
+        renderer.setSize(size.width, size.height);
+        camera.aspect = size.width / size.height
+        camera.updateProjectionMatrix()
+        console.log(size);
     }
-    renderer.setSize(size.width, size.height);
-    camera.aspect = size.width / size.height
-    camera.updateProjectionMatrix()
 });
-  
 resizeObserver.observe(td);
