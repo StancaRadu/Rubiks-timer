@@ -1,5 +1,5 @@
 function openSide(side){
-
+    console.log(side);
 }
 
 function scrambleToText(scramble){
