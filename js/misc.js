@@ -44,33 +44,27 @@ function doAverage(solves){
     return average
 }
 
-function changeScreen(screen, i){
-    let parent = document.getElementById("centre-screen")
-    let indidcator = document.getElementById("indicator")
-    switch (i) {
-        case 0:
-            parent.style.backgroundColor = "var(--background-main-divs)"
-            indidcator.style.backgroundColor = "var(--background-main-divs)"
-            break;
+function changePage(clicked){
+    let navbar = clicked.parentNode
+    let buttons = Array.prototype.slice.call(navbar.children)
+    let indidcator = buttons.pop()
+    let frame = navbar.parentNode
+    let color = window.getComputedStyle(clicked).backgroundColor;
     
-        case 1:
-            parent.style.backgroundColor = "var(--background-sec-divs)"
-            indidcator.style.backgroundColor = "var(--background-sec-divs)"
-            break;
+    let i = 0
+    
+    frame.style.backgroundColor = color
+    indidcator.style.backgroundColor = color
+
+    buttons.forEach(button => {
+        let page = document.getElementById(button.id.split("-")[0])
+
+        if (button == clicked){
+            page.classList.remove("hidden")
+            indidcator.style.transform = `translateX(${i*100}%)`;
         
-        case 2:
-            parent.style.backgroundColor = "var(--background-third-divs)"
-            indidcator.style.backgroundColor = "var(--background-third-divs)"
-            break
-    }
-    let frame = document.getElementById("tabs")
-    let screens = Array.prototype.slice.call(frame.children)
-    screens.forEach(element => {
-        document.getElementById(screen.id.split("-")[0]).classList.remove("hidden")
+        }else page.classList.add("hidden")
         
-        indidcator.style.transform = `translateX(${i*100}%)`;
-        if(element != screen && element.id != "indicator"){
-            document.getElementById(element.id.split("-")[0]).classList.add("hidden")
-        }
+        i++
     });
 }

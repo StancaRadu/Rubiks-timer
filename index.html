@@ -75,7 +75,7 @@
                 <div class="side-app carved"></div>
             </div>
 
-            <div class="open-slide-button"></div>
+            <div class="button-area carved"></div>
         </div>
         
         <div id="centre-screen" class="screen">
@@ -107,18 +107,24 @@
             </div>
 
 
-            <div id="tabs" class="carved">
-                <div id="timer-tab" class="tab-button" onclick="changeScreen(this, 0)"></div>
-                <div id="td-tab" class="tab-button" onclick="changeScreen(this, 1)"></div>
-                <div id="smt-tab" class="tab-button" onclick="changeScreen(this, 2)"></div> 
-                <div id="indicator"></div>
+            <div id="main-screen-nav" class="button-area carved">
+                <div id="timer-tab" class="tab-button" onclick="changePage(this)"></div>
+                <div id="td-tab" class="tab-button" onclick="changePage(this)"></div>
+                <div id="smt-tab" class="tab-button" onclick="changePage(this)"></div> 
+                <div id="main-screen-nav-indicator" class="indicator"></div>
             </div>
         </div>
         
         <div id="right-screen" class="screen">
-            <div id="right-wraper-div" class="screen-inner-wrapper" style="margin: 50px 20px 50px 0; padding-left: 6px;">
+            <div id="right-wraper-div" class="screen-inner-wrapper">
+                
             </div>
-
+            <!-- <div id="" class="button-area carved">
+                <div id="" class="tab-button" onclick="changePage(this)"></div>
+                <div id="" class="tab-button" onclick="changePage(this)"></div>
+                <div id="" class="tab-button" onclick="changePage(this)"></div> 
+                <div id="" class="indicator"></div>
+            </div> -->
         </div>
     </div>
     
