@@ -50,40 +50,48 @@ body{
 #menu{
     background-color: var(--accent1);
     font-size: 2rem;
-    height: 60px;
+    height: fit-content;
     display: grid;
     grid-auto-flow: column;
     align-items: center;
     justify-items: center;
     border-radius: 10px;
+    height: 50px;
+}
+
+#screens{
+    flex-grow: 1;
+    display: flex;
+    gap: 20px;
+    height: calc(100% - 70px);
 }
 .screen{
     border-radius: 10px;
     height: 100%;
     background-color: var(--background-main-divs);
     position: relative;
-    overflow: hidden;
-}
-#screens{
-    height: calc(100% - 80px);
-    display: flex;
-    gap: 20px;
-}
-.carved{
-    background-color: hsla(0, 0%, 75%, 0.1);
-    box-shadow: inset 0 0 3px 1px var(--accent1);
+
+    transition: all 1s;
+
 }
 .screen-inner-wrapper{
-    width: 500px;
+    box-sizing: border-box;
+    width: fit-content;
 
-    padding: 0 20px 0 20px;
-    margin: 50px 0 50px;
-    
+    margin: 50px 0 50px 20px;
+    padding-right: 6px;
+    max-height: 100%;
+
     display: grid;
     grid-auto-rows: 400px;
     gap: 50px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+
+.carved{
+    background-color: hsla(0, 0%, 75%, 0.1);
+    box-shadow: inset 0 0 3px 1px var(--accent1);
 }
 .open-button{
     aspect-ratio: 1;
@@ -92,23 +100,26 @@ body{
     top: 0px;
     border-top-right-radius: 10px;
 }
-.screen-cell{
-    max-width: 100%;
-}
-
-
-::-webkit-scrollbar{
-    width:14px;
-}
-::-webkit-scrollbar-thumb{
-    background-color: var(--accent1);
-    border: 3px solid rgba(0, 0, 0, 0);
-    background-clip: padding-box;
+.side-app{
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 100%;
+    text-align: center;
     border-radius: 10px;
+
+    padding: 5px;
+
+    overflow-x: scroll;
 }
-::-webkit-scrollbar-corner{
-    background-color: #00000000;
+.side-app h1{
+    width: 100%;
+    left: 0;
+    position: sticky;
 }
+
 
 
 /* transition */
@@ -117,7 +128,6 @@ body{
 #cube-div{
     transition: var(--transition-speed);
 }
-
 
 
 /* Centre div */
@@ -148,7 +158,6 @@ body{
 
 #left-screen{
     display: flex;
-    min-width: fit-content;
 }
 #left-screen-open-button{
     right: 0px;
@@ -156,41 +165,15 @@ body{
     border-bottom-left-radius: 10px;
     transform: rotateZ(180deg);
 }
-#left-bar-control-div{
-    position: absolute;
-    width: 250px;
-    left: 27.5%;
-    bottom: 0px;
-    height: 40px;
-
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-
-
-}
-.left-bar-oc-div{
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    height: 100%;
-    text-align: center;
-    border-radius: 10px;
-
-    padding: 5px;
-}
 #canvas-div{
     width: 100%;
     height: 100%;
-
-    overflow-x: scroll;
 }
 
 /* right div */
 
 #right-screen {
     display: grid;
-    min-width: fit-content;
 }
 #right-screen-open-button{
     aspect-ratio: 1;
@@ -199,36 +182,6 @@ body{
     border-bottom-right-radius: 10px;
     transform: rotateZ(180deg);
 }
-#right-bar-control-div{
-    position: absolute;
-    width: 250px;
-    left: 27.5%;
-    bottom: 0px;
-    height: 40px;
-
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-}
-#right-wraper-div{
-    display: flex;
-    flex-direction: column;
-    width: 500px;
-
-    padding: 0 20px 0 20px;
-    margin: 50px 0 50px;
-
-    overflow-y: scroll;
-    overflow-x: hidden;
-    scroll-snap-type: y mandatory;
-
-
-}
-.right-subpanel{
-    min-width: 500px;
-    min-height: 100%;
-    scroll-snap-align: center;
-}
-
 
 /* timer app */
 
@@ -358,4 +311,17 @@ body{
 }
 #smt-tab{
     background-color: var(--background-third-divs);  
+}
+
+::-webkit-scrollbar{
+    width: 14px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--accent1);
+    border: 3px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-corner{
+    background-color: #00000000;
 }

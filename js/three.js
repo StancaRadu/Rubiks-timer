@@ -27,10 +27,11 @@ const renderer = new THREE.WebGLRenderer({canvas})
 
 
 function animate(){
+    console.log(1);
+    requestAnimationFrame(animate)
     if (document.getElementById("td").classList.contains("hidden")) return
     mesh.rotation.x += 0.002
     renderer.render(scene, camera)
-    requestAnimationFrame(animate)
 }
 
 animate()

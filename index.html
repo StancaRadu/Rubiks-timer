@@ -45,11 +45,11 @@
     <div id="screens">
         <div id="left-screen" class="screen">
             <div id="statistics-div" class="screen-inner-wrapper">
-                <div class="left-bar-oc-div carved">
+                <div class="side-app carved">
                     <h1 class="left-oc-header">Chart</h1>
                     <div id="canvas-div"><canvas id="myChart"></canvas></div>
                 </div>
-                <div class="left-bar-oc-div carved">
+                <div class="side-app carved">
                     <h1 class="left-oc-header">History</h1>
                     <div id="history-div">
                         <table id="history-table">
@@ -69,17 +69,9 @@
                           </table>
                     </div>
                 </div>
-                <div class="left-bar-oc-div carved">
-
-                </div>
-                <div class="left-bar-oc-div carved">
-
-                </div>
             </div>
 
-            <img src="img/right-arrow.png" alt="arrow" id="left-screen-open-button" class="carved open-button">
-            <div id="left-bar-control-div" class="carved"> </div>
-
+            <img src="img/right-arrow.png" alt="arrow" id="left-screen-open-button" class="carved open-button" onclick="openSide(this)">
         </div>
         
         <div id="centre-screen" class="screen">
@@ -120,15 +112,10 @@
         </div>
         
         <div id="right-screen" class="screen">
-            <div id="right-wraper-div" class="screen-inner-wrapper">
-                <div id="algs-div" class="right-subpanel carved"></div>
-                <div id="tutorial-div" class="right-subpanel carved"></div>
-                <div id="move-div" class="right-subpanel carved"></div>
+            <div id="right-wraper-div" class="screen-inner-wrapper" style="margin: 50px 20px 50px 0; padding-left: 6px;">
             </div>
 
-            <img src="img/left-arrow.png" alt="arrow" id="right-screen-open-button" class="carved open-button">
-            <div id="right-bar-control-div" class="carved"></div>
-            
+            <img src="img/left-arrow.png" alt="arrow" id="right-screen-open-button" class="carved open-button">            
         </div>
     </div>
     

@@ -1,38 +1,5 @@
-function createScreensOpenButton(){
-    let htmlLeftBarOpenButton = document.getElementById("left-screen-open-button")
-    htmlLeftBarOpenButton.addEventListener('click', () => {
-        let htmlLeftScreen = document.getElementById("left-screen")
-        let htmlLeftInner = htmlLeftScreen.getElementsByClassName("screen-inner-wrapper")[0]
-        if(htmlLeftInner.clientWidth > 100){
-            htmlLeftInner.style.width = "0"
-            htmlLeftBarOpenButton.style.transform = "none"
-        }else {
-            htmlLeftInner.style.width = "500px"
-            htmlLeftBarOpenButton.style.transform = "rotateZ(180deg)"
-        }
-    });
+function openSide(side){
 
-    let htmlRightBarOpenButton = document.getElementById("right-screen-open-button")
-    htmlRightBarOpenButton.addEventListener('click', () => {
-        let htmlRightScreen = document.getElementById("right-screen")
-        let htmlRightInner = htmlRightScreen.getElementsByClassName("screen-inner-wrapper")[0]
-        if(htmlRightInner.clientWidth > 100){
-            htmlRightInner.style.width = "0"
-            htmlRightBarOpenButton.style.transform = "none"
-        }else {
-            htmlRightInner.style.width = "500px"
-            htmlRightBarOpenButton.style.transform = "rotateZ(180deg)"
-        }
-    });
-    let cubeAreaHtml = document.getElementById("cube-relative-area")
-    cubeAreaHtml.addEventListener('click', (event) => {
-        console.log(getComputedStyle(cubeAreaHtml)["visibility"]);
-        if(getComputedStyle(cubeAreaHtml)["visibility"] == "hidden"){
-            cubeAreaHtml.style.visibility == "visible"
-        }else {
-            cubeAreaHtml.style.visibility == "hidden"
-        }
-    });
 }
 
 function scrambleToText(scramble){
@@ -89,7 +56,6 @@ function changeScreen(screen, i){
         case 1:
             parent.style.backgroundColor = "var(--background-sec-divs)"
             indidcator.style.backgroundColor = "var(--background-sec-divs)"
-            animate()
             break;
         
         case 2:
