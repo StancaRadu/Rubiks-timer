@@ -1,5 +1,13 @@
-function openSide(side){
-    console.log(side);
+function openSide(button){
+    let page = button.parentNode.parentNode
+    let vl = 
+
+    if (page.clientWidth > 0) {
+        page.style.width = 0
+    }
+    else {
+        page.style.width = "500px"
+    }
 }
 
 function scrambleToText(scramble){
