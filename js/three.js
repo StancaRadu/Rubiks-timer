@@ -1,5 +1,5 @@
-import * as THREE from '../node_modules/three/build/three.module.js'
-import {OrbitControls} from '../node_modules/three/examples/jsm/controls/OrbitControls.js'
+import * as THREE from 'three'
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 
 const canvas = document.getElementById("bg")
 let td = document.getElementById("td")
@@ -16,7 +16,6 @@ const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
 
-// const light = new THREE.PointLight(0xffffff, 20, 1000)
 const light = new THREE.AmbientLight( 0xffffff )
 light.position.set(0, 0, 20)
 scene.add(light)
@@ -28,19 +27,21 @@ scene.add(camera)
 
 
 const renderer = new THREE.WebGLRenderer({canvas})
+renderer.setPixelRatio(2)
 
 
 function animate(){
     requestAnimationFrame(animate)
     if (document.getElementById("td").classList.contains("hidden")) return;
-    // mesh.rotation.x += 0.002
-    // mesh.rotation.y += 0.002
+    controls.update()
     renderer.render(scene, camera)
 }
 animate()
 
 const controls = new OrbitControls(camera, canvas)
-
+controls.enableDamping = true;
+controls.enablePan = false;
+controls.enableZoom = false;
 
 const resizeObserver = new ResizeObserver((entries) => {
     for(const entry of entries){
