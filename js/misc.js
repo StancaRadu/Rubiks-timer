@@ -77,3 +77,33 @@ function doAverage(solves){
     return average
 }
 
+function changeScreen(screen, i){
+    let parent = document.getElementById("centre-screen")
+    let indidcator = document.getElementById("indicator")
+    switch (i) {
+        case 0:
+            parent.style.backgroundColor = "var(--background-main-divs)"
+            indidcator.style.backgroundColor = "var(--background-main-divs)"
+            break;
+    
+        case 1:
+            parent.style.backgroundColor = "var(--background-sec-divs)"
+            indidcator.style.backgroundColor = "var(--background-sec-divs)"
+            break;
+        
+        case 2:
+            parent.style.backgroundColor = "var(--background-third-divs)"
+            indidcator.style.backgroundColor = "var(--background-third-divs)"
+            break
+    }
+    let frame = document.getElementById("tabs")
+    let screens = Array.prototype.slice.call(frame.children)
+    screens.forEach(element => {
+        document.getElementById(screen.id.split("-")[0]).classList.remove("hidden")
+        
+        indidcator.style.transform = `translateX(${i*100}%)`;
+        if(element != screen && element.id != "indicator"){
+            document.getElementById(element.id.split("-")[0]).classList.add("hidden")
+        }
+    });
+}

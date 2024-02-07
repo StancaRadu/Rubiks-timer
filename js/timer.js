@@ -7,7 +7,7 @@ let htmlInstructions = document.getElementById("instructions-span")
 
 
 // to be implemented
-wait_to_start = 1
+wait_to_start = 1.5
 // 
 
 
@@ -55,7 +55,6 @@ class Timer{
         htmlMiliseconds.innerHTML = dmiliseconds
 
         let solveTime = parseFloat(`${time[0]}.${time[1]}`)
-        console.log(minutes,seconds,miliseconds);
     }
     count(timer){
         timer.nTime = new Date().getTime();
@@ -78,23 +77,35 @@ let timer = new Timer
 
 
 document.addEventListener('keyup', (event) => {
+    if (document.getElementById("timer").classList.contains("hidden")) return
     if (event.code == "Space" && !timer.counting && timer.ready && timer.waited){
         timer.ready = false;
+        htmlInstructions.innerHTML = "Press space"
         timer.start()
     }
     else if (!timer.ready){
         timer.ready = true;
+        htmlInstructions.innerHTML = "Hold space"
     }
     if(event.code == "Space"){
         timer.held = 0
+        htmlInstructions.style.color = "black"
     }
 });
 document.addEventListener('keydown', (event) => {
+    if (document.getElementById("timer").classList.contains("hidden")) return
     if (event.code == "Space" && !timer.counting){
             if (!timer.held){
                 timer.held = new Date().getSeconds()
             }
-            timer.waited = (new Date().getSeconds() - timer.held) >= wait_to_start ? true : false
+            let remaining = wait_to_start - (new Date().getSeconds() - timer.held + new Date().getMilliseconds()/1000)
+            if(remaining <= 0){
+                htmlInstructions.innerHTML = "Release"
+                htmlInstructions.style.color = green
+                timer.waited = true
+            }else if (remaining < 0.7) {
+                htmlInstructions.style.color = yellow
+            }else timer.waited = false
     }
     if (timer.counting && event.code == "Space"){
         timer.stop()
