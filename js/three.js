@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from '../node_modules/three/build/three.module'
 
 const canvas = document.getElementById("bg")
 let td = document.getElementById("td")
