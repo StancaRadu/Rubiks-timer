@@ -4,31 +4,27 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 const canvas = document.getElementById("bg")
 let td = document.getElementById("td")
 
-
 const scene = new THREE.Scene()
-
 const geometry = new THREE.BoxGeometry(5, 5, 5);
-const material = new THREE.MeshStandardMaterial({
-    color:"#00ff83",
-    wireframe: true
-})
+const material = new THREE.MeshStandardMaterial()
 const mesh = new THREE.Mesh(geometry, material)
-scene.add(mesh)
-
-
-const light = new THREE.AmbientLight( 0xffffff )
-light.position.set(0, 0, 20)
-scene.add(light)
-
+const light = new THREE.AmbientLight( white )
 const camera = new THREE.PerspectiveCamera(75)
-camera.position.z = 10
-scene.add(camera)
-
-
-
 const renderer = new THREE.WebGLRenderer({canvas})
-renderer.setPixelRatio(2)
+const controls = new OrbitControls(camera, canvas)
 
+
+controls.enableDamping = true;
+controls.enablePan = false;
+controls.enableZoom = false;
+camera.position.z = 10
+camera.position.y = 5
+camera.position.x = 5
+renderer.setPixelRatio(1)
+
+scene.add(mesh)
+scene.add(light)
+scene.add(camera)
 
 function animate(){
     requestAnimationFrame(animate)
@@ -36,22 +32,16 @@ function animate(){
     controls.update()
     renderer.render(scene, camera)
 }
-animate()
-
-const controls = new OrbitControls(camera, canvas)
-controls.enableDamping = true;
-controls.enablePan = false;
-controls.enableZoom = false;
-
 const resizeObserver = new ResizeObserver((entries) => {
-    for(const entry of entries){
-        let size = {
-            width: td.clientWidth,
-            height: td.clientHeight
-        }
-        renderer.setSize(size.width, size.height);
-        camera.aspect = size.width / size.height
-        camera.updateProjectionMatrix()
+    let size = {
+        width: td.clientWidth,
+        height: td.clientHeight
     }
+    renderer.setSize(size.width, size.height);
+    camera.aspect = size.width / size.height
+    camera.updateProjectionMatrix()
 });
+
+
 resizeObserver.observe(td);
+animate()
