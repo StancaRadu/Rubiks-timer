@@ -7,7 +7,7 @@ let htmlInstructions = document.getElementById("instructions-span")
 
 
 // to be implemented
-wait_to_start = 1.5
+wait_to_start = 1
 // 
 
 

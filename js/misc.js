@@ -1,12 +1,21 @@
 function openSide(button){
     let page = button.parentNode.parentNode
-    let vl = 
+    lines = Array.prototype.slice.call(button.children[0].children)
+    let vl,hl;
+    lines.forEach(line => {
+        if (line.classList.contains("vertical-line")) vl = line
+        else if (line.classList.contains("horizontal-line")) hl = line
+    });
 
     if (page.clientWidth > 0) {
         page.style.width = 0
+        vl.style.transform = "rotateZ(270deg)"
+        hl.style.transform = "rotateZ(360deg)"
     }
     else {
         page.style.width = "500px"
+        vl.style.transform = "rotateZ(0)"
+        hl.style.transform = "rotateZ(0)"
     }
 }
 
