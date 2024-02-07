@@ -89,6 +89,7 @@ function changeScreen(screen, i){
         case 1:
             parent.style.backgroundColor = "var(--background-sec-divs)"
             indidcator.style.backgroundColor = "var(--background-sec-divs)"
+            animate()
             break;
         
         case 2:
