@@ -1,7 +1,6 @@
-import * as THREE from 'three'
-import gsap from 'gsap'
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
-import { randFloat } from 'three/src/math/MathUtils'
+import * as THREE from '../node_modules/three/src/Three.js'
+import gsap from '../node_modules/gsap/index.js'
+import {OrbitControls} from '../node_modules/three/examples/jsm/controls/OrbitControls.js'
 
 const td = document.getElementById("td")
 const canvas = document.getElementById("bg")
@@ -16,9 +15,9 @@ const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true;
 controls.enablePan = false;
 controls.enableZoom = false;
-camera.position.z = 5
-camera.position.y = 5
-camera.position.x = 5
+camera.position.z = 8
+camera.position.y = 4
+camera.position.x = 2
 renderer.setPixelRatio(2)
 
 scene.add(light)
