@@ -9,7 +9,7 @@ const canvas = document.getElementById("bg")
 const scene = new THREE.Scene()
 const light = new THREE.AmbientLight( white )
 const camera = new THREE.PerspectiveCamera(50)
-const renderer = new THREE.WebGLRenderer({canvas})
+const renderer = new THREE.WebGLRenderer({canvas, alpha: true })
 const controls = new OrbitControls(camera, canvas)
 
 
@@ -24,11 +24,14 @@ renderer.setPixelRatio(2)
 scene.add(light)
 scene.add(camera)
 
+
+
 function animate(){
     requestAnimationFrame(animate)
     if (document.getElementById("td").classList.contains("hidden")) return;
     controls.update()
     renderer.render(scene, camera)
+    
 }
 const resizeObserver = new ResizeObserver((entries) => {
     let size = {

@@ -159,7 +159,7 @@ body{
 
 #centre-screen{
     min-width: 400px;
-    transition-duration: .3s;
+    transition-duration: .5s;
     z-index: 1;
     flex-grow: 1;
 
@@ -337,6 +337,6 @@ body{
 
     position: absolute;
     bottom: -5px;
-    transition: all .3s ease-in-out;
+    transition: all .5s ease;
     background-color: var(--background-main-divs); 
 }
