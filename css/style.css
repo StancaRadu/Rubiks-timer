@@ -102,7 +102,8 @@ body{
     gap: 50px;
     overflow-y: scroll;
     overflow-x: hidden;
-    transition: all .55s ease-in-out;
+    /* transition: all .7s  cubic-bezier(0.6, -0.28, 0.735, 0.045); */
+    transition: all .7s  cubic-bezier(0.6, -0.3, .3, 0.3);
 
 
 }
@@ -145,7 +146,7 @@ body{
     border-radius: 10px;
     position: absolute;
 
-    transition: all .6s ease-out;
+    transition: all .8s ease-out;
 }
 
 #right-screen .button-area{
