@@ -7,7 +7,7 @@ let htmlInstructions = document.getElementById("instructions-span")
 
 
 // to be implemented
-wait_to_start = 1
+wait_to_start = .8
 // 
 
 
@@ -95,17 +95,17 @@ document.addEventListener('keyup', (event) => {
 document.addEventListener('keydown', (event) => {
     if (document.getElementById("timer").classList.contains("hidden")) return
     if (event.code == "Space" && !timer.counting){
-            if (!timer.held){
-                timer.held = new Date().getSeconds()
-            }
-            let remaining = wait_to_start - (new Date().getSeconds() - timer.held + new Date().getMilliseconds()/1000)
-            if(remaining <= 0){
-                htmlInstructions.innerHTML = "Release"
-                htmlInstructions.style.color = green
-                timer.waited = true
-            }else if (remaining < 0.7) {
-                htmlInstructions.style.color = yellow
-            }else timer.waited = false
+        event.preventDefault();
+        htmlInstructions.style.color = yellow
+        if (!timer.held){
+            timer.held = new Date().getSeconds()
+        }
+        let remaining = wait_to_start - (new Date().getSeconds() - timer.held + new Date().getMilliseconds()/1000)
+        if(remaining <= 0){
+            htmlInstructions.innerHTML = "Release"
+            htmlInstructions.style.color = green
+            timer.waited = true
+        }else timer.waited = false
     }
     if (timer.counting && event.code == "Space"){
         timer.stop()

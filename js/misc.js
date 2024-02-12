@@ -66,17 +66,21 @@ function changePage(clicked){
     let buttons = Array.prototype.slice.call(navbar.children)
     let indidcator = buttons.pop()
     let frame = navbar.parentNode
-    let color = window.getComputedStyle(clicked).backgroundColor;
+    let root = getComputedStyle(document.body)
+    let color = root.getPropertyValue("--main-color")
+    let modifier = root.getPropertyValue("--main-color")
+    let saturation = root.getPropertyValue("--main-color")
+    let lightness = root.getPropertyValue("--main-color")
     
     let i = 0
-    
-    frame.style.backgroundColor = color
-    indidcator.style.backgroundColor = color
 
     buttons.forEach(button => {
         let page = document.getElementById(button.id.split("-")[0])
 
         if (button == clicked){
+            frame.style.backgroundColor = `hsl(calc(var(--main-color) + var(--main-modifier)*${i}), var(--main-saturation), var(--main-lightness))`
+            indidcator.style.backgroundColor =  `hsl(calc(var(--main-color) + var(--main-modifier)*${i}), var(--main-saturation), var(--main-lightness))`
+
             page.classList.remove("hidden")
             indidcator.style.transform = `translateX(${i*100}%)`;
         

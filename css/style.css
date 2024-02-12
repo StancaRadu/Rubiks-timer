@@ -9,12 +9,11 @@
     font-family: var(--general-font);
 
     --main-color: 200;
-    --main-color1: calc(var(--main-color) + 20);
-    --main-color2: calc(var(--main-color) + 40);
+    --main-modifier: 20;
+    --main-saturation: 35%;
+    --main-lightness: 40%;
 
-    --background-main-divs: hsl(var(--main-color), 35%, 40%);
-    --background-sec-divs: hsl(var(--main-color1), 35%, 40%);
-    --background-third-divs: hsl(var(--main-color2), 35%, 40%);
+    --background-main-divs: hsl(var(--main-color), var(--main-saturation), var(--main-lightness));
 
     --body-color: hsl(var(--main-color), 45%, 15%);
     --accent1: hsl(var(--main-color), 30%, 25%);
@@ -51,16 +50,85 @@ body{
 
 #menu{
     background-color: var(--accent1);
-    font-size: 2rem;
-    height: fit-content;
+
     display: grid;
     grid-auto-flow: column;
     align-items: center;
     justify-items: center;
+    font-size: 2rem;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
     border-radius: 10px;
     height: 50px;
 }
+.menu-tab{
+    height: 100%;
+    width: 80%;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+.menu-tab:hover .menu-dropdown{
+    max-height: 250px;
+}
+.menu-dropdown{
+    width: 100%;
+    max-height: 0;
+    border-radius: 0 0 10px 10px;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 3;
+
+    overflow: hidden;
+
+    background-color: var(--accent1);
+    transition: 1s;
+}
+.menu-settings-wrapper{
+    display: grid;
+    grid-auto-flow: row;
+    overflow-y: scroll;
+    grid-template-columns: 100%;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    max-height: 250px;
+    padding-left: 14px;
+    box-sizing: border-box;
+}
+.menu-settings{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+
+
+    width: 100%;
+    height: 50px;
+}
+
+#main-color-picker{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    background: -webkit-linear-gradient(left, hsl(0, 100%, 50%),hsl(60,100%, 50%), hsl(120,100%, 50%), hsl(180, 100%, 50%), hsl(240,100%,50%),hsl(300,100%,50%) 100%); 
+    border-radius: 10px;
+}
+
+/* .menu-tab:first-child .menu-dropdown{
+    border-top-left-radius: 10px;
+}
+.menu-tab:last-child .menu-dropdown{
+    border-top-right-radius: 10px;
+} */
 /* app */
 
 #screens{
@@ -98,6 +166,7 @@ body{
 
     display: grid;
     grid-auto-rows: 400px;
+    /* width: 500px; */
     width: 500px;
     gap: 50px;
     overflow-y: scroll;
@@ -269,16 +338,6 @@ body{
     display: none;
 }
 
-#timer-tab {
-    background-color: var(--background-main-divs);
-}
-#td-tab{
-    background-color: var(--background-sec-divs);  
-}
-#smt-tab{
-    background-color: var(--background-third-divs);  
-}
-
 ::-webkit-scrollbar{
     width: 14px;
 }
@@ -323,7 +382,7 @@ body{
 .tab-button{
     height: 100%;
     aspect-ratio: 1;
-    border-radius: 100%;
+    border-radius: 50%;
     margin: 5px;
 
     position: relative;
@@ -346,4 +405,14 @@ body{
     transition: all .5s ease;
     
     background-color: var(--background-main-divs); 
+}
+
+#timer-tab{
+    background-color: hsl(calc(var(--main-color) + var(--main-modifier)*0), var(--main-saturation), var(--main-lightness));
+}
+#td-tab{
+    background-color: hsl(calc(var(--main-color) + var(--main-modifier)*1), var(--main-saturation), var(--main-lightness));
+}
+#smt-tab{
+    background-color: hsl(calc(var(--main-color) + var(--main-modifier)*2), var(--main-saturation), var(--main-lightness));
 }

@@ -8,7 +8,6 @@
     <script src="node_modules/chart.js/dist/chart.umd.js"></script>
 
     <script src="js/cube.js" defer></script>
-
     <script src="js/global_vars.js"></script>
     <script src="js/db.js"></script>
     <script src="js/avg_chart.js"></script>
@@ -17,6 +16,7 @@
     <script src="js/3dCube.js" type="module" defer></script>
     <script src="js/misc.js" defer></script>
     <script src="js/initial_loads.js" defer></script> 
+    <script src="js/events.js" defer></script>
 
 
     <link rel="stylesheet" href="css/style.css">
@@ -37,10 +37,36 @@
 </head>
 <body>
     <div id="menu">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
+        <div class="menu-tab">Colors
+            <div class="menu-dropdown">
+                <div class="menu-settings-wrapper">
+                    <div class="menu-settings">
+                        <input type="range" min="0" max="300" value="200" class="slider" id="main-color-picker">
+                    </div>
+                    <div class="menu-settings"></div>
+                    <div class="menu-settings"></div>
+                    <div class="menu-settings"></div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-tab">2
+            <div class="menu-dropdown">
+                <div class="menu-settings-wrapper">
+                </div>
+            </div>
+        </div>
+        <div class="menu-tab">3
+            <div class="menu-dropdown">
+                <div class="menu-settings-wrapper">
+                </div>
+            </div>
+        </div>
+        <div class="menu-tab">4
+            <div class="menu-dropdown">
+                <div class="menu-settings-wrapper">
+                </div>
+            </div>
+        </div>
     </div>
     <div id="screens">
         <div id="left-screen" class="screen">
