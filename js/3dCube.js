@@ -1,6 +1,6 @@
 import * as THREE from '../node_modules/three/src/Three.js'
 import gsap from '../node_modules/gsap/src/index.js'
-// import {OrbitControls} from '../node_modules/three/examples/jsm/controls/OrbitControls.js'
+import {OrbitControls} from '../node_modules/three/examples/jsm/controls/OrbitControls.js'
 
 
 const td = document.getElementById("td")
@@ -10,11 +10,11 @@ const scene = new THREE.Scene()
 const light = new THREE.AmbientLight( white )
 const camera = new THREE.PerspectiveCamera(50)
 const renderer = new THREE.WebGLRenderer({canvas, alpha: true })
-// const controls = new OrbitControls(camera, canvas)
+const controls = new OrbitControls(camera, canvas)
 
-// controls.enableDamping = true;
-// controls.enablePan = false;
-// controls.enableZoom = false;
+controls.enableDamping = true;
+controls.enablePan = false;
+controls.enableZoom = false;
 
 camera.position.z = 8
 camera.position.y = 3
@@ -29,7 +29,7 @@ scene.add(camera)
 function animate(){
     requestAnimationFrame(animate)
     if (document.getElementById("td").classList.contains("hidden")) return;
-    // controls.update()
+    controls.update()
     renderer.render(scene, camera)
     
 }
