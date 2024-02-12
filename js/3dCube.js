@@ -29,7 +29,7 @@ scene.add(camera)
 function animate(){
     requestAnimationFrame(animate)
     if (document.getElementById("td").classList.contains("hidden")) return;
-    controls.update()
+    // controls.update()
     renderer.render(scene, camera)
     
 }
