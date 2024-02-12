@@ -33,6 +33,15 @@ class Cube{
             axes: { x: 0, y: -1, z: 0 }
         }
     }
+    static move_decoder(move){
+        let side = move[0]
+        let times = /\d/.test(move) ? parseInt(move.replace(/\D/g,'')) : 1;
+        let prime = move.includes("'") ? -1 : 1
+
+        if (!(side in Cube.moves)) return
+
+        return { side: side, times: times, prime: prime }
+    }
 
     constructor(type, scramble_position){
         this.id = Cube.ammount;
@@ -55,17 +64,6 @@ class Cube{
 
     }
 
-    static move_decoder(move){
-        let side = move[0]
-        let times = /\d/.test(move) ? parseInt(move.replace(/\D/g,'')) : 1;
-        let prime = move.includes("'") ? -1 : 1
-
-        if (!(side in Cube.moves)) return
-
-        return { side: side, times: times, prime: prime }
-    }
-
-
     move(move){
         let side = move[0]
         let times = /\d/.test(move) ? parseInt(move.replace(/\D/g,'')) : 1;
@@ -73,7 +71,6 @@ class Cube{
 
         if (!(side in Cube.moves)) return
     }
-
     updatePieces(move){
         move = Cube.move_decoder(move)
         let side = move["side"]
@@ -86,7 +83,6 @@ class Cube{
             if (prime == 1) this.pieces[pair[1]] = copy[pair[0]]
         });
     }
-
     generateScramble(lenght = 20){
         let moves = [
             ["R", "L"],
@@ -131,7 +127,6 @@ class Cube{
         this.scramble = scramble
         return scramble
     }
-
     displayScramble(new_scramble){
         let scramble = this.scramble
         if (new_scramble) scramble = this.generateScramble()
