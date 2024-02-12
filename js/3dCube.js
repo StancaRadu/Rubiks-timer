@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 import * as THREE from 'three'
 import gsap from 'gsap'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 
-=======
-import * as THREE from '../node_modules/three/src/Three.js'
-import gsap from '../node_modules/gsap/index.js'
-import {OrbitControls} from '../node_modules/three/examples/jsm/controls/OrbitControls.js'
->>>>>>> 6725662cd57acb368a94440cdb68e453b2f1d8f7
 
 const td = document.getElementById("td")
 const canvas = document.getElementById("bg")
@@ -23,15 +17,9 @@ controls.enableDamping = true;
 controls.enablePan = false;
 controls.enableZoom = false;
 camera.position.z = 8
-<<<<<<< HEAD
 camera.position.y = 3
 camera.position.x = 2
 renderer.setPixelRatio(window.devicePixelRatio)
-=======
-camera.position.y = 4
-camera.position.x = 2
-renderer.setPixelRatio(2)
->>>>>>> 6725662cd57acb368a94440cdb68e453b2f1d8f7
 
 scene.add(light)
 scene.add(camera)
@@ -117,7 +105,6 @@ class Cube3d extends Cube{
 
                     this.pieces[ID] = mesh
                     scene.add(mesh)
-                    mesh.getWorldMatrix
                 }
                 
             }
