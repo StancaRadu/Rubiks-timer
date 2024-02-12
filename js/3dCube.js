@@ -1,6 +1,6 @@
 import * as THREE from '../node_modules/three/src/Three.js'
 import gsap from '../node_modules/gsap/src/index.js'
-import {OrbitControls} from '../node_modules/three/examples/jsm/controls/OrbitControls'
+import {OrbitControls} from '../node_modules/three/examples/jsm/controls/OrbitControls.js'
 
 
 const td = document.getElementById("td")
