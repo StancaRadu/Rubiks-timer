@@ -10,12 +10,12 @@ const scene = new THREE.Scene()
 const light = new THREE.AmbientLight( white )
 const camera = new THREE.PerspectiveCamera(50)
 const renderer = new THREE.WebGLRenderer({canvas, alpha: true })
-const controls = new OrbitControls(camera, canvas)
+// const controls = new OrbitControls(camera, canvas)
 
+// controls.enableDamping = true;
+// controls.enablePan = false;
+// controls.enableZoom = false;
 
-controls.enableDamping = true;
-controls.enablePan = false;
-controls.enableZoom = false;
 camera.position.z = 8
 camera.position.y = 3
 camera.position.x = 2
