@@ -4,19 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
-    <script src="node_modules/chart.js/dist/chart.umd.js"></script>
-
     <script src="js/cube.js" defer></script>
-    <script src="js/global_vars.js"></script>
-    <script src="js/db.js"></script>
-    <script src="js/avg_chart.js"></script>
-    <script src="js/history.js" defer></script>
-    <script src="js/timer.js" defer></script>
     <script src="js/3dCube.js" type="module" defer></script>
-    <script src="js/misc.js" defer></script>
-    <script src="js/initial_loads.js" defer></script> 
-    <script src="js/events.js" defer></script>
+    <script src="js/utils.js" type="module" defer></script>
+    <script src="js/html.js" defer></script>
+    <script src="js/main.js" type="module"></script> 
 
 
     <link rel="stylesheet" href="css/style.css">
@@ -41,7 +33,7 @@
             <div class="menu-dropdown">
                 <div class="menu-settings-wrapper">
                     <div class="menu-settings">
-                        <input type="range" min="0" max="300" value="200" class="slider" id="main-color-picker">
+                        <input type="range" min="0" max="360" value="200" class="slider" id="main-color-picker" oninput="document.documentElement.style.setProperty('--main-color', this.value)">
                     </div>
                     <div class="menu-settings"></div>
                     <div class="menu-settings"></div>
@@ -77,52 +69,26 @@
                 </div>
                 <div class="side-app carved">
                     <h1 class="left-oc-header">History</h1>
-                    <div id="history-div">
-                        <table id="history-table">
-                            <thead>
-                                <tr>
-                                <th id="hh1">No.</th>
-                                <th id="hh2">Time</th>
-                                <th>Date</th>
-                                <th id="hh4">Ao5</th>
-                                <th id="hh5">Ao12</th>
-                                <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="history-body">
-    
-                            </tbody>
-                          </table>
+                    <div class="side-app-content" id="history-div">
                     </div>
                 </div>
-                <div class="side-app carved"></div>
-                <div class="side-app carved"></div>
-                <div class="side-app carved"></div>
-                <div class="side-app carved"></div>
                 <div class="button-area carved">
-                    <div class="tab-button" onclick="openSide(this)">
-                        <div class="open-graphic">
-                            <div class="open-graphic-line vertical-line"></div>
-                            <div class="open-graphic-line horizontal-line"></div>
+                    <div class="tab-button" onclick="expandSide(this)">
+                        <div class="button-graphic">
+                            <div class="button-graphic-line vertical-line"></div>
+                            <div class="button-graphic-line horizontal-line"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            
+            <div style="width: 75px;"></div>
         </div>
         
         <div id="centre-screen" class="screen">
             <div id="timer" class="centre-tab">
                 <div id="scramble-div">
                     <p id="scramble"></p>
-                    <div id="scramble-options-div">
-                        <div id="new-scramble-button" class="scramble-options-button">
-                            <!-- <img src="img/refresh.png" alt="refresh">45 -->
-                        </div>
-                        <!-- <div class="scramble-options-button"></div>
-                        <div class="scramble-options-button"></div> -->
-                    </div>
                 </div>
                 <div id="timer-div">
                     <p><span id="minutes"></span><span id="seconds">00</span>.<span id="tens">00</span></p>
@@ -137,7 +103,6 @@
                 <canvas id="bg"></canvas>
             </div>
             <div id="smt" class="centre-tab hidden">
-                bye
             </div>
 
 
@@ -152,20 +117,15 @@
         <div id="right-screen" class="screen">
             <div id="right-wraper-div" class="screen-inner-wrapper">
                 <div class="button-area carved">
-                    <div class="tab-button" onclick="openSide(this)">
-                        <div class="open-graphic">
-                            <div class="open-graphic-line vertical-line"></div>
-                            <div class="open-graphic-line horizontal-line"></div>
+                    <div class="tab-button" onclick="expandSide(this)">
+                        <div class="button-graphic">
+                            <div class="button-graphic-line vertical-line"></div>
+                            <div class="button-graphic-line horizontal-line"></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div id="" class="button-area carved">
-                <div id="" class="tab-button" onclick="changePage(this)"></div>
-                <div id="" class="tab-button" onclick="changePage(this)"></div>
-                <div id="" class="tab-button" onclick="changePage(this)"></div> 
-                <div id="" class="indicator"></div>
-            </div> -->
+            <div class="sizer"></div>
         </div>
     </div>
     

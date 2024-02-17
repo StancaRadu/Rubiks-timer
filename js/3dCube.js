@@ -1,6 +1,13 @@
-import * as THREE from '../node_modules/three/src/Three.js'
-import gsap from '../node_modules/gsap/src/index.js'
-import {OrbitControls} from '../node_modules/three/examples/jsm/controls/OrbitControls.js'
+import * as THREE from 'three'
+import gsap from 'gsap'
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
+
+let green = "hsl(100, 90%, 50%)"
+let white = "hsl(0, 0%, 100%)"
+let blue = "hsl(225, 90%, 50%)"
+let yellow = "hsl(65, 90%, 50%)"
+let red = "hsl(0, 90%, 50%)"
+let orange = "hsl(30, 90%, 50%)"
 
 
 const td = document.getElementById("td")
@@ -24,7 +31,11 @@ renderer.setPixelRatio(window.devicePixelRatio)
 scene.add(light)
 scene.add(camera)
 
-
+class Scene{
+    constructor(){
+        
+    }
+}
 
 function animate(){
     requestAnimationFrame(animate)

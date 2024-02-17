@@ -151,4 +151,3 @@ class Cube2d extends Cube{
 
 let cube = new Cube("2d", "scramble")
 cube.displayScramble(true)
-console.log(cube.scramble);

@@ -16,9 +16,16 @@
     --background-main-divs: hsl(var(--main-color), var(--main-saturation), var(--main-lightness));
 
     --body-color: hsl(var(--main-color), 45%, 15%);
+
     --accent1: hsl(var(--main-color), 30%, 25%);
+    /* --accent1: hsl(var(--main-color), calc(--main-saturation - 5%), 25%); */
     --accent2: hsl(var(--main-color), 35%, 45%);
     --accent3: hsl(var(--main-color), 80%, 25%);
+
+    --header: hsla(calc(var(--main-color) + 10  ), var(--main-saturation), var(--main-lightness));
+    --table1: hsla(calc(var(--main-color) + 10  ), var(--main-saturation), var(--main-lightness), .8);
+    --table2: hsla(calc(var(--main-color) + 20  ), var(--main-saturation), var(--main-lightness), .8);
+    
 
     --cube-internal-color: hsl(var(--main-color), 35%, 22%);
 
@@ -29,7 +36,7 @@
 
     --timer-font: 'Roboto Mono', cursive;
     --scramble-font: 'Rubik', cursive;
-    --general-font: 'Titillium Web', sans-serif;;
+    --general-font: 'Titillium Web', sans-serif;
 }
 
 html, body{
@@ -119,16 +126,15 @@ body{
     appearance: none;
     width: 100%;
     height: 10px;
-    background: -webkit-linear-gradient(left, hsl(0, 100%, 50%),hsl(60,100%, 50%), hsl(120,100%, 50%), hsl(180, 100%, 50%), hsl(240,100%,50%),hsl(300,100%,50%) 100%); 
+    background: -webkit-linear-gradient(left, 
+        hsl(0, 100%, 50%),
+        hsl(120, 100%, 50%), 
+        hsl(240, 100%, 50%), 
+        hsl(360, 100%, 50%)
+    ); 
     border-radius: 10px;
 }
 
-/* .menu-tab:first-child .menu-dropdown{
-    border-top-left-radius: 10px;
-}
-.menu-tab:last-child .menu-dropdown{
-    border-top-right-radius: 10px;
-} */
 /* app */
 
 #screens{
@@ -152,7 +158,7 @@ body{
 
     overflow-x: hidden;
 
-    min-width: 75px;
+    min-width: fit-content;
 }
 .screen-inner-wrapper{
     grid-area: app;
@@ -182,6 +188,7 @@ body{
     display: flex;
     flex-direction: column;
     width: 486px;
+    /* width: calc(100% - 14px); */
     height: 100%;
     text-align: center;
     border-radius: 10px;
@@ -192,12 +199,20 @@ body{
 }
 .side-app h1{
     width: 100%;
+    height: 50px;
+    top: 0;
     left: 0;
     position: sticky;
 }
+.screen .sizer{
+    width: 75px;
+}
 
-/* open */
-.open-graphic{
+.side-app-content{
+    width: 100%;
+}
+/* Button Graphics */
+.button-graphic{
     height: 100%;
     aspect-ratio: 1;
     border-radius: 100%;
@@ -208,15 +223,34 @@ body{
     justify-content: center;
     align-items: center;
 }
-.open-graphic-line{
+.button-graphic-line{
     background-color: var(--accent3);
-    height: 10%;
-    width: 75%;
     border-radius: 10px;
     position: absolute;
 
     transition: all .6s ease-in-out .5s;
+    height: 10%;
+    width: 75%;  
+
 }
+
+.expand-graphic-line{
+    width: 50% !important;
+    top: 50%;
+}
+.diagonal-incline{
+    transform: rotateZ(-45deg);
+}
+.diagonal-decline{
+    transform: rotateZ(+45deg);
+}
+.expand-graphic .diagonal-decline{
+    right: 40%;
+}
+.expand-graphic .diagonal-incline{
+    left: 40%;
+}
+
 
 #right-screen .button-area{
     right: auto;
@@ -259,14 +293,16 @@ body{
 
 /* timer app */
 
-#timer{
+#timer{ 
     grid-template-areas: 
             "scramble"
             "time "
             "cube";
+    grid-template-rows: 1fr 1fr 1fr;
 
     font-family: var(--timer-font);
     font-size: var(--timer-size);
+    align-content: space-between;
 }
 #scramble-div{
     font-size: var(--scramble-size);

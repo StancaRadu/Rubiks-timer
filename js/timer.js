@@ -1,18 +1,20 @@
+import DataBase from "./Database"
+
 let htmlSeconds = document.getElementById("seconds")
 let htmlMiliseconds = document.getElementById("tens")
 let htmlMinutes = document.getElementById("minutes")
 let htmlTimer = document.getElementById("timer-div")
 let htmlScramble = document.getElementById("scramble")
 let htmlInstructions = document.getElementById("instructions-span")
-
-
-// to be implemented
-wait_to_start = .8
-// 
-
-
+let green = "hsl(100, 90%, 50%)"
+// let white = "hsl(0, 0%, 100%)"
+// let blue = "hsl(225, 90%, 50%)"
+let yellow = "hsl(65, 90%, 50%)"
+// let red = "hsl(0, 90%, 50%)"
+// let orange = "hsl(30, 90%, 50%)"
 class Timer{
     constructor(){
+        this.wait_to_start = .8
         this.sTime = 0;
         this.nTime = 0;
         this.time = 0;
@@ -21,6 +23,46 @@ class Timer{
         this.ready = true;
         this.counting = false;
         this.interval;
+
+        document.addEventListener('keyup', (event) => {
+            if (document.getElementById("timer").classList.contains("hidden")) return
+            if (event.code == "Space" && !this.counting && this.ready && this.waited){
+                this.ready = false;
+                htmlInstructions.innerHTML = "Press space"
+                this.start()
+            }
+            else if (!this.ready){
+                cube.displayScramble(true)
+                this.ready = true;
+                htmlInstructions.innerHTML = "Hold space"
+            }
+            if(event.code == "Space"){
+                this.held = 0
+                htmlInstructions.style.color = "black"
+            }
+        });
+        document.addEventListener('keydown', (event) => {
+            console.log("keydown");
+            if (document.getElementById("timer").classList.contains("hidden")) return
+            if (event.code == "Space" && !this.counting){
+                event.preventDefault();
+                htmlInstructions.style.color = yellow
+                if (!this.held){
+                    this.held = new Date().getSeconds()
+                }
+                let remaining = this.wait_to_start - (new Date().getSeconds() - this.held + new Date().getMilliseconds()/1000)
+                if(remaining <= 0){
+                    htmlInstructions.innerHTML = "Release"
+                    htmlInstructions.style.color = green
+                    this.waited = true
+                }else this.waited = false
+            }
+            if (this.counting && event.code == "Space"){
+                event.preventDefault();
+                this.stop()
+                this.waited = false
+            }
+        });
     }
 
     start(){
@@ -69,51 +111,8 @@ class Timer{
         this.log(this.time/1000)
     }
     log(time){
-        addTimeDB("sd", time)
+        DataBase.add("sd", time)
     }
 }
 
-let timer = new Timer
-
-
-document.addEventListener('keyup', (event) => {
-    if (document.getElementById("timer").classList.contains("hidden")) return
-    if (event.code == "Space" && !timer.counting && timer.ready && timer.waited){
-        timer.ready = false;
-        htmlInstructions.innerHTML = "Press space"
-        timer.start()
-    }
-    else if (!timer.ready){
-        timer.ready = true;
-        htmlInstructions.innerHTML = "Hold space"
-    }
-    if(event.code == "Space"){
-        timer.held = 0
-        htmlInstructions.style.color = "black"
-    }
-});
-document.addEventListener('keydown', (event) => {
-    if (document.getElementById("timer").classList.contains("hidden")) return
-    if (event.code == "Space" && !timer.counting){
-        event.preventDefault();
-        htmlInstructions.style.color = yellow
-        if (!timer.held){
-            timer.held = new Date().getSeconds()
-        }
-        let remaining = wait_to_start - (new Date().getSeconds() - timer.held + new Date().getMilliseconds()/1000)
-        if(remaining <= 0){
-            htmlInstructions.innerHTML = "Release"
-            htmlInstructions.style.color = green
-            timer.waited = true
-        }else timer.waited = false
-    }
-    if (timer.counting && event.code == "Space"){
-        timer.stop()
-        timer.waited = false
-    }
-});
-
-
-document.getElementById("new-scramble-button").addEventListener("click", () =>{
-    // scramble = generateScramble(scrambleLength)
-})
+export default Timer
