@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import gsap from 'gsap'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
+import Cube from './cube'
 
 let green = "hsl(100, 90%, 50%)"
 let white = "hsl(0, 0%, 100%)"

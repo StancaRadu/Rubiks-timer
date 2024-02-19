@@ -1,4 +1,4 @@
-class Cube{
+export default class Cube{
 
     static ammount = 0
     static moves = {
@@ -142,12 +142,10 @@ class Cube{
 
 }
 
-class Cube2d extends Cube{
+export class Cube2d extends Cube{
     constructor(){
         super("2d")
         
     }
 }
 
-let cube = new Cube("2d", "scramble")
-cube.displayScramble(true)

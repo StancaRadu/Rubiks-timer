@@ -4,7 +4,7 @@ import * as Utils from "./js/utils"
 import AvgChart from "./js/AvgChart"
 import Database from "./js/Database"
 import Cube3d from "./js/3dCube"
-
+import Cube, { Cube2d } from "./js/cube"
 let main = Object
 
 window.onload = async function(){
@@ -23,6 +23,9 @@ window.onload = async function(){
     main.tables = [new Table("history-div", ["Seconds", "Avg.5", "Avg.12", "Avg.50"], ["delete", "expand"])]
     let cube3d = new Cube3d("scramble", "td-tab")
     main.cubes = [cube3d]
+
+    let cube = new Cube("2d", "scramble")
+    cube.displayScramble(true)
 
     Utils.loadTimes()
 }
