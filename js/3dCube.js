@@ -9,60 +9,74 @@ let yellow = "hsl(65, 90%, 50%)"
 let red = "hsl(0, 90%, 50%)"
 let orange = "hsl(30, 90%, 50%)"
 
+class Canvas3d{
+    constructor(location){
+        this.parent = document.getElementById(location)
+        this.canvas = document.createElement("canvas")
+        this.canvas.classList.add("bg")
+        this.parent.appendChild(this.canvas)
 
-const td = document.getElementById("td-tab")
-const canvas = document.getElementById("bg")
+        this.scene = new THREE.Scene()
+        this.light = new THREE.AmbientLight( white )
+        this.camera = new THREE.PerspectiveCamera(50)
+        this.renderer = new THREE.WebGLRenderer({canvas: this.canvas, alpha: true })
+        this.controls = new OrbitControls(this.camera, this.canvas)
+        this.defaults()
+        this.addResizer(this, this.parent)
+        this.animate(this)
+    }
+    cameraPosition(positions){
+        for (const key in positions) {
+            switch (key) {
+                case "x":
+                    this.camera.position.x = positions[key]
+                    break;
+                case "y":
+                    this.camera.position.y = positions[key]
+                    break;
+                case "z":
+                    this.camera.position.z = positions[key]
+                    break;
+            }
+        }
+    }
+    defaults(){
+        this.renderer.setPixelRatio(window.devicePixelRatio)
+        this.scene.add(this.light)
+        this.scene.add(this.camera)
+        this.cameraPosition({x:2, y:3, z:8})
+        this.controls.enableDamping = true;
+        this.controls.enablePan = false;
+        this.controls.enableZoom = false;
 
-const scene = new THREE.Scene()
-const light = new THREE.AmbientLight( white )
-const camera = new THREE.PerspectiveCamera(50)
-const renderer = new THREE.WebGLRenderer({canvas, alpha: true })
-const controls = new OrbitControls(camera, canvas)
-
-controls.enableDamping = true;
-controls.enablePan = false;
-controls.enableZoom = false;
-
-camera.position.z = 8
-camera.position.y = 3
-camera.position.x = 2
-renderer.setPixelRatio(window.devicePixelRatio)
-
-scene.add(light)
-scene.add(camera)
-
-class Scene{
-    constructor(){
-        
+    }
+    animate(canvas){
+        requestAnimationFrame(()=>{canvas.animate(canvas)})
+        if(canvas.parent.classList.contains("hidden")) return;
+        canvas.controls.update()
+        canvas.renderer.render(canvas.scene, canvas.camera)
+    }
+    addResizer(canvas, location){
+        const resizeObserver = new ResizeObserver((entries) => {
+            let size = {
+                width: location.clientWidth,
+                height: location.clientHeight
+            }
+            canvas.renderer.setSize(size.width, size.height);
+            canvas.camera.aspect = size.width / size.height
+            canvas.camera.updateProjectionMatrix()
+        });
+        resizeObserver.observe(location)
     }
 }
-
-function animate(){
-    requestAnimationFrame(animate)
-    if(td.classList.contains("hidden")) return;
-    controls.update()
-    renderer.render(scene, camera)
-    
-}
-const resizeObserver = new ResizeObserver((entries) => {
-    let size = {
-        width: td.clientWidth,
-        height: td.clientHeight
-    }
-    renderer.setSize(size.width, size.height);
-    camera.aspect = size.width / size.height
-    camera.updateProjectionMatrix()
-});
-
-resizeObserver.observe(td);
-animate()
-
-
 class Cube3d extends Cube{
 
-    constructor(scramble_position){
+    constructor(scramble_position, location){
         super("3d", scramble_position)
+        this.canvas = new Canvas3d(location)
         this.moving = false
+        this.addKeyInputs(this)
+        this.create3dPieces()
     }
 
     create3dPieces(){
@@ -115,7 +129,7 @@ class Cube3d extends Cube{
                     }
 
                     this.pieces[ID] = mesh
-                    scene.add(mesh)
+                    this.canvas.scene.add(mesh)
                 }
                 
             }
@@ -139,7 +153,7 @@ class Cube3d extends Cube{
         move["pieces"].forEach(piece => {
             group.add(this.pieces[piece])
         });
-        scene.add(group)
+        this.canvas.scene.add(group)
 
         for (let i = 0; i < times; i++) {
             gsap.to(group.rotation, {
@@ -175,23 +189,21 @@ class Cube3d extends Cube{
         });
         let length = group.children.length
         for (let index = 1; index < length+1; index++) {
-            scene.add(group.children[length-index])
+            cube.canvas.scene.add(group.children[length-index])
         }
         cube.updatePieces(move)
         cube.moving = false
     }
+    addKeyInputs(cube){
+        document.addEventListener('keyup', (event) => {
+            if (this.canvas.parent.classList.contains("hidden")) return
+            if (event.code == "KeyM")  cube.move("R")
+            if (event.code == "KeyU") cube.move("R'")
+            if (event.code == "KeyS") cube.move("D")
+            if (event.code == "KeyG") console.log(cube.generateScramble())
+        });
+    }
 }
 
-let cube3d = new Cube3d("scramble")
-cube3d.create3dPieces()    
+export default Cube3d
 
-document.addEventListener('keyup', (event) => {
-    if (td.classList.contains("hidden")) return
-    if (event.code == "KeyM")  cube3d.move("R")
-    if (event.code == "KeyU") cube3d.move("R'")
-    if (event.code == "KeyS") cube3d.move("D")
-    if (event.code == "KeyG") console.log(cube3d.generateScramble())
-});
-
-// cube3d.move("B'")
-// cube3d.move("D'")

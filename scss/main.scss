@@ -59,7 +59,20 @@ body{
     position: relative;
 }
 
-//Sorted
+loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    z-index: 10;
+    transition: 1s;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 #menu{
     grid-area: menu;
@@ -333,7 +346,7 @@ app{
         }
         #td-tab{
             position: relative;
-            #bg{
+            .bg{
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -436,7 +449,6 @@ c-button{
     }
 }
 
-
 .carved{
     background-color: hsla(0, 0%, 75%, 0.1);
     box-shadow: inset 0 0 3px 1px var(--accent1);
@@ -447,10 +459,6 @@ c-button{
 .hidden{
     display: none;
 }
-
-//Unsorted
-
-
 
 ::-webkit-scrollbar{
     width: 14px;
@@ -464,6 +472,3 @@ c-button{
 ::-webkit-scrollbar-corner{
     opacity: 0;
 }
-
-
-

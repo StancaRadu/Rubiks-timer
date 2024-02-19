@@ -21,6 +21,7 @@ function changePage(clicked){
 }
 function expandSide(button){
     let page = button.parentNode.parentNode
+    console.log(page);
     lines = Array.prototype.slice.call(button.children[0].children)
     let vl,hl;
     lines.forEach(line => {

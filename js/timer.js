@@ -111,7 +111,6 @@ class Timer{
         let dseconds = seconds > 9 ? `${seconds}` : `0${seconds}`
         let dmiliseconds = miliseconds > 9 ?  `${miliseconds}` : `0${miliseconds}`
 
-        console.log(this.minutes);
         this.minutes.innerHTML = dminutes
         this.seconds.innerHTML = dseconds
         this.miliseconds.innerHTML = dmiliseconds

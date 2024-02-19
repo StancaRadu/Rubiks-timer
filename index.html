@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="js/cube.js" defer></script>
-    <script src="js/3dCube.js" type="module" defer></script>
-    <script src="js/utils.js" type="module" defer></script>
     <script src="js/html.js" defer></script>
-    <script src="app.js" type="module"></script> 
+    <script src="js/cube.js" defer></script>
+    <script src="app.js" type="module" defer></script> 
 
 
     <link rel="stylesheet" href="css/table.css">
@@ -32,6 +30,7 @@
 
 </head>
 <body>
+    <loading id="website-loading"></loading>
     <div id="menu">
         <div class="tab">Colors
             <div class="dropdown">
@@ -105,7 +104,6 @@
                 </div>
             </tab>
             <tab id="td-tab" class="hidden">
-                <canvas id="bg"></canvas>
             </tab>
             <tab id="smt-tab" class="hidden">
             </tab>
