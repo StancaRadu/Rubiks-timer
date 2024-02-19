@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="js/html.js" defer></script>
+    <script src="js/cube.js" defer></script> 
+
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" hrnpm id="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    
+    <title>Cube Timer</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icon2-lqqHBoxJ.ico">
+
+
+
+  <script type="module" crossorigin src="/assets/index-M_kSwCZC.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-nFOavYsq.css">
+</head>
+<body>
+    <loading id="website-loading"></loading>
+    <div id="menu">
+        <div class="tab">Colors
+            <div class="dropdown">
+                <div class="wrapper">
+                    <div class="settings">
+                        <input id="main-color-picker" type="range" min="0" max="360" value="200" class="slider" oninput="document.documentElement.style.setProperty('--main-color', this.value)">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab">2
+            <div class="dropdown">
+                <div class="wrapper">
+                </div>
+            </div>
+        </div>
+        <div class="tab">3
+            <div class="dropdown">
+                <div class="wrapper">
+                </div>
+            </div>
+        </div>
+        <div class="tab">4
+            <div class="dropdown">
+                <div class="wrapper">
+                </div>
+            </div>
+        </div>
+    </div>
+    <app>
+        <wrapper id="left-screen">
+            <div id="statistics-div" class="side-inner">
+                <div class="side-app carved">
+                    <h1 class="left-oc-header">Chart</h1>
+                    <div id="canvas-div"><canvas id="myChart"></canvas></div>
+                </div>
+                <div class="side-app carved">
+                    <h1 class="left-oc-header">History</h1>
+                    <div class="side-app-content" id="history-div">
+                    </div>
+                </div>
+                <div class="side-app carved">
+                </div>
+                <div class="side-app carved">
+                </div>
+                <div class="side-app carved">
+                </div>
+                <div class="button-area carved">
+                    <c-button onclick="expandSide(this)">
+                        <button-graphic>
+                            <line class="vertical-line"></line>
+                            <line class="horizontal-line"></line>
+                        </button-graphic>
+                    </c-button>
+                </div>
+            </div>
+
+            <div class="sizer"></div>
+        </wrapper>
+        <wrapper id="centre-screen">
+            <div class="loading"></div>
+            <tab id="timer-tab" >
+                <div id="scramble-div">
+                    <p id="scramble"></p>
+                </div>
+                <div id="timer-div">
+                </div>
+                <div id="cube-relative-area">
+                    <div id="show-scramble">
+                    </div>
+                </div>
+            </tab>
+            <tab id="td-tab" class="hidden">
+            </tab>
+            <tab id="smt-tab" class="hidden">
+            </tab>
+
+
+            <div class="nav-bar button-area carved">
+                <c-button id="timer-tab-button" onclick="changePage(this)"></c-button>
+                <c-button id="td-tab-button" onclick="changePage(this)"></c-button>
+                <c-button id="smt-tab-button" onclick="changePage(this)"></c-button> 
+                <indicator class="shadow"></indicator>
+            </div>
+        </wrapper>    
+        <wrapper id="right-screen">
+            <div id="right-wraper-div" class="side-inner">
+                <div class="button-area carved">
+                    <c-button onclick="expandSide(this)">
+                        <button-graphic>
+                            <line class="vertical-line"></line>
+                            <line class="horizontal-line"></line>
+                        </button-graphic>
+                    </c-button>
+                </div>
+            </div>
+            <div class="sizer"></div>
+        </wrapper>
+    </app>
+    
+</body>
+</html>
