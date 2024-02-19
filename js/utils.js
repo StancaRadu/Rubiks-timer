@@ -1,5 +1,5 @@
 import DataBase from "./Database";
-import main from "./main";
+import main from "../app";
 
 function scrambleToText(scramble){
     let toReturn = ""

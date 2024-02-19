@@ -1,19 +1,11 @@
 import DataBase from "./Database"
 
-let htmlSeconds = document.getElementById("seconds")
-let htmlMiliseconds = document.getElementById("tens")
-let htmlMinutes = document.getElementById("minutes")
-let htmlTimer = document.getElementById("timer-div")
-let htmlScramble = document.getElementById("scramble")
-let htmlInstructions = document.getElementById("instructions-span")
 let green = "hsl(100, 90%, 50%)"
-// let white = "hsl(0, 0%, 100%)"
-// let blue = "hsl(225, 90%, 50%)"
 let yellow = "hsl(65, 90%, 50%)"
-// let red = "hsl(0, 90%, 50%)"
-// let orange = "hsl(30, 90%, 50%)"
 class Timer{
-    constructor(){
+    constructor(id = "timer-div"){
+        this.div = document.getElementById(id)
+
         this.wait_to_start = .8
         this.sTime = 0;
         this.nTime = 0;
@@ -25,35 +17,35 @@ class Timer{
         this.interval;
 
         document.addEventListener('keyup', (event) => {
-            if (document.getElementById("timer").classList.contains("hidden")) return
+            if (this.div.classList.contains("hidden")) return
             if (event.code == "Space" && !this.counting && this.ready && this.waited){
                 this.ready = false;
-                htmlInstructions.innerHTML = "Press space"
+                this.instructions.innerHTML = "Press space"
                 this.start()
             }
             else if (!this.ready){
                 cube.displayScramble(true)
                 this.ready = true;
-                htmlInstructions.innerHTML = "Hold space"
+                this.instructions.innerHTML = "Hold space"
             }
             if(event.code == "Space"){
                 this.held = 0
-                htmlInstructions.style.color = "black"
+                this.instructions.style.color = "black"
             }
         });
         document.addEventListener('keydown', (event) => {
             console.log("keydown");
-            if (document.getElementById("timer").classList.contains("hidden")) return
+            if (this.div.classList.contains("hidden")) return
             if (event.code == "Space" && !this.counting){
                 event.preventDefault();
-                htmlInstructions.style.color = yellow
+                this.instructions.style.color = yellow
                 if (!this.held){
                     this.held = new Date().getSeconds()
                 }
                 let remaining = this.wait_to_start - (new Date().getSeconds() - this.held + new Date().getMilliseconds()/1000)
                 if(remaining <= 0){
-                    htmlInstructions.innerHTML = "Release"
-                    htmlInstructions.style.color = green
+                    this.instructions.innerHTML = "Release"
+                    this.instructions.style.color = green
                     this.waited = true
                 }else this.waited = false
             }
@@ -63,8 +55,35 @@ class Timer{
                 this.waited = false
             }
         });
+
+
+        this.place(this)
     }
 
+    place(location){
+        this.timer = document.createElement("p")
+        this.minutes = document.createElement("span")
+        this.seconds = document.createElement("span")
+        this.miliseconds = document.createElement("span")
+        this.instructions = document.createElement("span")
+
+        this.timer.classList.add("timer")
+        this.minutes.classList.add("minutes")
+        this.seconds.classList.add("seconds")
+        this.miliseconds.classList.add("miliseconds")
+
+        this.instructions.id = "instructions-span"
+
+        this.instructions.innerHTML = "Hold Space"
+        this.seconds.innerHTML = "00"
+        this.miliseconds.innerHTML = "00"
+
+        this.timer.appendChild(this.minutes)
+        this.timer.appendChild(this.seconds)
+        this.timer.appendChild(this.miliseconds)
+        this.div.appendChild(this.timer)
+        this.div.appendChild(this.instructions)
+    }
     start(){
         if (this.counting) return
         this.sTime = 0;
@@ -92,9 +111,10 @@ class Timer{
         let dseconds = seconds > 9 ? `${seconds}` : `0${seconds}`
         let dmiliseconds = miliseconds > 9 ?  `${miliseconds}` : `0${miliseconds}`
 
-        htmlMinutes.innerHTML = dminutes
-        htmlSeconds.innerHTML = dseconds
-        htmlMiliseconds.innerHTML = dmiliseconds
+        console.log(this.minutes);
+        this.minutes.innerHTML = dminutes
+        this.seconds.innerHTML = dseconds
+        this.miliseconds.innerHTML = dmiliseconds
 
         let solveTime = parseFloat(`${time[0]}.${time[1]}`)
     }

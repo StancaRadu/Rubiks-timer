@@ -10,7 +10,7 @@ let red = "hsl(0, 90%, 50%)"
 let orange = "hsl(30, 90%, 50%)"
 
 
-const td = document.getElementById("td")
+const td = document.getElementById("td-tab")
 const canvas = document.getElementById("bg")
 
 const scene = new THREE.Scene()
@@ -39,7 +39,7 @@ class Scene{
 
 function animate(){
     requestAnimationFrame(animate)
-    if (document.getElementById("td").classList.contains("hidden")) return;
+    if(td.classList.contains("hidden")) return;
     controls.update()
     renderer.render(scene, camera)
     
@@ -186,7 +186,7 @@ let cube3d = new Cube3d("scramble")
 cube3d.create3dPieces()    
 
 document.addEventListener('keyup', (event) => {
-    if (document.getElementById("td").classList.contains("hidden")) return
+    if (td.classList.contains("hidden")) return
     if (event.code == "KeyM")  cube3d.move("R")
     if (event.code == "KeyU") cube3d.move("R'")
     if (event.code == "KeyS") cube3d.move("D")

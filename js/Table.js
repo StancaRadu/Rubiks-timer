@@ -1,6 +1,6 @@
 import UI from "./UI"
 import AvgChart from "./AvgChart"
-import main from "./main"
+import main from "../app"
 import Database from "./Database"
 
 class Table{

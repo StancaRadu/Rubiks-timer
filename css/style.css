@@ -160,7 +160,7 @@ body{
 
     min-width: fit-content;
 }
-.screen-inner-wrapper{
+.side-inner{
     grid-area: app;
 
     box-sizing: border-box;
@@ -207,7 +207,6 @@ body{
 .screen .sizer{
     width: 75px;
 }
-
 .side-app-content{
     width: 100%;
 }

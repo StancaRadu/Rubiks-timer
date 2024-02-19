@@ -3,18 +3,14 @@ class UI{
 
     }
     static button(type){
-        const button = document.createElement("div")
+        const button = document.createElement("c-button")
 
-        const graphic = document.createElement("div")
-        const line1 = document.createElement("div")
-        const line2 = document.createElement("div")
+        const graphic = document.createElement("button-graphic")
+        const line1 = document.createElement("line")
+        const line2 = document.createElement("line")
 
         graphic.appendChild(line1)
         graphic.appendChild(line2)
-
-        graphic.classList.add("button-graphic")
-        line1.classList.add("button-graphic-line")
-        line2.classList.add("button-graphic-line")
 
         switch (type) {
             case "expand":
@@ -36,7 +32,6 @@ class UI{
                 break;
         }
 
-        button.classList.add("tab-button")
         button.appendChild(graphic)
         return button
     }
