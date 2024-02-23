@@ -1,6 +1,7 @@
 import Canvas3d from "./Canvas";
 import Timer from "./Timer";
 import * as THREE from "three"
+import gsap from "gsap";
 
 let green = "hsl(100, 90%, 50%)"
 let white = "hsl(0, 0%, 100%)"
