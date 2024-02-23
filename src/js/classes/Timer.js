@@ -1,12 +1,13 @@
-import DataBase from "./Database"
+import DataBase from "../utils/Database"
 
 let green = "hsl(100, 90%, 50%)"
 let yellow = "hsl(65, 90%, 50%)"
 class Timer{
-    constructor(id = "timer-div"){
+    constructor(id = "timer-div", cube){
+        this.cube = cube
         this.div = document.getElementById(id)
 
-        this.wait_to_start = .8
+        this.wait_to_start = 1000
         this.sTime = 0;
         this.nTime = 0;
         this.time = 0;
@@ -24,7 +25,7 @@ class Timer{
                 this.start()
             }
             else if (!this.ready){
-                cube.displayScramble(true)
+                this.cube.displayScramble(true)
                 this.ready = true;
                 this.instructions.innerHTML = "Hold space"
             }
@@ -34,26 +35,26 @@ class Timer{
             }
         });
         document.addEventListener('keydown', (event) => {
-            console.log("keydown");
             if (this.div.classList.contains("hidden")) return
-            if (event.code == "Space" && !this.counting){
-                event.preventDefault();
-                this.instructions.style.color = yellow
-                if (!this.held){
-                    this.held = new Date().getSeconds()
+            if (event.code == "Space") {
+                event.preventDefault()
+                
+                if (!this.counting) {
+                    this.instructions.style.color = yellow
+                    if (!this.held) this.held = new Date().getTime()
+
+                    let remaining = this.wait_to_start - (new Date().getTime() - this.held)
+                    if(remaining <= 0){
+                        this.instructions.innerHTML = "Release"
+                        this.instructions.style.color = green
+                        this.waited = true
+                    }else this.waited = false
+                } else {
+                    this.stop()
+                    this.waited = false
                 }
-                let remaining = this.wait_to_start - (new Date().getSeconds() - this.held + new Date().getMilliseconds()/1000)
-                if(remaining <= 0){
-                    this.instructions.innerHTML = "Release"
-                    this.instructions.style.color = green
-                    this.waited = true
-                }else this.waited = false
-            }
-            if (this.counting && event.code == "Space"){
-                event.preventDefault();
-                this.stop()
-                this.waited = false
-            }
+            };
+            
         });
 
 

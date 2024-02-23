@@ -1,84 +1,52 @@
-#history-div{
-    display: grid;
-    grid-auto-flow: row;
-    row-gap: 7px;    
-
-    height: 100%;
-    overflow-y: scroll;
-    height: fit-content;
-    padding-left: 14px;
-    box-sizing: border-box;
-}
-.table-header{
-    gap: 1px;
-    box-sizing: border-box;
-    border-radius: 0 0 10px 10px;
-    width: 100%;
-    height: 2.5rem;
-    background-color: var(--header);
-
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: 3rem repeat(auto-fit, minmax(0, 1fr));
-
-    position: sticky;
-    top: 0;
-    z-index: 2;
-}
-.table-head{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-    height: 100%;
-
-    border: 0 1px 0 1px solid var(--accent1);
-}
-.table-body{
-    width: 100%;
-    height: 100%;
-
-    display: grid;
-    grid-auto-flow: row;
-    row-gap: 7px;
-
-    height: fit-content;
-}
-.table-row{
-    width: 100%;
-    height: 1.5rem;
-
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 3rem repeat(auto-fit, minmax(0, 1fr));
-
-    background-color: var(--cube-internal-color);
-    gap: 1px;
-}
-.table-row:nth-child(even) .table-cell{
-    background-color: var(--table2);
-}
-.table-row:nth-child(odd) .table-cell{
-    background-color: var(--table1);
+table-body {
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 7px;
+  overflow: scroll;
+  margin-inline: auto;
+  margin: 0 0 0 14px;
 }
 
-.table-cell{
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+table-row {
+  height: 1.5rem;
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: inherit;
+  gap: 1px;
+  background-color: var(--cube-internal-color);
 }
-.table-row:hover{
-    background-color: bisque;
+table-row:hover {
+  background-color: bisque;
+}
+table-row#header {
+  z-index: 1;
+  position: sticky;
+  top: 0;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  opacity: 1;
+  height: 2.5em;
+  background-color: var(--header);
+}
+table-row#header:hover {
+  background-color: var(--header);
+}
+table-row#header cell {
+  background-color: var(--header);
+}
+table-row:nth-child(even) cell {
+  background-color: var(--table1);
+}
+table-row:nth-child(odd) cell {
+  background-color: var(--table2);
+}
+table-row cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+table-row cell:last-of-type {
+  padding: 2px;
 }
 
-.padding-2{
-    padding: 2px;
-}
+/*# sourceMappingURL=table.css.map */

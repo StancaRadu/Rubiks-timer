@@ -29,7 +29,19 @@
 
 </head>
 <body>
-    <loading id="website-loading"></loading>
+    <loading id="website-loading">
+        <graphic id="rubiks-loading">
+            <square></square>
+            <square></square>
+            <square></square>
+            <square></square>
+            <square></square>
+            <square></square>
+            <square></square>
+            <square></square>
+            <square></square>
+        </graphic>
+    </loading>
     <div id="menu">
         <div class="tab">Colors
             <div class="dropdown">
@@ -60,18 +72,18 @@
         </div>
     </div>
     <app>
-        <wrapper id="left-screen">
+        <wrapper id="left-screen" class="side">
             <div id="statistics-div" class="side-inner">
                 <div class="side-app carved">
                     <h1 class="left-oc-header">Chart</h1>
                     <div id="canvas-div"><canvas id="myChart"></canvas></div>
                 </div>
-                <div class="side-app carved">
+                <div id="history-div" class="side-app carved">
                     <h1 class="left-oc-header">History</h1>
-                    <div class="side-app-content" id="history-div">
-                    </div>
+
                 </div>
-                <div class="side-app carved">
+                <div id="history-div2" class="side-app carved">
+                    <h1 class="left-oc-header">History2</h1>
                 </div>
                 <div class="side-app carved">
                 </div>
@@ -79,10 +91,10 @@
                 </div>
                 <div class="button-area carved">
                     <c-button onclick="expandSide(this)">
-                        <button-graphic>
+                        <graphic>
                             <line class="vertical-line"></line>
                             <line class="horizontal-line"></line>
-                        </button-graphic>
+                        </graphic>
                     </c-button>
                 </div>
             </div>
@@ -115,14 +127,14 @@
                 <indicator class="shadow"></indicator>
             </div>
         </wrapper>    
-        <wrapper id="right-screen">
+        <wrapper id="right-screen" class="side">
             <div id="right-wraper-div" class="side-inner">
                 <div class="button-area carved">
                     <c-button onclick="expandSide(this)">
-                        <button-graphic>
+                        <graphic>
                             <line class="vertical-line"></line>
                             <line class="horizontal-line"></line>
-                        </button-graphic>
+                        </graphic>
                     </c-button>
                 </div>
             </div>

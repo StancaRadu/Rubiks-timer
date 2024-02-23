@@ -1,7 +1,7 @@
 import UI from "./UI"
 import AvgChart from "./AvgChart"
-import main from "../app"
-import Database from "./Database"
+import main from "../../../app"
+import Database from "../utils/Database"
 
 class Table{
     static tables = []

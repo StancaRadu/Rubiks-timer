@@ -1,6 +1,6 @@
-import AvgChart from "./AvgChart";
-import Table from "./Table";
+import AvgChart from "../classes/AvgChart";
 import { loadTimes } from "./utils";
+import main from "../../../app";
 
 class Database{
     static toUpdate = []
@@ -23,7 +23,7 @@ class Database{
     
         request.onupgradeneeded = () => {
           this.db = request.result;
-          const store = db.createObjectStore("solves", { keyPath: 'timeOfSolving' });
+          const store = this.db.createObjectStore("solves", { keyPath: 'timeOfSolving' });
           store.createIndex("time", ["seconds"], {unique:false})
           resolve()
         };
@@ -56,7 +56,7 @@ class Database{
       const putTransaction = store.put(newEntry)
       
       putTransaction.onsuccess = () => {
-        let to_update = [].concat(AvgChart.charts, Table.tables)
+        let to_update = [].concat(AvgChart.charts, main.tables)
         to_update.forEach( element => {
           element.addTime(newEntry)
         })

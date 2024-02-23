@@ -1,4 +1,4 @@
-import { doAverage } from "./utils";
+import { average } from "../utils/utils";
 import Chart from "chart.js/auto"
 
 class AvgChart{
@@ -82,13 +82,13 @@ class AvgChart{
         for (const solve in solves_p){
             solves.push(solves_p[solve]["y"])
         }
-        let average = doAverage(solves)
+        let avg = average(solves, true)
         if (solves.length == 5){
-            this.chart.data.datasets[1].data.push({y:average, x:this.chart.data.size})
+            this.chart.data.datasets[1].data.push({y:avg, x:this.chart.data.size})
         }else if (solves.length == 12){
-            this.chart.data.datasets[2].data.push({y:average, x:this.chart.data.size})
+            this.chart.data.datasets[2].data.push({y:avg, x:this.chart.data.size})
         }else if (solves.length == 50){
-            this.chart.data.datasets[3].data.push({y:average, x:this.chart.data.size})
+            this.chart.data.datasets[3].data.push({y:avg, x:this.chart.data.size})
         }
     }
 }
