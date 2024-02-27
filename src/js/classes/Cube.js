@@ -2,32 +2,261 @@ import Canvas3d from "./Canvas";
 import Timer from "./Timer";
 import * as THREE from "three"
 import gsap from "gsap";
+import main from "../../../app";
 
-let green = "hsl(100, 90%, 50%)"
-let white = "hsl(0, 0%, 100%)"
-let blue = "hsl(225, 90%, 50%)"
-let yellow = "hsl(65, 90%, 50%)"
-let red = "hsl(0, 90%, 50%)"
-let orange = "hsl(30, 90%, 50%)"
+class __cl{
+    constructor(){
+        this.structure = {
+            pieces: {
+                F:{
+                    stickers: {
+                        FMM: null,
+                    },
+                },
+                B:{
+                    stickers: {
+                        BMM: null,
+                    },
+                },
+                U:{
+                    stickers: {
+                        UMM: null,
+                    },
+                },
+                D:{
+                    stickers: {
+                        DMM: null,
+                    },
+                },
+                L:{
+                    stickers: {
+                        LMM: null,
+                    },
+                },
+                R:{
+                    stickers: {
+                        RMM: null,
+                    },
+                },
+
+                FDL:{
+                    stickers: {
+                        FDL: null,
+                        LDR: null,
+                        DUL: null,
+                    },
+                },
+                FDR:{
+                    stickers: {
+                        FDR: null,
+                        RDL: null,
+                        DUR: null,
+                    },
+                },
+                FUL:{
+                    stickers: {
+                        FUL: null,
+                        LUR: null,
+                        UDL: null,
+                    },
+                },
+                FUR:{
+                    stickers: {
+                        FUR: null,
+                        RUL: null,
+                        UDR: null,
+                    },
+                },
+                FL:{
+                    stickers: {
+                        FML: null,
+                        LMR: null,
+                    },
+                },
+                FR:{
+                    stickers: {
+                        FMR: null,
+                        RML: null,
+                    },
+                },
+                FU:{
+                    stickers: {
+                        FUM: null,
+                        UDM: null,
+                    },
+                },
+                FD:{
+                    stickers: {
+                        FDM: null,
+                        DUM: null,
+                    },
+                },
+
+                BDL:{
+                    stickers: {
+                        BDL: null,
+                        RDL: null,
+                        DDR: null,
+                    },
+                },
+                BDR:{
+                    stickers: {
+                        BDR: null,
+                        LDL: null,
+                        DDR: null,
+                    },
+                },
+                BUL:{
+                    stickers: {
+                        BUL: null,
+                        LUL: null,
+                        UUL: null,
+                    },
+                },
+                BUR:{
+                    stickers: {
+                        BUR: null,
+                        LUL: null,
+                        UUL: null,
+                    },
+                },
+                BL:{
+                    stickers: {
+                        BML: null,
+                        RMR: null,
+                    },
+                },
+                BR:{
+                    stickers: {
+                        BMR: null,
+                        LML: null,
+                    },
+                },
+                BU:{
+                    stickers: {
+                        BUM: null,
+                        UUM: null,
+                    },
+                },
+                BD:{
+                    stickers: {
+                        BDM: null,
+                        DDM: null,
+                    },
+                },
+
+                LU:{
+                    stickers: {
+                        LUM: null,
+                        UML: null,
+                    },
+                },
+                LD:{
+                    stickers: {
+                        LDM: null,
+                        DML: null,
+                    },
+                },
+                RU:{
+                    stickers: {
+                        RUM: null,
+                        UMR: null,
+                    },
+                },
+                RD:{
+                    stickers: {
+                        LDR: null,
+                        DMR: null,
+                    },
+                },
+            },
+            stickers_id: [
+                "FUL", "FUM", "FUR", "FML", "FMM", "FMR", "FDL", "FDM", "FDR",
+                "BUL", "BUM", "BUR", "BML", "BMM", "BMR", "BDL", "BDM", "BDR", 
+                "UUL", "UUM", "UUR", "UML", "UMM", "UMR", "UDL", "UDM", "UDR", 
+                "DUL", "DUM", "DUR", "DML", "DMM", "DMR", "DDL", "DDM", "DDR", 
+                "RUL", "RUM", "RUR", "RML", "RMM", "RMR", "RDL", "RDM", "RDR",
+                "LUL", "LUM", "LUR", "LML", "LMM", "LMR", "LDL", "LDM", "LDR",
+            ],
+            moves: {
+                F:{
+                }
+            }
+        }
+    }
+
+    interator(){
+        for (const piece in this.structure['pieces']) {
+            for (const sticker in this.structure["pieces"][piece]["stickers"]) {
+            }
+        }
+    }
+}
+
 
 export default class Cube{
 
     static ammount = 0
     static moves = {
+        F : {
+            pieces: [
+                "UDL", "UDM", "UDR", "RUL", "RML", "RDL", "DUR", "DUM", "DUL", "LDR", "LMR", "LUR",
+                "FUR", "FUM", "FUL", "FMR", "FMM", "FML", "FDR", "FDM", "FDL"
+            ],
+            pairs: [
+                ["UDR", "RDL"], ["RDL", "DUL"], ["DUL", "LUR"], ["LUR", "UDR"],
+                ["UDL", "RUL"], ["RUL", "DUR"], ["DUR", "LDR"], ["LDR", "UDL"],
+                ["UDM", "RML"], ["RML", "DUM"], ["DUM", "LMR"], ["LMR", "UDM"],
+
+                ["FUR", "FDR"], ["FDR", "FDL"], ["FDL", "FUL"], ["FUL", "FUR"],
+                ["FUM", "FMR"], ["FMR", "FDM"], ["FDM", "FML"], ["FML", "FUM"]
+            ],
+            axes: { x: 0, y: 0, z: -1 },
+        },
+        B : {
+            pieces: [
+                "UUL", "UUM", "UUR", "RUR", "RMR", "RDR", "DDR", "DDM", "DDL", "LDL", "LML", "LUL",
+                "BUR", "BUM", "BUL", "BMR", "BMM", "BML", "BDR", "BDM", "BDL"
+            ],
+            pairs: [
+                ["UUL", "LDL"], ["LDL", "DDR"], ["DDR", "RUR"], ["RUR", "UUL"],
+                ["UUR", "LUL"], ["LUL", "DDL"], ["DDL", "RDR"], ["RDR", "UUR"],
+                ["UUM", "LML"], ["LML", "DDM"], ["DDM", "RMR"], ["RMR", "UUM"],
+
+                ["BUL", "BUR"], ["BUR", "BDR"], ["BDR", "BDL"], ["BDL", "BUL"],
+                ["BUM", "BMR"], ["BMR", "BDM"], ["BDM", "BML"], ["BML", "BUM"]
+            ],
+            axes: { x: 0, y: 0, z: 1 },
+        },
         R : {
             pieces: [
                 "FDR", "FMR", "FUR", "UDR", "UMR", "UUR", "BUL", "BML", "BDL", "DDR", "DMR", "DUR",
                 "RUR", "RUM", "RUL", "RMR", "RMM", "RML", "RDR", "RDM", "RDL"
             ],
             pairs: [
-                ["UDR", "FDR"], ["BUL", "UDR"], ["DDR", "BUL"], ["FDR", "DDR"],
-                ["UUR", "FUR"], ["BDL", "UUR"], ["DUR", "BDL"], ["FUR", "DUR"],
-                ["UMR", "FMR"], ["BML", "UMR"], ["DMR", "BML"], ["FMR", "DMR"],
+                ["FUR", "UUR"], ["UUR", "BDL"], ["BDL", "DUR"], ["DUR", "FUR"],
+                ["FDR", "UDR"], ["UDR", "BUL"], ["BUL", "DDR"], ["DDR", "FDR"],
+                ["FMR", "UMR"], ["UMR", "BML"], ["BML", "DMR"], ["DMR", "FMR"],
 
-                ["RDL", "RDR"], ["RDR", "RUR"], ["RUR", "RUL"], ["RUL", "RDL"],
-                ["RML", "RUM"], ["RUM", "RMR"], ["RMR", "RDM"], ["RDM", "RML"]
+                ["RUL", "RUR"], ["RUR", "RDR"], ["RDR", "RDL"], ["RDL", "RUL"],
+                ["RUM", "RMR"], ["RMR", "RDM"], ["RDM", "RML"], ["RML", "RUM"]
             ],
-            axes: { x: -1, y: 0, z: 0 }
+            axes: { x: -1, y: 0, z: 0 },
+        },
+        L : {
+            pieces: [
+                "FDL", "FML", "FUL", "UDL", "UML", "UUL", "BUR", "BMR", "BDR", "DDL", "DML", "DUL",
+                "LUR", "LUM", "LUL", "LMR", "LMM", "LML", "LDR", "LDM", "LDL"
+            ],
+            pairs: [
+                ["FUL", "DUL"], ["DUL", "BDR"], ["BDR", "UUL"], ["UUL", "FUL"],
+                ["FDL", "DDL"], ["DDL", "BUR"], ["BUR", "UDL"], ["UDL", "FDL"],
+                ["FML", "DML"], ["DML", "BMR"], ["BMR", "UML"], ["UML", "FML"],
+
+                ["LUL", "LUR"], ["LUR", "LDR"], ["LDR", "LDL"], ["LDL", "LUL"],
+                ["LUM", "LMR"], ["LMR", "LDM"], ["LDM", "LML"], ["LML", "LUM"]
+            ],
+            axes: { x: 1, y: 0, z: 0 },
         },
         D : {
             pieces: [
@@ -35,26 +264,51 @@ export default class Cube{
                 "DUR", "DUM", "DUL", "DMR", "DMM", "DML", "DDR", "DDM", "DDL"
             ],
             pairs: [
-                ["FDL", "LDL"], ["LDL", "BDL"], ["BDL", "RDL"], ["RDL", "FDL"],
-                ["FDR", "LDR"], ["LDR", "BDR"], ["BDR", "RDR"], ["RDR", "FDR"],
-                ["FDM", "LDM"], ["LDM", "BDM"], ["BDM", "RDM"], ["RDM", "FDM"],
+                ["FDR", "RDR"], ["RDR", "BDR"], ["BDR", "LDR"], ["LDR", "FDR"],
+                ["FDL", "RDL"], ["RDL", "BDL"], ["BDL", "LDL"], ["LDL", "FDL"],
+                ["FDM", "RDM"], ["RDM", "BDM"], ["BDM", "LDM"], ["LDM", "FDM"],
 
-                ["DDL", "DUL"], ["DUL", "DUR"], ["DUR", "DDR"], ["DDR", "DDL"],
-                ["DUM", "DMR"], ["DMR", "DDM"], ["DDM", "DML"], ["DML", "DUM"]
+                ["DUL", "DUR"], ["DUR", "DDR"], ["DDR", "DDL"], ["DDL", "DUL"],
+                ["DML", "DUM"], ["DUM", "DMR"], ["DMR", "DDM"], ["DDM", "DML"]
             ],
-            axes: { x: 0, y: -1, z: 0 }
+            axes: { x: 0, y: 1, z: 0 },
+        },
+        U : {
+            pieces: [
+                "FUR", "FUM", "FUL", "RUR", "RUM", "RUL", "BUR", "BUM", "BUL", "LUR", "LUM", "LUL",
+                "UUR", "UUM", "UUL", "UMR", "UMM", "UML", "UDR", "UDM", "UDL"
+            ],
+            pairs: [
+                ["FUL", "LUL"], ["LUL", "BUL"], ["BUL", "RUL"], ["RUL", "FUL"],
+                ["FUR", "LUR"], ["LUR", "BUR"], ["BUR", "RUR"], ["RUR", "FUR"],
+                ["FUM", "LUM"], ["LUM", "BUM"], ["BUM", "RUM"], ["RUM", "FUM"],
+
+                ["UUL", "UUR"], ["UUR", "UDR"], ["UDR", "UDL"], ["UDL", "UUL"],
+                ["UUM", "UMR"], ["UMR", "UDM"], ["UDM", "UML"], ["UML", "UUM"]
+            ],
+            axes: { x: 0, y: -1, z: 0 },
         }
     }
+    static faces = ["F", "B", "U", "D", "L", "R"]
+         
     static move_decoder(move){
         let side = move[0]
         let times = /\d/.test(move) ? parseInt(move.replace(/\D/g,'')) : 1;
         let prime = move.includes("'") ? -1 : 1
 
-        if (!(side in Cube.moves)) return
+        try{
+            if (!(side in Cube.moves))  throw "this move doesn't exist";
+            return { side: side, times: times, prime: prime }
+        }catch( message ){
+            console.warn(`${message}: ${side}`);
+            return
+        }
+        
 
-        return { side: side, times: times, prime: prime }
     }
 
+    // STATIC
+    
     constructor(type, scramble_location=null, timer_location=null){
         this.id = Cube.ammount;
         Cube.ammount++;
@@ -81,23 +335,33 @@ export default class Cube{
     }
 
     move(move){
-        let side = move[0]
-        let times = /\d/.test(move) ? parseInt(move.replace(/\D/g,'')) : 1;
-        let prime = move.includes("'") ? true : false
-
-        if (!(side in Cube.moves)) return
+        try {
+            throw ("Needs implementation", this)
+        } catch (message){
+            console.warn(message)
+        }
     }
     updatePieces(move){
         move = Cube.move_decoder(move)
         let side = move["side"]
         let prime = move["prime"]
-
-        const copy = Object.assign({}, this.pieces);
-        console.log(copy);
-        Cube.moves[side]["pairs"].forEach(pair => {
-            if (prime == -1) this.pieces[pair[0]] = copy[pair[1]]
-            if (prime == 1) this.pieces[pair[1]] = copy[pair[0]]
-        });
+        let times = move["times"]
+        for (let i = 0; i < times; i++) {
+            let copy_i = {}
+            for (const id in this.pieces) {
+                let piece = this.pieces[id]
+                copy_i[id] = piece
+            }
+            Cube.moves[side]["pairs"].forEach(pair => {
+                if (prime == 1) {
+                    this.pieces[pair[1]] = copy_i[pair[0]]
+                }
+                else if (prime == -1) {
+                    this.pieces[pair[0]] = copy_i[pair[1]]
+                }
+                
+            });
+        }
     }
     generateScramble(lenght = 20){
         let moves = [
@@ -113,7 +377,7 @@ export default class Cube{
         while (scramble.length < lenght){
 
             let double = Math.floor(Math.random()*2)
-            double = double ? "2" : ""
+            double = double ? "" : ""
             let prime = Math.floor(Math.random()*2)
             prime = (prime && !double) ? "'" : ""
             let move1 = 3
@@ -159,18 +423,87 @@ export default class Cube{
 }
 
 export class Cube2d extends Cube{
-    constructor(){
-        super("2d")
-        
+    constructor(location, scramble_location, timer_location){
+        super("2d", scramble_location, timer_location)
+        this.location = document.getElementById(location)
+        this.colors = {
+            F: main.colors['green'],
+            B: main.colors['blue'],
+            U: main.colors['yellow'],
+            D: main.colors['white'],
+            L: main.colors['red'],
+            R: main.colors['orange']
+        }
+        this.create()
     }
+    create(){
+        this.cube = document.createElement("cube")
+        this.location.appendChild(this.cube)
+        let faces = ["F", "B", "U", "D", "L", "R"]
+        let stickers = ["UL", "UM", "UR", "ML", "MM", "MR","DL", "DM", "DR"]
+        for (let i = 0; i < 6; i++) {
+            let face = document.createElement("face")
+            face.classList.add(faces[i])
+            this.cube.appendChild(face)
+            for (let j = 0; j < 9; j++) {
+                let sticker = document.createElement("sticker")
+                sticker.classList.add(stickers[j])
+                sticker.style.backgroundColor = this.colors[faces[i]]
+                face.appendChild(sticker)
+                let id = faces[i] + stickers[j]
+                this.pieces[id] = sticker
+            }
+        }
+    }
+    move(move){
+        this.updatePieces(move)
+        this.clearFaces()
+        for (const id in this.pieces) {
+            let face = id[0]
+            let location = id.slice(1,3)
+            let html = this.cube.querySelector(`face.${face}`)
+            this.pieces[id].className = ""
+            this.pieces[id].classList.add(location)
+            html.append(this.pieces[id])
+        }
+    }
+    clearFaces(){
+        ["F", "B", "U", "D", "L", "R"].forEach(face => {
+            let html = this.cube.querySelector(`face.${face}`)
+            html.replaceChildren()
+        });
+    }
+
 }
 
 export class Cube3d extends Cube{
+    static keys = {
+        KeyN: "F",
+        KeyV: "F'",
+        KeyO: "B",
+        KeyW: "B'",
+        KeyJ: "U",
+        KeyF: "U'",
+        KeyS: "D",
+        KeyL: "D'",
+        KeyC: "L",
+        KeyT: "L'",
+        KeyI: "R",
+        KeyN: "R'",
+    }
 
-    constructor(scramble_position, location){
-        super("3d", scramble_position)
+    constructor(location, scramble_position, timer_location){
+        super("3d", scramble_position, timer_location)
         this.canvas = new Canvas3d(location)
         this.moving = false
+        this.faces = {
+            "F": { "color": main.colors["green"], "axis": "z", "ud": [1, 0, -1], "lr": [-1, 0, 1]}, 
+            "B": { "color": main.colors["blue"], "axis": "z", "ud": [1, 0, -1], "lr": [1, 0, -1]}, 
+            "U": { "color": main.colors["yellow"], "axis": "y", "ud": [-1, 0, 1], "lr": [-1, 0, 1]}, 
+            "D": { "color": main.colors["white"], "axis": "y", "ud": [1, 0, -1], "lr": [-1, 0, 1]}, 
+            "L": { "color": main.colors["red"], "axis": "x", "ud": [1, 0, -1], "lr": [-1, 0, 1]}, 
+            "R": { "color": main.colors["orange"], "axis": "x", "ud": [1, 0, -1], "lr": [1, 0, -1]}, 
+        }
         this.addKeyInputs(this)
         this.create3dPieces()
     }
@@ -178,19 +511,12 @@ export class Cube3d extends Cube{
     create3dPieces(){
         let ROTATION = -0.5 * Math.PI;
 
-        const faces = {
-            "F": { "color": green, "axis": "z", "ud": [1, 0, -1], "lr": [-1, 0, 1]}, 
-            "B": { "color": blue, "axis": "z", "ud": [1, 0, -1], "lr": [1, 0, -1]}, 
-            "U": { "color": yellow, "axis": "y", "ud": [-1, 0, 1], "lr": [-1, 0, 1]}, 
-            "D": { "color": white, "axis": "y", "ud": [1, 0, -1], "lr": [-1, 0, 1]}, 
-            "L": { "color": red, "axis": "x", "ud": [1, 0, -1], "lr": [-1, 0, 1]}, 
-            "R": { "color": orange, "axis": "x", "ud": [1, 0, -1], "lr": [1, 0, -1]}, 
-        }
+        
         const UD_letters = ["U", "M", "D"]
         const LR_letters = ["L", "M", "R"]
 
-        for (const face_id in faces) {
-            const face = faces[face_id]
+        for (const face_id in this.faces) {
+            const face = this.faces[face_id]
             for (let udi = 0; udi < 3; udi++) {
                 for (let lri = 0; lri < 3; lri++) {
                     const ID = face_id + UD_letters[udi] + LR_letters[lri]
@@ -233,7 +559,7 @@ export class Cube3d extends Cube{
         
     }
 
-    move(move_raw){
+    async move(move_raw){
         if (this.moving) return
         this.moving = true
 
@@ -250,21 +576,36 @@ export class Cube3d extends Cube{
             group.add(this.pieces[piece])
         });
         this.canvas.scene.add(group)
+        const ready = new Promise((resolve) => {
+            for (let i = 0; i < times; i++) {
+                gsap.to(group.rotation, {
+                    x: move["axes"]["x"] * rotation * prime,
+                    y: move["axes"]["y"] * rotation * prime,
+                    z: move["axes"]["z"] * rotation * prime,
 
-        for (let i = 0; i < times; i++) {
-            gsap.to(group.rotation, {
-                x: move["axes"]["x"] * rotation * prime,
-                y: move["axes"]["y"] * rotation * prime,
-                z: move["axes"]["z"] * rotation * prime,
-
-                onComplete: this.updateMatrix,
-                onCompleteParams: [group, this, move_raw],
-                
-                duration: 0.3
-            })
-        }
+                    // onComplete: this.updateMatrix,
+                    // onCompleteParams: [group, this, move_raw],
+                    onComplete:() => {
+                        this.updateMatrix(group, this, move_raw)
+                        setTimeout(() => {
+                            resolve("ready");
+                        }, 100);
+                    },
+                    
+                    duration: 0.3
+                })
+            }
+        })
+        return await ready
     }
 
+    async move_with(){
+        console.log(this.scramble);
+        for ( const move of this.scramble ) {
+            let a = await this.move(move)
+            console.log(a);
+        }
+    }
     updateMatrix(group, cube, move){
         group.children.forEach(piece => {
             let p_coords = new THREE.Vector3
@@ -284,8 +625,8 @@ export class Cube3d extends Cube{
 
         });
         let length = group.children.length
-        for (let index = 1; index < length+1; index++) {
-            cube.canvas.scene.add(group.children[length-index])
+        for (let index = length-1; index >= 0; index--) {
+            cube.canvas.scene.add(group.children[index])
         }
         cube.updatePieces(move)
         cube.moving = false
@@ -293,10 +634,15 @@ export class Cube3d extends Cube{
     addKeyInputs(cube){
         document.addEventListener('keyup', (event) => {
             if (this.canvas.parent.classList.contains("hidden")) return
-            if (event.code == "KeyM")  cube.move("R")
-            if (event.code == "KeyU") cube.move("R'")
-            if (event.code == "KeyS") cube.move("D")
-            if (event.code == "KeyG") console.log(cube.generateScramble())
+            if (event.code == "KeyG") {
+                console.log(cube.generateScramble())
+                console.log(cube.move_with())
+            }
+            if (!(Object.keys(Cube3d.keys).includes(event.code))) return
+            cube.move(Cube3d.keys[event.code])
         });
     }
+
 }
+
+

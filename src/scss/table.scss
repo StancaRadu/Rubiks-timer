@@ -1,11 +1,13 @@
 table-body{
+    box-sizing: border-box;
     display: grid;
+    width: 100%;
     grid-auto-flow: row;
     // grid-auto-rows: 1.5em;
     row-gap: 7px;
-    overflow: scroll;
+    overflow-y: scroll;
     margin-inline: auto;
-    margin: 0 0 0 14px;
+    padding-left: 14px;
 }
 table-row{
     height: 1.5rem;
@@ -54,88 +56,3 @@ table-row{
         }     
     }
 }
-
-// #history-div{
-//     display: grid;
-//     grid-auto-flow: row;
-//     row-gap: 7px;    
-
-//     height: 100%;
-//     overflow-y: scroll;
-//     height: fit-content;
-//     padding-left: 14px;
-//     box-sizing: border-box;
-// }
-// .table-header{
-//     gap: 1px;
-//     box-sizing: border-box;
-//     border-radius: 0 0 10px 10px;
-//     width: 100%;
-//     height: 2.5rem;
-//     background-color: var(--header);
-
-//     display: grid;
-//     grid-auto-flow: column;
-//     justify-content: center;
-//     align-items: center;
-//     grid-template-columns: 3rem repeat(auto-fit, minmax(0, 1fr));
-
-//     position: sticky;
-//     top: 0;
-//     z-index: 2;
-// }
-// .table-head{
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-
-//     width: 100%;
-//     height: 100%;
-
-//     border: 0 1px 0 1px solid var(--accent1);
-// }
-// .table-body{
-//     width: 100%;
-//     height: 100%;
-
-//     display: grid;
-//     grid-auto-flow: row;
-//     row-gap: 7px;
-
-//     height: fit-content;
-// }
-// .table-row{
-//     width: 100%;
-//     height: 1.5rem;
-
-//     display: grid;
-//     grid-auto-flow: column;
-//     grid-template-columns: 3rem repeat(auto-fit, minmax(0, 1fr));
-
-//     background-color: var(--cube-internal-color);
-//     gap: 1px;
-// }
-// .table-row:nth-child(even) .table-cell{
-//     background-color: var(--table2);
-// }
-// .table-row:nth-child(odd) .table-cell{
-//     background-color: var(--table1);
-// }
-
-// .table-cell{
-//     box-sizing: border-box;
-//     position: relative;
-//     overflow: hidden;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     width: 100%;
-//     height: 100%;
-// }
-// .table-row:hover{
-//     background-color: bisque;
-// }
-
-// .padding-2{
-//     padding: 2px;
-// }

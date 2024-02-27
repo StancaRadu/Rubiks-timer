@@ -1,7 +1,6 @@
 import DataBase from "../utils/Database"
+import main from "../../../app"
 
-let green = "hsl(100, 90%, 50%)"
-let yellow = "hsl(65, 90%, 50%)"
 class Timer{
     constructor(id = "timer-div", cube){
         this.cube = cube
@@ -40,13 +39,13 @@ class Timer{
                 event.preventDefault()
                 
                 if (!this.counting) {
-                    this.instructions.style.color = yellow
+                    this.instructions.style.color = main.colors["yellow"]
                     if (!this.held) this.held = new Date().getTime()
 
                     let remaining = this.wait_to_start - (new Date().getTime() - this.held)
                     if(remaining <= 0){
                         this.instructions.innerHTML = "Release"
-                        this.instructions.style.color = green
+                        this.instructions.style.color = main.colors["green"]
                         this.waited = true
                     }else this.waited = false
                 } else {
@@ -58,10 +57,10 @@ class Timer{
         });
 
 
-        this.place(this)
+        this.create(this)
     }
 
-    place(location){
+    create(location){
         this.timer = document.createElement("p")
         this.minutes = document.createElement("span")
         this.seconds = document.createElement("span")
@@ -92,6 +91,7 @@ class Timer{
         this.time = 0;
         this.ready = false;
         this.counting = true;
+        document.getElementById("timer-div").classList.add("full-screen")
 
         this.sTime = new Date().getTime();
         this.interval = setInterval(this.count, 10, this);
@@ -125,6 +125,8 @@ class Timer{
     }   
     stop(){
         if (!this.counting) return
+        document.getElementById("timer-div").classList.remove("full-screen")
+
         this.counting = false;
         clearInterval(this.interval)
 

@@ -34,6 +34,11 @@ class UI{
                 line2.classList.add("delete-graphic-line")
                 line2.classList.add("diagonal-decline")
                 break;
+            
+            case "add":
+                button.classList.add("carved")
+                graphic.classList.add("add-graphic")
+                line1.classList.add("vertical-line")
         }
 
         button.appendChild(graphic)
@@ -49,15 +54,12 @@ class UI{
         table.fields = fields
 
         table.create = function(){
-            table.parent = document.getElementById(location)
-        
             table.body = document.createElement("table-body")
             table.header = document.createElement("table-row")
 
             table.body.style.gridTemplateColumns = `50px repeat(${fields.length-2}, 1fr) 50px`
             table.header.id = "header"
             table.header.cells = []
-            table.parent.appendChild(table.body)
             table.body.appendChild(table.header)
 
             table.fields.forEach(header => {
@@ -161,7 +163,13 @@ class UI{
 
         table.create()
 
-        return table
+        return table.body
+    }
+
+    static sideApp(){
+        let app = document.createElement("side-app")
+        app.classList.add("carved")
+        return app
     }
 }
 

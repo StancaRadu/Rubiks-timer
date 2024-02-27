@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="html.js"></script>
-    <script src="app.js" type="module" defer></script> 
+    <script src="app.js" type="module"></script> 
 
-
-    <link rel="stylesheet" href="css/table.css">
-    <link rel="stylesheet" href="css/cube.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/master.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +21,6 @@
     
     <title>Cube Timer</title>
     <link rel="icon" type="image/x-icon" href="img/icon2.ico">
-
-
-
 </head>
 <body>
     <loading id="website-loading">
@@ -74,21 +68,6 @@
     <app>
         <wrapper id="left-screen" class="side">
             <div id="statistics-div" class="side-inner">
-                <div class="side-app carved">
-                    <h1 class="left-oc-header">Chart</h1>
-                    <div id="canvas-div"><canvas id="myChart"></canvas></div>
-                </div>
-                <div id="history-div" class="side-app carved">
-                    <h1 class="left-oc-header">History</h1>
-
-                </div>
-                <div id="history-div2" class="side-app carved">
-                    <h1 class="left-oc-header">History2</h1>
-                </div>
-                <div class="side-app carved">
-                </div>
-                <div class="side-app carved">
-                </div>
                 <div class="button-area carved">
                     <c-button onclick="expandSide(this)">
                         <graphic>
@@ -97,6 +76,10 @@
                         </graphic>
                     </c-button>
                 </div>
+                <side-app class="carved">
+                    <h1 class="left-oc-header">Chart</h1>
+                    <div id="canvas-div"><canvas id="myChart"></canvas></div>
+                </side-app>
             </div>
 
             <div class="sizer"></div>
@@ -109,9 +92,7 @@
                 </div>
                 <div id="timer-div">
                 </div>
-                <div id="cube-relative-area">
-                    <div id="show-scramble">
-                    </div>
+                <div id="cube-div">
                 </div>
             </tab>
             <tab id="td-tab" class="hidden">
