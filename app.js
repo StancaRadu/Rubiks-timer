@@ -7,6 +7,7 @@ import UI from "./src/js/classes/UI"
 let main = Object
 main.style = getComputedStyle(document.body)
 main.exclude_from_avg = 10
+main.scramble_length = 20
 main.colors = {
     green: main.style.getPropertyValue('--c-green'),
     white: main.style.getPropertyValue('--c-white'),
@@ -33,11 +34,6 @@ window.onload = async function(){
     cube2d.displayScramble(true)
 
     Utils.loadTimes()
-
-
-    document.getElementById("statistics-div")
-        .appendChild(UI.sideApp())
-        .appendChild(UI.button("add"))
 }
 
 export default main 

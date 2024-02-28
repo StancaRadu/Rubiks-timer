@@ -45,6 +45,14 @@ class __cl{
                         LDR: null,
                         DUL: null,
                     },
+                    relations: {
+                        F: {
+                            piece: "FUL",
+                            stickers: ["FDL", "FUL"]
+                        },
+                        D: {},
+                        L: {},
+                    }
                 },
                 FDR:{
                     stickers: {
@@ -178,19 +186,22 @@ class __cl{
                 "RUL", "RUM", "RUR", "RML", "RMM", "RMR", "RDL", "RDM", "RDR",
                 "LUL", "LUM", "LUR", "LML", "LMM", "LMR", "LDL", "LDM", "LDR",
             ],
-            moves: {
-                F:{
-                }
-            }
         }
     }
 
+    find(sticker){
+
+    }
     interator(){
         for (const piece in this.structure['pieces']) {
             for (const sticker in this.structure["pieces"][piece]["stickers"]) {
             }
         }
     }
+}
+class Sticker{
+}
+class Piece{
 }
 
 
@@ -334,13 +345,6 @@ export default class Cube{
 
     }
 
-    move(move){
-        try {
-            throw ("Needs implementation", this)
-        } catch (message){
-            console.warn(message)
-        }
-    }
     updatePieces(move){
         move = Cube.move_decoder(move)
         let side = move["side"]
@@ -363,7 +367,7 @@ export default class Cube{
             });
         }
     }
-    generateScramble(lenght = 20){
+    generateScramble(lenght = main.scramble_length){
         let moves = [
             ["R", "L"],
             ["U", "D"], 
@@ -371,42 +375,34 @@ export default class Cube{
         ]
 
         let scramble = []
-        let samemove = 0
-        let last_p;
-        let last;
+        let same_set = 0
+        let last_set;
+        let last_side;
         while (scramble.length < lenght){
 
             let double = Math.floor(Math.random()*2)
-            double = double ? "" : ""
+            double = double ? "2" : ""
             let prime = Math.floor(Math.random()*2)
             prime = (prime && !double) ? "'" : ""
-            let move1 = 3
-            let move2 = 3
+            
+            let set = Math.floor(Math.random()*3)
+            let side = Math.floor(Math.random()*2)
 
-            while (!([0,1,2].includes(move1))) {
-                move1 = Math.floor(Math.random()*3)
-            }
-            while (!([0,1].includes(move2))) {
-                move2 = Math.floor(Math.random()*2)
-            }
+            if (set == last_set && side == last_side) continue
 
+            if (set == last_set) { if (++same_set > 1) continue }
+            else same_set = 0
 
-            if (move1 == last_p && move2 == last) continue
+            last_set = set
+            last_side = side
 
-            if (move1 == last_p) {
-                samemove++
-                if (samemove > 1) continue
-            }else samemove = 0
-
-            last_p = move1
-            last = move2
-
-            let move = moves[move1][move2] + double + prime
+            let move = moves[set][side] + double + prime
             scramble.push(move)
         }
         this.scramble = scramble
         return scramble
     }
+    
     displayScramble(new_scramble){
         let scramble = this.scramble
         if (new_scramble) scramble = this.generateScramble()
@@ -488,8 +484,8 @@ export class Cube3d extends Cube{
         KeyL: "D'",
         KeyC: "L",
         KeyT: "L'",
-        KeyI: "R",
-        KeyN: "R'",
+        KeyU: "R",
+        KeyM: "R'",
     }
 
     constructor(location, scramble_position, timer_location){
@@ -568,8 +564,8 @@ export class Cube3d extends Cube{
         let side = move["side"]
         let times = move["times"]
         let prime = move["prime"]
+        
         move = Cube.moves[side]
-
         let group = new THREE.Group
 
         move["pieces"].forEach(piece => {
@@ -577,24 +573,20 @@ export class Cube3d extends Cube{
         });
         this.canvas.scene.add(group)
         const ready = new Promise((resolve) => {
-            for (let i = 0; i < times; i++) {
-                gsap.to(group.rotation, {
-                    x: move["axes"]["x"] * rotation * prime,
-                    y: move["axes"]["y"] * rotation * prime,
-                    z: move["axes"]["z"] * rotation * prime,
+            gsap.to(group.rotation, {
+                x: move["axes"]["x"] * rotation * prime * times,
+                y: move["axes"]["y"] * rotation * prime * times,
+                z: move["axes"]["z"] * rotation * prime * times,
 
-                    // onComplete: this.updateMatrix,
-                    // onCompleteParams: [group, this, move_raw],
-                    onComplete:() => {
-                        this.updateMatrix(group, this, move_raw)
-                        setTimeout(() => {
-                            resolve("ready");
-                        }, 100);
-                    },
-                    
-                    duration: 0.3
-                })
-            }
+                onComplete:() => {
+                    this.updateMatrix(group, this, move_raw)
+                    setTimeout(() => {
+                        resolve("ready");
+                    }, 100);
+                },
+                
+                duration: 0.3 * times
+            })
         })
         return await ready
     }
@@ -635,7 +627,7 @@ export class Cube3d extends Cube{
         document.addEventListener('keyup', (event) => {
             if (this.canvas.parent.classList.contains("hidden")) return
             if (event.code == "KeyG") {
-                console.log(cube.generateScramble())
+                console.log(cube.generateScramble(60))
                 console.log(cube.move_with())
             }
             if (!(Object.keys(Cube3d.keys).includes(event.code))) return

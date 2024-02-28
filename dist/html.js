@@ -4,7 +4,9 @@ function changePage(clicked){
     let indidcator = buttons.pop()
     let frame = navbar.parentNode
     let i = 0
-
+    if (frame.classList.contains("full-screen")) {
+        return
+    }
     buttons.forEach(button => {
         let page = document.getElementById(button.id.replace("-button", ""))
         if (button == clicked){
@@ -21,7 +23,6 @@ function changePage(clicked){
 }
 function expandSide(button){
     let page = button.parentNode.parentNode
-    console.log(page);
     lines = Array.prototype.slice.call(button.children[0].children)
     let vl,hl;
     lines.forEach(line => {

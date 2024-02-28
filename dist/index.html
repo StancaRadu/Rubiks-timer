@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="html.js"></script> 
-
 
-    <link rel="stylesheet" href="css/cube.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,11 +19,8 @@
     
     <title>Cube Timer</title>
     <link rel="icon" type="image/x-icon" href="/assets/icon2-lqqHBoxJ.ico">
-
-
-
-  <script type="module" crossorigin src="/assets/index-vDNHFOmc.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-gcP5dcm4.css">
+  <script type="module" crossorigin src="/assets/index-zGgokqMI.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-xcnbxUH6.css">
 </head>
 <body>
     <loading id="website-loading">
@@ -73,21 +68,6 @@
     <app>
         <wrapper id="left-screen" class="side">
             <div id="statistics-div" class="side-inner">
-                <div class="side-app carved">
-                    <h1 class="left-oc-header">Chart</h1>
-                    <div id="canvas-div"><canvas id="myChart"></canvas></div>
-                </div>
-                <div id="history-div" class="side-app carved">
-                    <h1 class="left-oc-header">History</h1>
-
-                </div>
-                <div id="history-div2" class="side-app carved">
-                    <h1 class="left-oc-header">History2</h1>
-                </div>
-                <div class="side-app carved">
-                </div>
-                <div class="side-app carved">
-                </div>
                 <div class="button-area carved">
                     <c-button onclick="expandSide(this)">
                         <graphic>
@@ -96,6 +76,20 @@
                         </graphic>
                     </c-button>
                 </div>
+                <side-app class="carved">
+                    <h1 class="left-oc-header">Chart</h1>
+                    <div id="canvas-div"><canvas id="myChart"></canvas></div>
+                </side-app>
+                <side-app class="carved add-app">
+                    <div id="add-backdrop"></div>
+                    <c-button>
+                        <graphic class="add-graphic">
+                            <line class="vertical-line"></line>
+                            <div class="add-options"></div>
+                            <line class="horizontal-line"></line>
+                        </graphic>
+                    </c-button>
+                </side-app>
             </div>
 
             <div class="sizer"></div>
@@ -108,9 +102,7 @@
                 </div>
                 <div id="timer-div">
                 </div>
-                <div id="cube-relative-area">
-                    <div id="show-scramble">
-                    </div>
+                <div id="cube-div">
                 </div>
             </tab>
             <tab id="td-tab" class="hidden">

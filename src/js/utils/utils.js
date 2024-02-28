@@ -19,6 +19,7 @@ async function loadTimes(){
     let avgChart = main.charts[0]
     let times = await DataBase.get()
     main.tables.forEach(table => {
+        console.log(table);
         table.body.replaceChildren(table.body.firstChild)
         table.rows = []
         for (const time in times){

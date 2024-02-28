@@ -6,7 +6,7 @@ class UI{
     constructor(){
 
     }
-    static button(type){
+    static button(type, style = [], props = []){
         const button = document.createElement("c-button")
 
         const graphic = document.createElement("graphic")
@@ -42,10 +42,17 @@ class UI{
         }
 
         button.appendChild(graphic)
+
+        let i = 0
+        style.forEach(element => {
+            button.style[element] = props[i]
+            i++
+        });
+
         return button
     }
 
-    static table(location, fields){
+    static table(fields, style = [], props = []){
         fields.unshift("No.")
         fields.push("")
         let table = {}
@@ -162,14 +169,41 @@ class UI{
         }
 
         table.create()
-
-        return table.body
+        let i = 0
+        style.forEach(element => {
+            table.body.style[element] = props[i]
+            i++
+        });
+        return table
     }
 
-    static sideApp(){
+    static sideApp(style = [], props = []){
         let app = document.createElement("side-app")
         app.classList.add("carved")
+        let i = 0
+        style.forEach(element => {
+            app.style[element] = props[i]
+            i++
+        });
         return app
+    }
+
+    static sideTitle(text, style = [], props = []){
+        let title = document.createElement("h1")
+        title.classList.add("left-oc-header")
+        title.innerHTML = text
+        let i = 0
+        style.forEach(element => {
+            title.style[element] = props[i]
+            i++
+        });
+        return title
+    }
+
+    static __add_tracker(button){
+        button.addEventListener("click", ()=>{
+            
+        })
     }
 }
 
