@@ -1,44 +1,15 @@
 *{
     margin: 0;
     padding: 0;
-
+    box-sizing: border-box;
     /* transition: var(--transition-speed); */
     
 }
 :root{
-    --c-green:   hsl(112, 100%, 50%);
-    --c-blue:    hsl(223, 89%, 44%);
-    --c-red:     hsl(0, 100%, 45%);
-    --c-orange:  hsl(20, 100%, 50%);
-    --c-white:   hsl(0, 0%, 84%);
-    --c-yellow:  hsl(62, 100%, 50%);
-
-
     font-family: var(--general-font);
-
-    --main-color: 200;
-    --main-modifier: 20;
-    --main-saturation: 35%;
-    --main-lightness: 40%;
-
-    --background-main-divs: hsl(var(--main-color), var(--main-saturation), var(--main-lightness));
-
-    --body-color: hsl(var(--main-color), 45%, 15%);
-
-    --accent1: hsl(var(--main-color), 30%, 25%);
-    --accent2: hsl(var(--main-color), 35%, 45%);
-    --accent3: hsl(var(--main-color), 80%, 25%);
-
-    --header: hsla(calc(var(--main-color) + 10  ), var(--main-saturation), var(--main-lightness));
-    --table1: hsla(calc(var(--main-color) + 10  ), var(--main-saturation), var(--main-lightness), .8);
-    --table2: hsla(calc(var(--main-color) + 20  ), var(--main-saturation), var(--main-lightness), .8);
-    
-
-    --cube-internal-color: hsl(var(--main-color), 35%, 22%);
 
     --timer-size: 7rem;
     --scramble-size: 2rem;
-    
     --transition-speed: .5s;
 
     --timer-font: 'Roboto Mono', cursive;
@@ -46,134 +17,33 @@
     --general-font: 'Titillium Web', sans-serif;
 }
 
+
 html{
     min-height: 700px;
     height: 100%;
 
 }
 body{
-    box-sizing: border-box; 
     height: 100%;
-    padding: 20px;
-    background-color: var(--body-color);
+    padding: 16px;
+    background-color: var(--main-dark);
     display: grid;
     grid-template-areas: 
         "menu"
         "app";
-    grid-template-rows: 50px 1fr;
-    gap: 20px;
+    grid-template-rows: 48px 1fr;
+    gap: 8px;
     min-width: 800px;
     position: relative;
 }
 
-loading{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: inherit;
-    background-color: hsl(0, 0%, 0%, 0.7);
-    backdrop-filter: blur(2px);
-    z-index: 10;
-    transition: 1s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: wait;
-}
-.full-screen{
-    position: fixed !important; 
-    width: 100vw !important;
-    height: 100vh !important;
-    z-index: 3 !important;
-    background-color: var(--background-main-divs) !important;
-    top: 0 !important;
-    left: 0 !important;
-}
-//buttons
-
-.button-area{
-    box-sizing: border-box;
-    width: fit-content;
-    height: 35px;
-    padding: 5px 10px 5px 10px;
-    border-bottom-left-radius: 10px;
-    
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-
-    indicator{
-        height: 100%;
-        aspect-ratio: 1;
-        border-top-right-radius: 100%;
-        border-top-left-radius: 100%;
-
-        position: absolute;
-        bottom: -5px;
-        
-        background-color: var(--background-main-divs);
-        
-        transition: all .5s ease;
-    }
-}
-c-button{
-    height: 100%;
-    max-height: 100%;
-    max-width: 100%;
-    aspect-ratio: 1;
-    margin: 5px;
-    border-radius: 50%;
-
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--background-main-divs);
-    
-    cursor: pointer;
-
-    graphic{
-        border-radius: 50%;
-        line{
-            &.diagonal-incline{
-                transform: rotateZ(-45deg);
-            }
-            &.diagonal-decline{
-                transform: rotateZ(+45deg);
-            }
-        }
-        &.expand-graphic{
-            line{
-                width: 50% !important;
-                top: 50%;
-                &.diagonal-decline{
-                    right: 40%;
-                }
-                &.diagonal-incline{
-                    left: 40%;
-                }
-            }
-        }
-        &.add-graphic{
-            .vertical-line{
-                transform: rotate(90deg);
-            }
-        }
-    }
-}
 
 //menu
-
 #menu{
+    // box-sizing: content-box;
+    border-bottom: solid 1px var(--main-light);
     grid-area: menu;
-    position: absolute;
+    position: relative;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
@@ -181,40 +51,53 @@ c-button{
     justify-items: center;
 
     height: 100%;
-    border-radius: 10px;
-    background-color: var(--accent1);
+    border-radius: 5px;
+    background-color: var(--main-dark-gray);
 
     font-size: 2rem;
-    .tab{
+    
+    &:hover::before{
+        opacity: 1;
+    }
+    &::before{
+        transition: opacity .3s;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
         height: 100%;
-        width: 80%;
+        background: radial-gradient(
+            calc(20vw) circle at var(--mouse-x) var(--mouse-y),
+            var(--main-light),
+            transparent 60%
+        );
+        // z-index: 2;
+        opacity: 0;
+        border-radius: inherit;
+    }
+    
+    .tab{
+        cursor: pointer;
+        border-radius: inherit;
+        background-color: var(--main-dark-gray);
+        height: calc(100% - 6px);
+        width: calc(100% - 4px);
     
         display: flex;
         justify-content: center;
         align-items: center;
     
         position: relative;
-        
-        &:hover .dropdown{
-            max-height: 250px;
+        transition: .6s;
+
+        &:hover{
+            transform: translateZ(-48px) translateY(-5px);
+            box-shadow: 0 0 1px 2px var(--main-light-gray);
         }
     }
-    .dropdown{
-        width: 100%;
-        max-height: 0;
-        border-radius: 0 0 10px 10px;
-        background-color: var(--accent1);
-    
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 3;
-    
-        transition: 1.5s;
-        overflow: hidden;
-    }
     .wrapper{
-        box-sizing: border-box;
+        
         width: 100%;
         height: fit-content;
         padding-left: 14px;
@@ -224,8 +107,6 @@ c-button{
         grid-template-columns: 100%;
         justify-content: center;
         align-items: center;
-        
-        overflow-y: scroll;
     }
     .settings{
         width: 100%;
@@ -252,84 +133,39 @@ c-button{
     }
 }
 
-//app
 
+//main
 app{
     min-width: 600px;
     width: auto;
     grid-area: app;
     display: flex;
-    gap: 20px;
+    gap: 16px;
     height: 100%;
     overflow: auto;
     wrapper{
         
         overflow: hidden;
-        box-sizing: border-box;
+        
         display: grid;
         grid-template-areas: 
                 "."
                 "app"
                 ".";
         grid-template-rows: 50px 1fr 50px;
-        border-radius: 10px;
+        border-radius: 5px;
         height: 100%;
-        background-color: var(--background-main-divs);
+        background-color: var(--main-color);
         position: relative;
     
         min-width: fit-content;
-        width: fit-content;
         .sizer{
             width: 75px;
-        }
-        .side-inner{
-            grid-area: app;
-        
-            box-sizing: border-box;
-            width: fit-content;
-        
-            margin-left:20px;
-            margin-right: 6px;
-            max-height: 100%;
-        
-            display: grid;
-            grid-auto-rows: 400px;
-            width: 500px;
-            gap: 50px;
-
-            overflow-y: scroll;
-            overflow-x: hidden;
-            /* transition: all .7s  cubic-bezier(0.6, -0.28, 0.735, 0.045); */
-            transition: all .7s  cubic-bezier(0.6, -0.3, .3, 0.3);
-            side-app{
-                position: relative;
-                box-sizing: border-box;
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                text-align: center;
-                border-radius: 10px;
-            
-                padding: 14px 5px 0 5px;
-            
-                overflow-x: scroll;
-        
-                h1{
-                    width: 100%;
-                    height: 50px;
-                    top: 0;
-                    left: 0;
-                    position: sticky;
-                }
-                .side-app-content{
-                    width: 100%;
-                }
-            }
         }
         tab{
             width: 100%;
             height: 100%;
-        
+            
             display: grid;
             grid-area: app;
             overflow: hidden;
@@ -337,30 +173,94 @@ app{
     }
 }
 
-#left-screen{
-    #canvas-div{
+.side-inner{
+    
+    width: 560px;
+    padding: 0 8px 0 24px;
+    
+    grid-area: app;
+    transition: width 1.2s;
+    overflow-y: scroll;
+    // scrollbar-gutter: stable;
+
+    side-app{
+        
+        aspect-ratio: 1;
         width: 100%;
-        height: 100%;
+        padding: 8px;
+        border-radius: 10px;
+
+        position: relative;
+        
+        display: flex;
+        flex-direction: column;
+        
+        overflow-y: hidden;
+        overflow-x: auto;
+
+
+        h1{
+            width: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: sticky;
+            top: 0;
+            left: 0;
+        }
+        side-content{
+            padding: 0 0 0 16px;
+            position: relative;
+            
+            min-width: 100%;
+            max-width: 300%;
+            height: 100%;
+            overflow-x: auto;
+            overflow-y: scroll;
+
+            resize: horizontal;
+        }
+        
+        &.add-app{
+            overflow: hidden !important;
+            padding-bottom: 14px !important;
+            justify-content: center;
+            align-items: center;
+            c-button{
+    
+                height: 35%;
+                box-shadow:0 0 5px 1px var(--main-dark-gray);
+    
+            }
+            #add-backdrop{
+                filter: blur(2px);
+                box-shadow: inset 0 0 50px 3px var(--main-light-gray), 0 0 25px 3px var(--main-light-gray);
+                background-image: url("../../img/add-bg.webp");
+                transition: 0.6s;
+                position: absolute;
+                height: calc(100% - 25px);
+                width: calc(100% - 25px);
+                justify-self: center;
+                align-self: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+            }
+        }
+        &:not(:last-child){
+            margin-bottom: 48px;
+        }
     }
 }
 #centre-screen{
     min-width: 500px;
-    transition-duration: .5s;
-    z-index: 1;
+    transition: background-color .5s;
     flex-grow: 1;
-    position: relative;    
-    .loading{
-        transition: left 0.5s;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        grid-column: 1/-1;
-        grid-row: 2/-2;
-        z-index: 2;
-        background-color: inherit;
-        left: -100%;
-    }
+    position: relative;
     #timer-tab{ 
+        position: relative;
         grid-template-areas: 
                 "scramble"
                 "time "
@@ -372,7 +272,7 @@ app{
         font-family: var(--timer-font);
         font-size: var(--timer-size);
         padding: 20px;
-        box-sizing: border-box;
+        
         #scramble-div{
             font-size: var(--scramble-size);
             grid-area: scramble;
@@ -382,26 +282,9 @@ app{
             text-align: center;
             height: fit-content;
 
-            gap: 10px;
+            gap: 8px;
 
-            padding: 0 10px 0 10px;
-
-            // max-width: calc(100vw - 1300px);
-
-            #scramble-options-div {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-            
-                height: 1.5rem;
-            }
-            .scramble-options-button{
-                display: flex;
-            
-                max-height: 100%;
-                aspect-ratio: 1;
-                margin: 2px;
-            }
+            padding:  0 8px;
         }  
         #timer-div{
             grid-area: time;
@@ -442,84 +325,132 @@ app{
             cursor: grab;
         }
     }
-    .nav-bar{
-        #timer-tab-button{
-            background-color: hsl(calc(var(--main-color) + var(--main-modifier)*0), var(--main-saturation), var(--main-lightness));
-        }
-        #td-tab-button{
-            background-color: hsl(calc(var(--main-color) + var(--main-modifier)*1), var(--main-saturation), var(--main-lightness));
-        }
-        #smt-tab-button{
-            background-color: hsl(calc(var(--main-color) + var(--main-modifier)*2), var(--main-saturation), var(--main-lightness));
-        }
-    }  
 }
 #right-screen {
+    border-left: solid 1px var(--main-light);
     .button-area{
-        right: auto;
+        right: unset;
         left: 0;
         border-radius: 0 0 10px 0;
     }
-}
+    .side-inner{
+        deck{
+            padding: 0 8px;
+            overflow-x: scroll;
+            aspect-ratio: 3/2;
+            display: flex;
+            align-items: center;
 
-// 
+            border-radius: 2px;
+            width: 100%;
+            border-top: solid 1px var(--main-light);
+            border-bottom: solid 1px var(--main-light);
 
-side-app{
-    transition: 1s;
-    &.add-app{
-        overflow: hidden !important;
-        padding-bottom: 14px !important;
-        justify-content: center;
-        c-button{
+            position: relative;
 
-            height: 35%;
-            box-shadow:0 0 5px 1px var(--accent3);
+            card-wrapper{
+                transition: 0.2s;
+                box-shadow: 
+                    0 0 3px var(--main-light);
+                aspect-ratio: 2/3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 8px;
+                height: 90%;
+                border-left: solid 1px var(--main-light);
+                &:not(:last-child){
+                    margin-right: -10%;
+                }
+                &:hover{
+                    margin: 0;
+                }
+                &::before
 
-        }
-        #add-backdrop{
-            filter: blur(2px);
-            box-shadow: inset 0 0 50px 3px var(--accent2), 0 0 25px 3px var(--accent2);
-            background-image: url("../../img/bg.webp");
-            transition: 0.6s;
-            position: absolute;
-            height: calc(100% - 25px);
-            width: calc(100% - 25px);
-            justify-self: center;
-            align-self: center;
+                card{
+                    transition: 0.6s;
+                    display: flex;
+                    width: calc(100% - 4px);
+                    height: calc(100% - 4px);
+                    background-color: var(--square-right);
+                }
+            }
         }
     }
 }
-
-//add-on classes
-
-.carved{
-    background-color: hsla(0, 0%, 75%, 0.1);
-    box-shadow: inset 0 0 3px 1px var(--accent1);
-}
-.shadow{
-    box-shadow: 0 0 3px 1px var(--accent1);
-}
-.hidden{
-    display: none;
+#left-screen{
+    border-right: solid 1px var(--main-light);
 }
 
-//scroll-bar
 
-::-webkit-scrollbar{
-    width: 14px;
+//buttons
+*:has(c-button){
+    z-index: 0;
 }
-::-webkit-scrollbar-thumb{
-    background-color: var(--accent1);
-    border: 3px solid rgba(0, 0, 0, 0);
-    background-clip: padding-box;
-    border-radius: 10px;
-}
-::-webkit-scrollbar-corner{
-    opacity: 0;
-}
+.button-area{
+    width: fit-content;
+    height: 35px;
+    padding: 5px 10px;
+    border-bottom-left-radius: 10px;
+    
+    position: absolute;
+    right: 0;
+    top: 0; 
 
-//custom graphics
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 
+    indicator{
+        height: 100%;
+        aspect-ratio: 1;
+        border-top-right-radius: 100%;
+        border-top-left-radius: 100%;
+
+        position: absolute;
+        bottom: -5px;
+        
+        background-color: var(--main-color);
+        
+        transition: .5s ease;
+    }
+}
+c-button{
+    box-shadow: 0 0 5px 0 var(--main-light-gray);
+    height: 100%;
+    aspect-ratio: 1;
+    margin: 5px;
+    border-radius: 50%;
+
+    position: relative;
+    transition: .6s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-dark-gray);
+    
+    cursor: pointer;
+    &::before{
+        transition: .6s;
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        z-index: -1;
+    }
+    &:hover::before{
+        box-shadow: 0 0 20px 20px var(--main-light);
+        
+    }
+
+    graphic{
+        border-radius: 50%;
+    }
+}
 graphic{
     height: 100%;
     aspect-ratio: 1;
@@ -531,19 +462,116 @@ graphic{
     align-items: center;
 
     line{
-        background-color: var(--accent3);
+        background-color: var(--main-light);
         border-radius: 10px;
         position: absolute;
     
         transition: all .6s ease-in-out .5s;
         height: 10%;
         width: 75%;
+        &.diagonal-incline{
+            transform: rotateZ(-45deg);
+        }
+        &.diagonal-decline{
+            transform: rotateZ(+45deg);
+        }
     }
     square{
         background-color: aqua;
         width: 100%;
         height: 100%;
     }
+    &.expand-graphic{
+        line{
+            width: 50% !important;
+            top: 50%;
+            &.diagonal-decline{
+                right: 40%;
+            }
+            &.diagonal-incline{
+                left: 40%;
+            }
+        }
+    }
+    &.add-graphic{
+        .vertical-line{
+            transform: rotate(90deg);
+        }
+    }
+}
+
+
+//navbar
+.nav-bar{
+
+    #timer-tab-button{
+        background-color: hsl(calc(var(--main-hue) + var(--main-modifier)*0), var(--main-saturation), var(--main-lightness));
+    }
+    #td-tab-button{
+        background-color: hsl(calc(var(--main-hue) + var(--main-modifier)*1), var(--main-saturation), var(--main-lightness));
+    }
+    #smt-tab-button{
+        background-color: hsl(calc(var(--main-hue) + var(--main-modifier)*2), var(--main-saturation), var(--main-lightness));
+    }
+}
+
+
+//add-on classes
+.carved{
+    background-color: var(--semi-transparent);
+    box-shadow: inset 0 0 3px 1px var(--main-dark);
+}
+.shadow{
+    box-shadow: 0 0 3px 1px var(--main-dark);
+}
+.hidden{
+    display: none;
+}
+.full-screen{
+    position: fixed !important; 
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 10 !important;
+    background-color: var(--main-color) !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+.width0{
+    width: 0 !important;
+}
+
+
+//scroll-bar
+::-webkit-scrollbar{
+    width: 16px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--main-dark-gray);
+    border: 3px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-corner{
+    opacity: 0;
+}
+
+
+//Loading screen
+loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background-color: inherit;
+    background-color: hsla(var(--main-color), 20%, 50%, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 10;
+    transition: 1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: wait;
 }
 #rubiks-loading{
     display: grid;

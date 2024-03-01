@@ -1,6 +1,4 @@
 #cube-div{
-    padding: 10px;
-    border-radius: 10px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -9,51 +7,76 @@
     align-self: baseline;
     height: 100%;
     aspect-ratio: 4/3;
+
+    // &:hover cube{
+    //     face{
+    //     transform: none;
+
+    //     }
+    //     transform: none;
+    // }
+
+    // &::after{
+    //     content: "";
+    //     width: 105%;
+    //     height: 1px;
+    //     background-color: var(--main-light);
+    //     box-shadow: 0 0 20px 1px var(--main-light);
+    //     position: absolute;
+    //     bottom: -20px;
+    // }
 }
 cube{
+    // position: absolute;
+    // transform: translateY(120%);
+    // transition: 1s;
     width: 100%;
     height: 100%;
     display: grid;
-    gap: 5px;
+    gap: 8px;
     grid-template-areas: 
         ". U . ."
         "L F R B"
         ". D . .";
     face{
-        background-color: var(--cube-internal-color);
-        border-radius: 5px;
+        // background-color: var(--main-dark);
+        // transition: 1s;
+        border-radius: 8px;
         display: grid;
-        gap: 1px;
+        gap: 2px;
         grid-template-areas: 
             "UL UM UR"
             "ML MM MR"
             "DL DM DR";
         &.F{
+            z-index: 1;
             grid-area: F;
         }
         &.B{
-            // grid-template-areas: 
-                // "UR UM UL"
-                // "MR MM ML"
-                // "DR DM DL";
+            // transform: translateX(calc(-200% - 16px));
             grid-area: B;
         }
         &.U{
+            // transform: translateY(calc(100% + 8px));
             grid-area: U;
         }
         &.D{
+            // transform: translateY(calc(-100% - 8px));
+
             grid-area: D;
         }
         &.L{
+            // transform: translateX(calc(100% + 8px));
+
             grid-area: L;
         }
         &.R{
+            // transform: translateX(calc(-100% - 8px));
+
             grid-area: R;
         }
         sticker{
-            box-shadow: inset 0 0 0 1px;
-            border-radius: 5px;
-            transition: 1s;
+            border-radius: 3px;
 
             aspect-ratio: 1;
             &.UL{

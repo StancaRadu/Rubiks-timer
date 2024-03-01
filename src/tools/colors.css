@@ -1,0 +1,41 @@
+html{
+    height: 100%;
+}
+body{
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    height: 100%;
+}
+.slider{
+    -webkit-appearance: none;
+    background-color: var(--main-color);
+    width: 90%;
+    height: 50px;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 50px;
+    background: var(--complementary);
+    cursor: pointer;
+  }
+  
+
+div:nth-child(1){ background-color: var(--main-light); }
+div:nth-child(2){ background-color: var(--main-light-gray); }
+div:nth-child(3){ background-color: var(--main-color); }
+div:nth-child(4){ background-color: var(--main-dark-gray); }
+div:nth-child(5){ background-color: var(--main-dark); }
+div:nth-child(6){ background-color: var(--complementary-light); }
+div:nth-child(8){ background-color: var(--complementary); }
+div:nth-child(10){ background-color: var(--complementary-dark); }
+div:nth-child(12){ background-color: var(--square-left-light-gray); }
+div:nth-child(13){ background-color: var(--square-left); }
+div:nth-child(14){ background-color: var(--square-left-dark-gray); }
+div:nth-child(17){ background-color: var(--square-right-light-gray); }
+div:nth-child(18){ background-color: var(--square-right); }
+div:nth-child(19){ background-color: var(--square-right-dark-gray); }
+

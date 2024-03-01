@@ -1,0 +1,56 @@
+:root {
+    --c-green: hsl(112, 100%, 50%);
+    --c-blue: hsl(223, 100%, 50%);
+    --c-red: hsl(0, 100%, 50%);
+    --c-orange: hsl(20, 100%, 50%);
+    --c-white: hsl(0, 0%, 100%);
+    --c-yellow: hsl(62, 100%, 50%);
+    font-family: var(--general-font);
+    --main-hue: 210;
+    --main-modifier: 20;
+    --main-saturation: 70%;
+    --main-lightness: 9%;
+
+
+    --main-light:hsl( var(--main-hue), 90%, 20%);
+    --main-light-gray:hsl( var(--main-hue), 90%, 15%);
+    --main-color: hsl( var(--main-hue), 70%, 9%);
+    --main-dark-gray: hsl( var(--main-hue), 90%, 7%);
+    --main-dark: hsl( var(--main-hue), 80%, 5%);
+
+    --square-left-light-gray: hsl(
+        calc(var(--main-hue) - var(--main-modifier)),
+        calc(var(--main-saturation) - 5%),
+        calc(var(--main-lightness) + 10%)
+    );
+    --square-left: hsl(
+        calc(var(--main-hue) - var(--main-modifier)),
+        calc(var(--main-saturation)),
+        calc(var(--main-lightness))
+    );
+    --square-left-dark-gray: hsl(
+        calc(var(--main-hue) - var(--main-modifier)),
+        calc(var(--main-saturation) + 5%),
+        calc(var(--main-lightness) - 10%)
+    );
+    --square-right-light-gray: hsl(
+        calc(var(--main-hue) + var(--main-modifier)),
+        calc(var(--main-saturation) - 5%),
+        calc(var(--main-lightness) + 10%)
+    );
+    --square-right: hsl(
+        calc(var(--main-hue) + var(--main-modifier)),
+        calc(var(--main-saturation)),
+        calc(var(--main-lightness))
+    );
+    --square-right-dark-gray: hsl(
+        calc(var(--main-hue) + var(--main-modifier)),
+        calc(var(--main-saturation) + 5%),
+        calc(var(--main-lightness) - 10%)
+    );
+
+    --semi-transparent: hsla(var(--main-hue), 45%, 25%, 0.5);
+
+    --main-text: hsla(calc(var(--main-hue) + 10), 10%, 70%);
+    color: var(--main-text)
+}

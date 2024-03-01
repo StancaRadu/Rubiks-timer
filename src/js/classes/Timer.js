@@ -6,7 +6,7 @@ class Timer{
         this.cube = cube
         this.div = document.getElementById(id)
 
-        this.wait_to_start = 1000
+        this.wait_to_start = main.timer_wait
         this.sTime = 0;
         this.nTime = 0;
         this.time = 0;
@@ -30,7 +30,7 @@ class Timer{
             }
             if(event.code == "Space"){
                 this.held = 0
-                this.instructions.style.color = "black"
+                this.instructions.style.color = "unset"
             }
         });
         document.addEventListener('keydown', (event) => {
@@ -136,5 +136,4 @@ class Timer{
         DataBase.add("sd", time)
     }
 }
-
 export default Timer

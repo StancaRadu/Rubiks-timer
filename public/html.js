@@ -10,8 +10,8 @@ function changePage(clicked){
     buttons.forEach(button => {
         let page = document.getElementById(button.id.replace("-button", ""))
         if (button == clicked){
-            frame.style.backgroundColor = `hsl(calc(var(--main-color) + var(--main-modifier)*${i}), var(--main-saturation), var(--main-lightness))`
-            indidcator.style.backgroundColor =  `hsl(calc(var(--main-color) + var(--main-modifier)*${i}), var(--main-saturation), var(--main-lightness))`
+            frame.style.backgroundColor = `hsl(calc(var(--main-hue) + var(--main-modifier)*${i}), var(--main-saturation), var(--main-lightness))`
+            indidcator.style.backgroundColor =  `hsl(calc(var(--main-hue) + var(--main-modifier)*${i}), var(--main-saturation), var(--main-lightness))`
             indidcator.style.transform = `translateX(${i*100}%)`;
             
             page.classList.remove("hidden")
@@ -30,14 +30,18 @@ function expandSide(button){
         else if (line.classList.contains("horizontal-line")) hl = line
     });
 
-    if (page.clientWidth > 0) {
-        page.style.width = 0
+    if (!(page.classList.contains("width0"))) {
+        page.classList.add("width0")
         vl.style.transform = "rotateZ(270deg)"
         hl.style.transform = "rotateZ(360deg)"
     }
     else {
-        page.style.width = "500px"
+        page.classList.remove("width0")
         vl.style.transform = "rotateZ(0)"
         hl.style.transform = "rotateZ(0)"
     }
+}
+function openModel(id){
+    let dialog = document.getElementById(id)
+    dialog.showModal()
 }

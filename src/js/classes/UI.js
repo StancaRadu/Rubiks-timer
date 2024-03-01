@@ -1,12 +1,12 @@
 import main from "../../../app"
 import Database from "../utils/Database"
-import { average } from "../utils/utils"
+import { average, loadTimes } from "../utils/utils"
 
 class UI{
     constructor(){
 
     }
-    static button(type, style = [], props = []){
+    static button(type, styles = {}){
         const button = document.createElement("c-button")
 
         const graphic = document.createElement("graphic")
@@ -43,16 +43,14 @@ class UI{
 
         button.appendChild(graphic)
 
-        let i = 0
-        style.forEach(element => {
-            button.style[element] = props[i]
-            i++
-        });
+        for (const style in styles) {
+            title.style[style] = styles[style]
+        }
 
         return button
     }
 
-    static table(fields, style = [], props = []){
+    static table(fields, styles = {}){
         fields.unshift("No.")
         fields.push("")
         let table = {}
@@ -61,8 +59,12 @@ class UI{
         table.fields = fields
 
         table.create = function(){
+            table.container = document.createElement("side-content")
             table.body = document.createElement("table-body")
             table.header = document.createElement("table-row")
+
+            table.container.appendChild(table.body)
+            table.container.style.resize = "none"
 
             table.body.style.gridTemplateColumns = `50px repeat(${fields.length-2}, 1fr) 50px`
             table.header.id = "header"
@@ -114,6 +116,7 @@ class UI{
                     button.addEventListener("click", function(){
                         Database.delete(row.params["timeOfSolving"])
                     })
+                    cell.style.overflow = "hidden"
                     cell.appendChild(button)
                 }
                
@@ -169,40 +172,68 @@ class UI{
         }
 
         table.create()
-        let i = 0
-        style.forEach(element => {
-            table.body.style[element] = props[i]
-            i++
-        });
+        for (const style in styles) {
+            table[style] = styles[style]
+        }
+        main.tables.push(table)
+        loadTimes()
         return table
     }
 
-    static sideApp(style = [], props = []){
+    static sideApp(styles = {}){
         let app = document.createElement("side-app")
         app.classList.add("carved")
-        let i = 0
-        style.forEach(element => {
-            app.style[element] = props[i]
-            i++
-        });
+        for (const style in styles) {
+            title.style[style] = styles[style]
+        }
         return app
     }
 
-    static sideTitle(text, style = [], props = []){
+    static sideTitle(text, styles = {}){
         let title = document.createElement("h1")
         title.classList.add("left-oc-header")
         title.innerHTML = text
-        let i = 0
-        style.forEach(element => {
-            title.style[element] = props[i]
-            i++
-        });
+        for (const style in styles) {
+            title.style[style] = styles[style]
+        }
         return title
+    }
+    
+    static tracker_picker(styles = {}){
+        let picker = document.createElement("picker")
+
+        picker.innerHTML = `
+            <div id="table-picker">
+                <h1>Table</h1>
+                <ul>
+                    <li>Display solves(times) saved in the databse</li>
+                    <li>Delete solves</li>
+                    <li>Sort solves</li>
+                    <li>Shpw averages</li>
+                </ul>
+            </div>
+            <div id="chart-picker">
+                <h1>Chart</h1>
+                <ul>
+                    <li>:)</li>
+                    <li>:)</li>
+                    <li>:)</li>
+                    <li>:)</li>
+                </ul>
+            </div>
+        `
+        
+        for (const style in styles) {
+            picker.style[style] = styles[style]
+        }
+        return picker
     }
 
     static __add_tracker(button){
-        button.addEventListener("click", ()=>{
-            
+        button.addEventListener("click", (event)=>{
+            document.getElementById("statistics-div")
+                .insertBefore(UI.sideApp(), button.parentNode)
+                .appendChild(UI.table(["Seconds", "Avg.3", "Avg.5", "Avg.12"]).container)
         })
     }
 }

@@ -463,6 +463,11 @@ export class Cube2d extends Cube{
             html.append(this.pieces[id])
         }
     }
+    move_with(){
+        for ( const move of this.scramble ) {
+            this.move(move)
+        }
+    }
     clearFaces(){
         ["F", "B", "U", "D", "L", "R"].forEach(face => {
             let html = this.cube.querySelector(`face.${face}`)
@@ -582,7 +587,7 @@ export class Cube3d extends Cube{
                     this.updateMatrix(group, this, move_raw)
                     setTimeout(() => {
                         resolve("ready");
-                    }, 100);
+                    }, 50);
                 },
                 
                 duration: 0.3 * times
@@ -592,10 +597,8 @@ export class Cube3d extends Cube{
     }
 
     async move_with(){
-        console.log(this.scramble);
         for ( const move of this.scramble ) {
-            let a = await this.move(move)
-            console.log(a);
+            await this.move(move)
         }
     }
     updateMatrix(group, cube, move){
@@ -627,8 +630,8 @@ export class Cube3d extends Cube{
         document.addEventListener('keyup', (event) => {
             if (this.canvas.parent.classList.contains("hidden")) return
             if (event.code == "KeyG") {
-                console.log(cube.generateScramble(60))
-                console.log(cube.move_with())
+                console.log(cube.generateScramble())
+                cube.move_with()
             }
             if (!(Object.keys(Cube3d.keys).includes(event.code))) return
             cube.move(Cube3d.keys[event.code])

@@ -3,46 +3,48 @@ table-body {
   display: grid;
   width: 100%;
   grid-auto-flow: row;
-  row-gap: 7px;
-  overflow-y: scroll;
+  row-gap: 8px;
   margin-inline: auto;
-  padding-left: 14px;
 }
 
 table-row {
+  margin: 1px;
+  box-shadow: 0 0 0 1px var(--main-dark-gray);
+  cursor: pointer;
   height: 1.5rem;
   grid-column: 1/-1;
   display: grid;
   grid-template-columns: inherit;
   gap: 1px;
-  background-color: var(--cube-internal-color);
+  background-color: var(--main-dark-gray);
 }
 table-row:hover {
   background-color: bisque;
 }
 table-row#header {
+  cursor: pointer;
   z-index: 1;
   position: sticky;
   top: 0;
   border-radius: 0 0 10px 10px;
   overflow: hidden;
-  opacity: 1;
   height: 2.5em;
-  background-color: var(--header);
+  background-color: var(--square-right);
 }
 table-row#header:hover {
-  background-color: var(--header);
+  background-color: var(--square-right);
 }
 table-row#header cell {
-  background-color: var(--header);
+  background-color: var(--square-right);
 }
 table-row:nth-child(even) cell {
-  background-color: var(--table1);
+  background-color: var(--square-right-light-gray);
 }
 table-row:nth-child(odd) cell {
-  background-color: var(--table2);
+  background-color: var(--square-right);
 }
 table-row cell {
+  text-overflow: ellipsis;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,5 +1,8 @@
 import { average } from "../utils/utils";
 import Chart from "chart.js/auto"
+import main from "../../../app";
+
+let font_color = main.style.getPropertyValue("--main-text")
 
 class AvgChart{
     static charts = []
@@ -40,7 +43,7 @@ class AvgChart{
                 legend: {
                     display: true,
                     labels: {
-                        color: "black"
+                        color: font_color
                     }
                 }
             },
@@ -49,12 +52,12 @@ class AvgChart{
                     clip: true,
 
                     ticks:{
-                        color: "black"
+                        color: font_color
                     }
                 },
                 y:{
                     ticks:{
-                        color: "black"
+                        color: font_color
                     }
                 }
             }
