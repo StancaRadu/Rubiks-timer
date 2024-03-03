@@ -29,7 +29,7 @@ window.onload = async function(){
     main.charts.push(new AvgChart())
     
     let cube3d = new Cube3d("td-tab")
-    let cube2d = new Cube2d("cube-div", "scramble", "timer-div")
+    let cube2d = new Cube2d(document.getElementById("cube-div"), "scramble", "timer-div")
     main.cubes.push(...[cube3d, cube2d])
     
     cube2d.displayScramble(true)
@@ -37,7 +37,7 @@ window.onload = async function(){
 
     Utils.loadTimes()
 
-    UI.__add_tracker(document.getElementById("add-tracker"))
+    // UI.__add_tracker(document.getElementById("add-tracker"))
 
     document.querySelector("#menu").onmousemove = (e) => {
         const { currentTarget: target } = e;
@@ -49,6 +49,20 @@ window.onload = async function(){
         target.style.setProperty('--mouse-x', `${x}px`)
         target.style.setProperty('--mouse-y', `${y}px`)
     }
+    await Utils.create_deck(document.querySelector("deck"))
+
+    document.querySelectorAll("card-wrapper").forEach(wrapper => {
+        wrapper.onmousemove = (e) => {
+            const { currentTarget: target } = e;
+    
+            const rect = target.getBoundingClientRect(),
+                x = e.clientX - rect.left,
+                y = e.clientY - rect.top;
+    
+            target.style.setProperty('--mouse-x', `${x}px`)
+            target.style.setProperty('--mouse-y', `${y}px`)
+        }
+    });
 
     for (const tab of document.querySelector("#menu").getElementsByClassName("tab")) {
         tab.addEventListener("click", (e) =>{

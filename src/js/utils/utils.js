@@ -1,5 +1,6 @@
 import DataBase from "./Database";
 import main from "../../../app";
+import { Cube2d } from "../classes/Cube";
 
 function scrambleToText(scramble){
     let toReturn = ""
@@ -57,4 +58,26 @@ function average(rows, seconds = false){
     return avg
 }
 
-export {scrambleToText, timeStampToDate, loadTimes, average}
+async function create_deck(deck) {
+    const algs = (await fetch("../../public/static-DB/algs.json")).json()
+    
+    deck.innerHTML = ''
+
+    for (const name of Object.keys(await algs)) {
+        const wrapper = document.createElement("card-wrapper")
+        let cube_area = document.createElement("cube_area")
+        wrapper.innerHTML = `
+            <card>
+                <h1>${name}</h1>
+            </card>
+        `
+        let card = wrapper.children[0]
+        card.insertBefore(cube_area, card.children[0])
+        let cube = new Cube2d(cube_area, null, null, "top")
+
+        deck.appendChild(wrapper)
+    }
+
+}
+
+export {scrambleToText, timeStampToDate, loadTimes, average, create_deck}

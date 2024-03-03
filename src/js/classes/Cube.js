@@ -419,9 +419,9 @@ export default class Cube{
 }
 
 export class Cube2d extends Cube{
-    constructor(location, scramble_location, timer_location){
+    constructor(location, scramble_location, timer_location, type = "normal"){
         super("2d", scramble_location, timer_location)
-        this.location = document.getElementById(location)
+        this.location = location
         this.colors = {
             F: main.colors['green'],
             B: main.colors['blue'],
@@ -430,7 +430,9 @@ export class Cube2d extends Cube{
             L: main.colors['red'],
             R: main.colors['orange']
         }
-        this.create()
+        if (type == "normal") { this.create() }
+        else if ( type = "top" ) { this.create_small() }
+
     }
     create(){
         this.cube = document.createElement("cube")
@@ -451,6 +453,37 @@ export class Cube2d extends Cube{
             }
         }
     }
+    create_small(){
+        this.cube = this.location
+        let faces = ["U", "F", "B", "L", "R"]
+        let stickers = ["UL", "UM", "UR", "ML", "MM", "MR","DL", "DM", "DR"]
+        let side_stickers = ["UL", "UM", "UR"]
+        let face = document.createElement("face")
+        face.classList.add(faces[0])
+        this.cube.appendChild(face)
+        for (let j = 0; j < 9; j++) {
+            let sticker = document.createElement("sticker")
+            sticker.classList.add(stickers[j])
+            sticker.style.backgroundColor = this.colors[faces[0]]
+            face.appendChild(sticker)
+            let id = faces[0] + stickers[j]
+            this.pieces[id] = sticker
+        }
+        for (let i = 1; i < 6; i++) {
+            let face = document.createElement("face")
+            face.classList.add(faces[i])
+            this.cube.appendChild(face)
+            for (let j = 0; j < 3; j++) {
+                let sticker = document.createElement("sticker")
+                sticker.classList.add(side_stickers[j])
+                sticker.style.backgroundColor = this.colors[faces[i]]
+                face.appendChild(sticker)
+                let id = faces[i] + side_stickers[j]
+                this.pieces[id] = sticker
+            }
+        }
+
+    }
     move(move){
         this.updatePieces(move)
         this.clearFaces()
@@ -461,6 +494,7 @@ export class Cube2d extends Cube{
             this.pieces[id].className = ""
             this.pieces[id].classList.add(location)
             html.append(this.pieces[id])
+            // html.style.backgroundColor = 
         }
     }
     move_with(){
@@ -471,7 +505,7 @@ export class Cube2d extends Cube{
     clearFaces(){
         ["F", "B", "U", "D", "L", "R"].forEach(face => {
             let html = this.cube.querySelector(`face.${face}`)
-            html.replaceChildren()
+            if (html) html.replaceChildren()
         });
     }
 

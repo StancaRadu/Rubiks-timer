@@ -16,60 +16,62 @@ cube {
   gap: 8px;
   grid-template-areas: ". U . ." "L F R B" ". D . .";
 }
-cube face {
+
+face {
+  aspect-ratio: 1;
   border-radius: 8px;
   display: grid;
   gap: 2px;
   grid-template-areas: "UL UM UR" "ML MM MR" "DL DM DR";
 }
-cube face.F {
+face.F {
   z-index: 1;
   grid-area: F;
 }
-cube face.B {
+face.B {
   grid-area: B;
 }
-cube face.U {
+face.U {
   grid-area: U;
 }
-cube face.D {
+face.D {
   grid-area: D;
 }
-cube face.L {
+face.L {
   grid-area: L;
 }
-cube face.R {
+face.R {
   grid-area: R;
 }
-cube face sticker {
+face sticker {
   border-radius: 3px;
   aspect-ratio: 1;
 }
-cube face sticker.UL {
+face sticker.UL {
   grid-area: UL;
 }
-cube face sticker.UM {
+face sticker.UM {
   grid-area: UM;
 }
-cube face sticker.UR {
+face sticker.UR {
   grid-area: UR;
 }
-cube face sticker.ML {
+face sticker.ML {
   grid-area: ML;
 }
-cube face sticker.MM {
+face sticker.MM {
   grid-area: MM;
 }
-cube face sticker.MR {
+face sticker.MR {
   grid-area: MR;
 }
-cube face sticker.DL {
+face sticker.DL {
   grid-area: DL;
 }
-cube face sticker.DM {
+face sticker.DM {
   grid-area: DM;
 }
-cube face sticker.DR {
+face sticker.DR {
   grid-area: DR;
 }
 

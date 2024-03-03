@@ -223,30 +223,32 @@ app{
             resize: horizontal;
         }
         
+        
         &.add-app{
+            cursor: pointer;
+            
             overflow: hidden !important;
             padding-bottom: 14px !important;
             justify-content: center;
             align-items: center;
-            c-button{
-    
-                height: 35%;
-                box-shadow:0 0 5px 1px var(--main-dark-gray);
-    
+            // background-color: var(--main-dark-gray);
+            &:hover::before{
+                transform: none;
             }
-            #add-backdrop{
-                filter: blur(2px);
-                box-shadow: inset 0 0 50px 3px var(--main-light-gray), 0 0 25px 3px var(--main-light-gray);
-                background-image: url("../../img/add-bg.webp");
+            &::before{
                 transition: 0.6s;
+                content: "";
+                background-image: url("../../public/img/aiae.svg");
+                background-size: contain;
+                transform: scale(0.7);
                 position: absolute;
-                height: calc(100% - 25px);
-                width: calc(100% - 25px);
+                top: 0;
+                left: 0;
                 justify-self: center;
                 align-self: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center;
+                width: 100%;
+                height: 100%;
+                
             }
         }
         &:not(:last-child){
@@ -335,44 +337,127 @@ app{
     }
     .side-inner{
         deck{
-            padding: 0 8px;
-            overflow-x: scroll;
-            aspect-ratio: 3/2;
+            position: relative;
+
             display: flex;
             align-items: center;
+            overflow-x: scroll;
 
-            border-radius: 2px;
+            aspect-ratio: 3/2;
             width: 100%;
+            max-height: 50vh;
+            padding: 24px 8px 16px;
+            border-radius: 2px;
             border-top: solid 1px var(--main-light);
             border-bottom: solid 1px var(--main-light);
 
-            position: relative;
-
             card-wrapper{
-                transition: 0.2s;
-                box-shadow: 
-                    0 0 3px var(--main-light);
-                aspect-ratio: 2/3;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                border-radius: 8px;
-                height: 90%;
+
+                aspect-ratio: 2/3;
+                height: 100%;
                 border-left: solid 1px var(--main-light);
+                border-radius: 10px;
+
+                background-color: var(--main-dark-gray);
+                
+                position: relative;
+                z-index: 1;
+
+                transition: .3s;
+
+                &::before{
+                    content: "";
+
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 0;
+                    
+                    width: 100%;
+                    height: 100%;
+                    border-radius: inherit;
+                    
+                    opacity: 0;
+                    background: radial-gradient(
+                        calc(120px) circle at var(--mouse-x) var(--mouse-y),
+                        var(--main-light),
+                        transparent 80%
+                    );
+                }
                 &:not(:last-child){
-                    margin-right: -10%;
+                    margin-right: 8px;
+                    // margin-right: -10%;
+
                 }
                 &:hover{
-                    margin: 0;
+                    // margin-right: 8px;
+                    // transform: rotateX(10deg) rotateY(-10deg);
+                    &::before{
+                        opacity: 1;
+                    }
                 }
-                &::before
 
                 card{
-                    transition: 0.6s;
-                    display: flex;
-                    width: calc(100% - 4px);
-                    height: calc(100% - 4px);
+                    width: calc(100% - 8px);
+                    height: calc(100% - 8px);
+                    padding: 8px;
+                    border: solid 1px var(--main-light-gray);
+                    border-radius: inherit;
+                    
                     background-color: var(--square-right);
+                    
+                    display: grid;
+                    justify-content: center;
+                    align-items: center;
+                    grid-template-rows: 4fr 2lh 8px;
+                    grid-template-columns: 1fr;
+                    gap: 8px;
+
+                    z-index: 1;
+                    
+                    transition: 0.6s;
+
+                    h1{
+                        display: block;
+                        text-align: center;
+                    }
+
+                    cube_area{
+                        // gap: 4px;
+                        aspect-ratio: 1;
+                        width: 100%;
+
+                        display: grid;
+
+                        grid-template-areas: 
+                            ". B ."
+                            "L U R"
+                            ". F .";
+                        grid-template-columns: 1fr 3fr 1fr;
+                        grid-template-rows: 1fr 3fr 1fr;
+
+                        face{
+                            aspect-ratio: unset;
+                            &.F, &.B{
+                                grid-template-areas:
+                                    "UL UM UR";
+                                transform: scaleY(0.3);
+                             }
+                            &.L, &.R{
+                                grid-template-areas:
+                                    "UL"
+                                    "UM"
+                                    "UR";
+                                transform: scaleX(0.3);
+                             }
+                            sticker{
+                                aspect-ratio: unset;
+                            }
+                        }
+                    }
                 }
             }
         }
