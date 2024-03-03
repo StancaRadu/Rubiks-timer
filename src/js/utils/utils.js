@@ -59,10 +59,10 @@ function average(rows, seconds = false){
 }
 
 async function create_deck(deck) {
-    const algs = (await fetch("../../public/static-DB/algs.json")).json()
+    const algs = (await fetch("../../static-DB/algs.json")).json()
     
     deck.innerHTML = ''
-
+    let b = await algs
     for (const name of Object.keys(await algs)) {
         const wrapper = document.createElement("card-wrapper")
         let cube_area = document.createElement("cube_area")
@@ -74,7 +74,9 @@ async function create_deck(deck) {
         let card = wrapper.children[0]
         card.insertBefore(cube_area, card.children[0])
         let cube = new Cube2d(cube_area, null, null, "top")
-
+        card.addEventListener("click", (e)=>{
+            main.cubes[0].move_with(b[name])
+        })
         deck.appendChild(wrapper)
     }
 

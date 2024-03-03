@@ -497,8 +497,8 @@ export class Cube2d extends Cube{
             // html.style.backgroundColor = 
         }
     }
-    move_with(){
-        for ( const move of this.scramble ) {
+    move_with(scramble = this.scramble){
+        for ( const move of scramble ) {
             this.move(move)
         }
     }
@@ -630,8 +630,9 @@ export class Cube3d extends Cube{
         return await ready
     }
 
-    async move_with(){
-        for ( const move of this.scramble ) {
+    async move_with(scramble = this.scramble){
+        console.log(scramble);
+        for ( const move of scramble ) {
             await this.move(move)
         }
     }
