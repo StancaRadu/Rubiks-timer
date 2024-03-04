@@ -74,7 +74,8 @@ async function create_deck(deck) {
         let card = wrapper.children[0]
         card.insertBefore(cube_area, card.children[0])
         let cube = new Cube2d(cube_area, null, null, "top")
-        card.addEventListener("click", (e)=>{
+        wrapper.addEventListener("click", (e)=>{
+            if (document.getElementById("td-tab").classList.contains("hidden")) return
             main.cubes[0].move_with(b[name])
         })
         deck.appendChild(wrapper)

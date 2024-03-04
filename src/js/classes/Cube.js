@@ -531,6 +531,7 @@ export class Cube3d extends Cube{
         super("3d", scramble_position, timer_location)
         this.canvas = new Canvas3d(location)
         this.moving = false
+        this.set_moving = false
         this.faces = {
             "F": { "color": main.colors["green"], "axis": "z", "ud": [1, 0, -1], "lr": [-1, 0, 1]}, 
             "B": { "color": main.colors["blue"], "axis": "z", "ud": [1, 0, -1], "lr": [1, 0, -1]}, 
@@ -631,10 +632,12 @@ export class Cube3d extends Cube{
     }
 
     async move_with(scramble = this.scramble){
-        console.log(scramble);
+        if (this.set_moving) return
+        this.set_moving = true
         for ( const move of scramble ) {
             await this.move(move)
         }
+        this.set_moving = false
     }
     updateMatrix(group, cube, move){
         group.children.forEach(piece => {
