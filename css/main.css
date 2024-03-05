@@ -44,63 +44,41 @@ body {
   height: 100%;
   border-radius: 5px;
   background-color: var(--main-dark-gray);
-  font-size: 2rem;
+  padding: 4px 2px;
+  gap: 4px;
 }
 #menu:hover::before {
   opacity: 1;
 }
 #menu::before {
-  transition: opacity 0.3s;
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  border-radius: inherit;
   background: radial-gradient(20vw circle at var(--mouse-x) var(--mouse-y), var(--main-light), transparent 60%);
   opacity: 0;
-  border-radius: inherit;
+  transition: opacity 0.3s;
 }
 #menu .tab {
   cursor: pointer;
   border-radius: inherit;
   background-color: var(--main-dark-gray);
-  height: calc(100% - 6px);
-  width: calc(100% - 4px);
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   transition: 0.6s;
+  line-height: 100%;
+  font-size: 1lh;
 }
 #menu .tab:hover {
   transform: translateZ(-48px) translateY(-5px);
   box-shadow: 0 0 1px 2px var(--main-light-gray);
-}
-#menu .wrapper {
-  width: 100%;
-  height: fit-content;
-  padding-left: 14px;
-  display: grid;
-  grid-auto-flow: row;
-  grid-template-columns: 100%;
-  justify-content: center;
-  align-items: center;
-}
-#menu .settings {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-self: center;
-  align-items: center;
-}
-#menu #main-color-picker {
-  width: 100%;
-  height: 10px;
-  border-radius: 10px;
-  background: -webkit-linear-gradient(left, hsl(0, 100%, 50%), hsl(120, 100%, 50%), hsl(240, 100%, 50%), hsl(0, 100%, 50%));
-  -webkit-appearance: none;
-  appearance: none;
 }
 
 app {
@@ -199,6 +177,10 @@ app wrapper tab {
   margin-bottom: 48px;
 }
 
+#left-screen {
+  border-right: solid 1px var(--main-light);
+}
+
 #centre-screen {
   min-width: 500px;
   transition: background-color 0.5s;
@@ -268,30 +250,27 @@ app wrapper tab {
   border-radius: 0 0 10px 0;
 }
 #right-screen .side-inner deck {
-  position: relative;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 100%;
+  gap: 8px;
   overflow-x: scroll;
-  aspect-ratio: 3/2;
   width: 100%;
-  max-height: 50vh;
-  padding: 24px 8px 16px;
-  border-radius: 2px;
-  border-top: solid 1px var(--main-light);
+  height: 320px;
+  padding: 24px 8px 8px;
+  border-radius: 5px;
   border-bottom: solid 1px var(--main-light);
 }
 #right-screen .side-inner deck card-wrapper {
-  cursor: pointer;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  cursor: pointer;
   aspect-ratio: 2/3;
   height: 100%;
+  padding: 4px;
   border-left: solid 1px var(--main-light);
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: var(--main-dark-gray);
   position: relative;
-  z-index: 1;
   transition: 0.3s;
 }
 #right-screen .side-inner deck card-wrapper::before {
@@ -304,31 +283,26 @@ app wrapper tab {
   height: 100%;
   border-radius: inherit;
   opacity: 0;
-  background: radial-gradient(120px circle at var(--mouse-x) var(--mouse-y), var(--main-light), transparent 80%);
-}
-#right-screen .side-inner deck card-wrapper:not(:last-child) {
-  margin-right: 8px;
+  background: radial-gradient(320px circle at var(--mouse-x) var(--mouse-y), var(--main-light), transparent 30%);
+  transition: 0.3s;
 }
 #right-screen .side-inner deck card-wrapper:hover::before {
   opacity: 1;
 }
 #right-screen .side-inner deck card-wrapper card {
-  width: calc(100% - 8px);
-  height: calc(100% - 8px);
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
   padding: 8px;
   border: solid 1px var(--main-light-gray);
   border-radius: inherit;
   background-color: var(--square-right);
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-rows: 4fr 2lh 8px;
-  grid-template-columns: 1fr;
-  gap: 8px;
   z-index: 1;
   transition: 0.6s;
 }
 #right-screen .side-inner deck card-wrapper card h1 {
+  font-size: 1lh;
   display: block;
   text-align: center;
 }
@@ -353,10 +327,6 @@ app wrapper tab {
 }
 #right-screen .side-inner deck card-wrapper card cube_area face sticker {
   aspect-ratio: unset;
-}
-
-#left-screen {
-  border-right: solid 1px var(--main-light);
 }
 
 *:has(c-button) {
@@ -387,7 +357,6 @@ app wrapper tab {
 }
 
 c-button {
-  box-shadow: 0 0 5px 0 var(--main-light-gray);
   height: 100%;
   aspect-ratio: 1;
   margin: 5px;
@@ -467,33 +436,6 @@ graphic.add-graphic .vertical-line {
 }
 .nav-bar #smt-tab-button {
   background-color: hsl(calc(var(--main-hue) + var(--main-modifier) * 2), var(--main-saturation), var(--main-lightness));
-}
-
-.carved {
-  background-color: var(--semi-transparent);
-  box-shadow: inset 0 0 3px 1px var(--main-dark);
-}
-
-.shadow {
-  box-shadow: 0 0 3px 1px var(--main-dark);
-}
-
-.hidden {
-  display: none;
-}
-
-.full-screen {
-  position: fixed !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  z-index: 10 !important;
-  background-color: var(--main-color) !important;
-  top: 0 !important;
-  left: 0 !important;
-}
-
-.width0 {
-  width: 0 !important;
 }
 
 ::-webkit-scrollbar {
@@ -592,6 +534,32 @@ loading {
   to {
     transform: rotateZ(90deg);
   }
+}
+.carved {
+  background-color: var(--semi-transparent);
+  box-shadow: inset 0 0 3px 1px var(--main-dark);
+}
+
+.shadow {
+  box-shadow: 0 0 3px 1px var(--main-dark);
+}
+
+.hidden {
+  display: none;
+}
+
+.full-screen {
+  position: fixed !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 10 !important;
+  background-color: red;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+.width0 {
+  width: 0 !important;
 }
 
 /*# sourceMappingURL=main.css.map */
