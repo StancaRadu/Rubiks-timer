@@ -332,7 +332,7 @@ app{
             height: 320px;
             padding: 24px 8px 8px;
             border-radius: 5px;
-            border-top: solid 1px var(--main-light);
+            // border-top: solid 1px var(--main-light);
             border-bottom: solid 1px var(--main-light);
 
             card-wrapper{
@@ -558,7 +558,6 @@ graphic{
 
 //navbar
 .nav-bar{
-
     #timer-tab-button{
         background-color: hsl(calc(var(--main-hue) + var(--main-modifier)*0), var(--main-saturation), var(--main-lightness));
     }
