@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/StancaRadu/StancaRadu.github.io/issues"
   },
-  "homepage": "https://www.hakuo.online/",
+  "homepage": "https://StancaRadu.github.io/",
   "dependencies": {
     "chart.js": "^4.4.0",
     "gsap": "^3.12.5",
