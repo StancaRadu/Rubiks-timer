@@ -59,7 +59,7 @@ function average(rows, seconds = false){
 }
 
 async function create_deck(deck) {
-    const algs = (await fetch("../../static-DB/algs.json")).json()
+    const algs = (await fetch("../static-DB/algs.json")).json()
     
     deck.innerHTML = ''
     let b = await algs
