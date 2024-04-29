@@ -338,14 +338,14 @@ export default class Cube{
                 ['RML', 'FML'], ['BML', 'RML'], ['LML', 'BML'], ['FML', 'LML'],
                 ['RMR', 'FMR'], ['BMR', 'RMR'], ['LMR', 'BMR'], ['FMR', 'LMR'],
 
-                ['RMM', 'FMM'], ['BMM', 'RMM'], ['LMM', 'BMM'], ['FMM', 'LMM']
+                ['RMM', 'FMM'], ['BMM', 'RMM'], ['LMM', 'BMM'], ['FMM', 'LMM'],
 
                 ['RDR', 'FDR'], ['BDR', 'RDR'], ['LDR', 'BDR'], ['FDR', 'LDR'],
                 ['RDL', 'FDL'], ['BDL', 'RDL'], ['LDL', 'BDL'], ['FDL', 'LDL'],
                 ['RDM', 'FDM'], ['BDM', 'RDM'], ['LDM', 'BDM'], ['FDM', 'LDM'],
 
                 ['DUR', 'DUL'], ['DDR', 'DUR'], ['DDL', 'DDR'], ['DUL', 'DDL'],
-                ['DUM', 'DML'], ['DMR', 'DUM'], ['DDM', 'DMR'], ['DML', 'DDM'],
+                ['DUM', 'DML'], ['DMR', 'DUM'], ['DDM', 'DMR'], ['DML', 'DDM']
             ],
             axes: { x: 0, y: -1, z: 0 },
 
@@ -652,6 +652,7 @@ export class Cube3d extends Cube{
     }
 
     async move(move_raw){
+        console.log(move_raw);
         if (this.moving) return
         this.moving = true
 
@@ -668,6 +669,7 @@ export class Cube3d extends Cube{
             group.add(this.pieces[piece])
         });
         this.canvas.scene.add(group)
+
         const ready = new Promise((resolve) => {
             gsap.to(group.rotation, {
                 x: move["axes"]["x"] * rotation * prime * times,
