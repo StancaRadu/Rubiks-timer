@@ -298,7 +298,59 @@ export default class Cube{
                 ["UUM", "UMR"], ["UMR", "UDM"], ["UDM", "UML"], ["UML", "UUM"]
             ],
             axes: { x: 0, y: -1, z: 0 },
+        },
+        E : {   
+            pieces: [
+                'FML', 'FMM', 'FMR',
+                'RML', 'RMM', 'RMR',
+                'BMR', 'BMM', 'BML',
+                'LML', 'LMM', 'LMR'
+            ],
+            pairs: [
+                ['FML', 'RML'], ['RML', 'BML'], ['BML', 'LML'], ['LML', 'FML'],
+                ['FMR', 'RMR'], ['RMR', 'BMR'], ['BMR', 'LMR'], ['LMR', 'FMR'],
+
+                ['FMM', 'RMM'], ['RMM', 'BMM'], ['BMM', 'LMM'], ['LMM', 'FMM']
+            ],
+            axes: { x: 0, y: 1, z: 0 }
+        },
+        Y : {
+            pieces: [
+                'FUL', 'FUM', 'FUR', 'FML', 'FMM', 'FMR', 'FDL', 'FDM', 'FDR',
+                'BUL', 'BUM', 'BUR', 'BML', 'BMM', 'BMR', 'BDL', 'BDM', 'BDR',
+                'UUL', 'UUM', 'UUR', 'UML', 'UMM', 'UMR', 'UDL', 'UDM', 'UDR',
+                'DUL', 'DUM', 'DUR', 'DML', 'DMM', 'DMR', 'DDL', 'DDM', 'DDR',
+                'RUL', 'RUM', 'RUR', 'RML', 'RMM', 'RMR', 'RDL', 'RDM', 'RDR',
+                'LUL', 'LUM', 'LUR', 'LML', 'LMM', 'LMR', 'LDL', 'LDM', 'LDR',
+                'FML', 'FMM', 'FMR',
+                'RML', 'RMM', 'RMR',
+                'BMR', 'BMM', 'BML',
+                'LML', 'LMM', 'LMR'
+            ],
+            pairs: [
+                ["FUL", "LUL"], ["LUL", "BUL"], ["BUL", "RUL"], ["RUL", "FUL"],
+                ["FUR", "LUR"], ["LUR", "BUR"], ["BUR", "RUR"], ["RUR", "FUR"],
+                ["FUM", "LUM"], ["LUM", "BUM"], ["BUM", "RUM"], ["RUM", "FUM"],
+
+                ["UUL", "UUR"], ["UUR", "UDR"], ["UDR", "UDL"], ["UDL", "UUL"],
+                ["UUM", "UMR"], ["UMR", "UDM"], ["UDM", "UML"], ["UML", "UUM"],
+                
+                ['RML', 'FML'], ['BML', 'RML'], ['LML', 'BML'], ['FML', 'LML'],
+                ['RMR', 'FMR'], ['BMR', 'RMR'], ['LMR', 'BMR'], ['FMR', 'LMR'],
+
+                ['RMM', 'FMM'], ['BMM', 'RMM'], ['LMM', 'BMM'], ['FMM', 'LMM']
+
+                ['RDR', 'FDR'], ['BDR', 'RDR'], ['LDR', 'BDR'], ['FDR', 'LDR'],
+                ['RDL', 'FDL'], ['BDL', 'RDL'], ['LDL', 'BDL'], ['FDL', 'LDL'],
+                ['RDM', 'FDM'], ['BDM', 'RDM'], ['LDM', 'BDM'], ['FDM', 'LDM'],
+
+                ['DUR', 'DUL'], ['DDR', 'DUR'], ['DDL', 'DDR'], ['DUL', 'DDL'],
+                ['DUM', 'DML'], ['DMR', 'DUM'], ['DDM', 'DMR'], ['DML', 'DDM'],
+            ],
+            axes: { x: 0, y: -1, z: 0 },
+
         }
+
     }
     static faces = ["F", "B", "U", "D", "L", "R"]
          
@@ -525,6 +577,10 @@ export class Cube3d extends Cube{
         KeyT: "L'",
         KeyU: "R",
         KeyM: "R'",
+        KeyE: "E",
+        KeyR: "E'",
+        KeyY: "Y",
+        KeyX: "Y'"
     }
 
     constructor(location, scramble_position, timer_location){
@@ -585,7 +641,7 @@ export class Cube3d extends Cube{
 
                             break;
                     }
-
+                    mesh.name = ID
                     this.pieces[ID] = mesh
                     this.canvas.scene.add(mesh)
                 }

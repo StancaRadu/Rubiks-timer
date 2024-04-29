@@ -35,7 +35,7 @@ window.onload = async function(){
     let solver = new Solver(cube3d)
     
     cube2d.displayScramble(true)
-    cube2d.move_with()
+    cube2d.move_using_()
 
     Utils.loadTimes()
 
