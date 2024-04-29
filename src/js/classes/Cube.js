@@ -322,10 +322,6 @@ export default class Cube{
                 'DUL', 'DUM', 'DUR', 'DML', 'DMM', 'DMR', 'DDL', 'DDM', 'DDR',
                 'RUL', 'RUM', 'RUR', 'RML', 'RMM', 'RMR', 'RDL', 'RDM', 'RDR',
                 'LUL', 'LUM', 'LUR', 'LML', 'LMM', 'LMR', 'LDL', 'LDM', 'LDR',
-                'FML', 'FMM', 'FMR',
-                'RML', 'RMM', 'RMR',
-                'BMR', 'BMM', 'BML',
-                'LML', 'LMM', 'LMR'
             ],
             pairs: [
                 ["FUL", "LUL"], ["LUL", "BUL"], ["BUL", "RUL"], ["RUL", "FUL"],
@@ -652,7 +648,6 @@ export class Cube3d extends Cube{
     }
 
     async move(move_raw){
-        console.log(move_raw);
         if (this.moving) return
         this.moving = true
 
@@ -683,7 +678,7 @@ export class Cube3d extends Cube{
                     }, 50);
                 },
                 
-                duration: 0.3 * times
+                duration: 0.1 * times
             })
         })
         return await ready

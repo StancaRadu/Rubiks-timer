@@ -76,7 +76,7 @@ async function create_deck(deck) {
         let cube = new Cube2d(cube_area, null, null, "top")
         wrapper.addEventListener("click", (e)=>{
             if (document.getElementById("td-tab").classList.contains("hidden")) return
-            main.cubes[0].move_with(b[name])
+            main.cubes[0].move_using_(b[name])
         })
         deck.appendChild(wrapper)
     }
