@@ -3,6 +3,7 @@ import AvgChart from "./src/js/classes/AvgChart"
 import Database from "./src/js/utils/Database"
 import { Cube2d, Cube3d} from "./src/js/classes/Cube"
 import UI from "./src/js/classes/UI"
+import Solver from "./src/js/classes/Solver"
 
 let main = Object
 main.style = getComputedStyle(document.body)
@@ -31,6 +32,7 @@ window.onload = async function(){
     let cube3d = new Cube3d("td-tab")
     let cube2d = new Cube2d(document.getElementById("cube-div"), "scramble", "timer-div")
     main.cubes.push(...[cube3d, cube2d])
+    let solver = new Solver(cube3d)
     
     cube2d.displayScramble(true)
     cube2d.move_with()

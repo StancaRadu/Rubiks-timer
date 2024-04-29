@@ -497,7 +497,7 @@ export class Cube2d extends Cube{
             // html.style.backgroundColor = 
         }
     }
-    move_with(scramble = this.scramble){
+    move_using_(scramble = this.scramble){
         for ( const move of scramble ) {
             this.move(move)
         }
@@ -631,7 +631,7 @@ export class Cube3d extends Cube{
         return await ready
     }
 
-    async move_with(scramble = this.scramble){
+    async move_using_(scramble = this.scramble){
         if (this.set_moving) return
         this.set_moving = true
         for ( const move of scramble ) {
@@ -669,7 +669,7 @@ export class Cube3d extends Cube{
             if (this.canvas.parent.classList.contains("hidden")) return
             if (event.code == "KeyG") {
                 console.log(cube.generateScramble())
-                cube.move_with()
+                cube.move_using_()
             }
             if (!(Object.keys(Cube3d.keys).includes(event.code))) return
             cube.move(Cube3d.keys[event.code])
