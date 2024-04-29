@@ -3,7 +3,9 @@ import Cube from "./Cube";
 
 export default class Solver{
     static brain = {
-        sledge: ['U', 'R', "U'", "R'"],
+        sledge: ["R'", 'F', "R", "F'"],
+        URUR: ["U", "R", "U'", "R'"],
+        RUR: ['R', 'U', "R'"],
         distances: {
             F:{R:"'", B:2, L:""}, 
             R:{B:"'", L:2, F:""}, 
@@ -24,7 +26,7 @@ export default class Solver{
     }
 
     async solve(){
-        // console.log( await this.cross())
+        console.log( await this.cross())
         console.log( await this.corners())
     }
 
@@ -151,7 +153,10 @@ export default class Solver{
 
                 if (position[0] === 'D') continue
 
-                if (typeof m_distance[current_connection][natural_connection] !== 'undefined') await this.cube.move(`U${ m_distance[current_connection][natural_connection]}`)
+                if (typeof m_distance[current_connection][natural_connection] !== 'undefined'){
+                    console.log(typeof  m_distance[current_connection][natural_connection]);
+                     await this.cube.move(`U${ m_distance[current_connection][natural_connection]}`)
+                    }
                 await this.cube.move(`${natural_connection[0]}2`)
                 placed++
             }
@@ -159,36 +164,75 @@ export default class Solver{
         return "done"
     }
     async corners(){
-        const pieces = ['DUL', 'DUR', 'DDR', 'DDL']
+        let pieces = ['DUL', 'DUR', 'DDR', 'DDL']
         const targets = ['FUR', 'UDR', 'RUL']
+        const sec = ['FUL', 'UDL', 'LUR']
+        const low = ['DUR', 'FDR', 'RDL']
         const connections = {DUL: 'FMM', DUR: 'RMM', DDR: 'BMM', DDL: 'LMM'}
         let placed = 0
+        let limit = 0
         while (true){
-            if (placed === 4 || placed > 4) break
+            console.log(placed);
+            if (placed === 4 || limit > 10) break
             for (const piece of pieces){
-
-                while (true){
-                    let connection_location = this.findPiece(connections[piece])
-                    let location = this.findPiece(piece)
-    
-                    if (location[1] === 'U' || location[0] === 'U'){
-                        const modifier = Solver.brain.distances['R'][connection_location[0]]
-                        if (typeof modifier !== 'undefined') await this.cube.move(`Y${modifier}`)
+                limit++
+                let connection_location = this.findPiece(connections[piece])
+                let location = this.findPiece(piece)
+                if (location[0] !== 'D' && (location[0] === 'U' || location[1] === 'U')){
+                    const modifier = Solver.brain.distances[connection_location[0]]['R']
+                    if (typeof modifier !== 'undefined') await this.cube.move(`Y${modifier}`)
+                    
+                    while (true){
+                        location = this.findPiece(piece)
+                        if(targets.includes(location)) break
                         
-                        while (true){
-                            location = this.findPiece(piece)
-                            if(targets.includes[location]){}
+                        else {
+                            if (sec.includes(location)) await this.cube.move("U'")
+                            else await this.cube.move("U")
                         }
                     }
-
-
-
-                    console.log(1)
-                    break
                 }
-                placed++
+                location = this.findPiece(piece)
+                switch (location){
+                    case 'FUR':
+                        for (let index = 0; index < 1; index++) {
+                            await this.cube.move_using_(Solver.brain['URUR'])
+                            
+                        }
+                        pieces.splice(pieces.indexOf(piece), 1)
+                        placed++
+                        break
+                    case 'UDR':
+                        for (let index = 0; index < 3; index++) {
+                            await this.cube.move_using_(Solver.brain['URUR'])
+                        }
+                        pieces.splice(pieces.indexOf(piece), 1)
+                        placed++
+                        break
+                    case 'RUL':
+                        for (let index = 0; index < 5; index++) {
+                            await this.cube.move_using_(Solver.brain['URUR'])
+                        }
+                        pieces.splice(pieces.indexOf(piece), 1)
+                        placed++
+                        break
+                    }
+                }
+            for (const piece of pieces){
+                let location = this.findPiece(piece)
+
+                if (location[0] !== 'D' && (location[0] === 'U' || location[1] === 'U')) break
+                while (true){
+                    let location = this.findPiece(piece)
+                    console.log(location);
+                    if (low.includes(location)) break
+                    await this.cube.move('Y')
+                }
+                await this.cube.move_using_(Solver.brain['RUR'])
+                break
             }
         }
+        
         return "done"
     }
     findPiece(piece){

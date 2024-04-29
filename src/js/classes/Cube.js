@@ -678,7 +678,7 @@ export class Cube3d extends Cube{
                     }, 50);
                 },
                 
-                duration: 0.1 * times
+                duration: 0.25 * times
             })
         })
         return await ready
