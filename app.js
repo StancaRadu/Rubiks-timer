@@ -24,12 +24,20 @@ main.cubes = []
 
 window.onload = async function(){
     await Database.open()
+    Utils.create_navbars()
     document.getElementById("website-loading").style.opacity = "0"
     document.getElementById("website-loading").style.display = "none"
 
     main.charts.push(new AvgChart())
+    let default_table = UI.table(['Seconds', 'Avg. 5', "Avg. 12"])
+    main.tables.push(default_table)
+    let history_app = UI.sideApp()
+        history_app.replaceChildren(UI.sideTitle("History"), default_table.container)
+    console.log(history_app);
+    document.getElementById("statistics-div").appendChild(history_app)
+    // main.charts.push(UI.table('Avg. 5', "Avg. 12"))
     
-    let cube3d = new Cube3d("td-tab")
+    let cube3d = new Cube3d("3D-tab")
     let cube2d = new Cube2d(document.getElementById("cube-div"), "scramble", "timer-div")
     main.cubes.push(...[cube3d, cube2d])
     let solver = new Solver(cube3d)

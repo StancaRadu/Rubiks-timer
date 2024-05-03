@@ -91,7 +91,6 @@ class Timer{
         this.time = 0;
         this.ready = false;
         this.counting = true;
-        document.getElementById("timer-div").classList.add("full-screen")
 
         this.sTime = new Date().getTime();
         this.interval = setInterval(this.count, 10, this);

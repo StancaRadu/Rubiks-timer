@@ -82,7 +82,7 @@ class UI{
                 table.header.cells.push(cell)
                 if (Boolean(header)){
                     if(avg) cell.int = avg
-                    else cell.int = 1   
+                    else cell.int = 1
                     cell.addEventListener("click", function(){
                         if (cell.int <= table.rows.length) table.sort(cell)
                     })
@@ -209,7 +209,7 @@ class UI{
                     <li>Display solves(times) saved in the databse</li>
                     <li>Delete solves</li>
                     <li>Sort solves</li>
-                    <li>Shpw averages</li>
+                    <li>Show averages</li>
                 </ul>
             </div>
             <div id="chart-picker">

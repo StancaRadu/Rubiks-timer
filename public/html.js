@@ -41,7 +41,11 @@ function expandSide(button){
         hl.style.transform = "rotateZ(0)"
     }
 }
-function openModel(id){
+function openModal(id){
     let dialog = document.getElementById(id)
     dialog.showModal()
+}
+function closeModal(id){
+    let dialog = document.getElementById(id)
+    dialog.close()
 }

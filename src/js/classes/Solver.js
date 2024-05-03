@@ -9,6 +9,8 @@ export default class Solver{
         },
         UpperCross: ["F", 'R', 'U', "R'", "U'", "F'"],
         UpperEdges: ["R", "U", "R'", "U", "R", "U2", "R'"],
+        UpperCorners : ["U'", "L'", "U", "R", "U'", "L", "U", "R'"],
+        UpperCornersOrientation: ["D'", "R'", "D", "R", "D'", "R'", "D", "R"],
         distances: {
             F:{R:"'", B:2, L:""}, 
             R:{B:"'", L:2, F:""}, 
@@ -29,12 +31,14 @@ export default class Solver{
     }
 
     async solve(){
-        console.log(await this.cross())
-        console.log(await this.corners())
-        console.log(await this.secondLayer())
-        console.log(await this.upperCross())
-        console.log(await this.alignUpperCross())
-        console.log(await this.upperCorners())
+        console.log('Cross: ', await this.cross())
+        console.log('Corners: ', await this.corners())
+        console.log('Second layer: ', await this.secondLayer())
+        console.log('Top cross: ', await this.upperCross())
+        console.log('Align top cross: ', await this.alignUpperCross())
+        console.log('Place top corners: ', await this.upperCorners())
+        console.log('Align top corners: ', await this.alignUpperCorners())
+        console.log('Last permutation: ', await this.lastPermutation())
     }
 
     async cross(){
@@ -47,93 +51,101 @@ export default class Solver{
             for (let connection of connections)  if (connection[0] === id) return connection[1]
         }
         
-        for (const piece of pieces){
-            let a = 0
-            while (true){
-                a++
-                let position = this.findPiece(piece)
-                if (['L', 'R', 'B'].includes(position[0])){
-                    switch (position[0]) {
-                        case 'L':
-                            await this.cube.move("Y'")
-
-                            break;
-                        case 'R':
-                            await this.cube.move("Y")
-
-                            break;
-                        case 'B':
-                            await this.cube.move("Y2")
-
-                            break;
-                    }
-                }
-
-                position = this.findPiece(piece)
-                if (position[0] === 'F'){
-                    while (true){
-                        position = this.findPiece(piece)
-                        if (position[0] === 'U') break
-                        switch (position[2]) {
+        while (true) {
+            for (const piece of pieces){
+                let a = 0
+                while (true){
+                    a++
+                    let position = this.findPiece(piece)
+                    if (['L', 'R', 'B'].includes(position[0])){
+                        switch (position[0]) {
                             case 'L':
-                                while (true){
-                                    if (!pieces.includes(this.cube.pieces['UML'].name)) {
-                                        await this.cube.move("L'")
-                                        break
-                                    }
-                                    else {
-                                        if (pieces.includes(this.cube.pieces['UDM'].name))  await this.cube.move("U'")
-                                        else await this.cube.move("U")
-                                    }
-                                }
+                                await this.cube.move("Y'")
+    
                                 break;
-                        
                             case 'R':
-                                while (true){
-                                    if (!pieces.includes(this.cube.pieces['UMR'].name)) {
-                                        await this.cube.move("R")
-                                        break
-                                    }
-                                    else {
-                                        if (pieces.includes(this.cube.pieces['UDM'].name))  await this.cube.move("U")
-                                        else await this.cube.move("U'")
-                                    }
-                                }
-                                break
-                            
-                            case 'M':
-                                switch (position[1]){
-                                    case 'U':
-                                        while (true){
-                                            if (!pieces.includes(this.cube.pieces['UDM'].name)) {
-                                                await this.cube.move("F")
-                                                break
-                                            }
-                                            else {
-                                                if (pieces.includes(this.cube.pieces['UML'].name))  await this.cube.move("U")
-                                                else await this.cube.move("U'")
-                                            }
-                                        }
-                                        break
-                                    case 'D':
-                                        while (true){
-                                            if (!pieces.includes(this.cube.pieces['UDM'].name)) {
-                                                await this.cube.move("F'")
-                                                break
-                                            }
-                                            else {
-                                                if (pieces.includes(this.cube.pieces['UML'].name))  await this.cube.move("U")
-                                                else await this.cube.move("U'")
-                                            }
-                                        }
-                                        break
-                                }
-                                break
+                                await this.cube.move("Y")
+    
+                                break;
+                            case 'B':
+                                await this.cube.move("Y2")
+    
+                                break;
                         }
                     }
+    
+                    position = this.findPiece(piece)
+                    if (position[0] === 'F'){
+                        while (true){
+                            position = this.findPiece(piece)
+                            if (position[0] === 'U') break
+                            switch (position[2]) {
+                                case 'L':
+                                    while (true){
+                                        if (!pieces.includes(this.cube.pieces['UML'].name)) {
+                                            await this.cube.move("L'")
+                                            break
+                                        }
+                                        else {
+                                            if (pieces.includes(this.cube.pieces['UDM'].name))  await this.cube.move("U'")
+                                            else await this.cube.move("U")
+                                        }
+                                    }
+                                    break;
+                            
+                                case 'R':
+                                    while (true){
+                                        if (!pieces.includes(this.cube.pieces['UMR'].name)) {
+                                            await this.cube.move("R")
+                                            break
+                                        }
+                                        else {
+                                            if (pieces.includes(this.cube.pieces['UDM'].name))  await this.cube.move("U")
+                                            else await this.cube.move("U'")
+                                        }
+                                    }
+                                    break
+                                
+                                case 'M':
+                                    switch (position[1]){
+                                        case 'U':
+                                            while (true){
+                                                if (!pieces.includes(this.cube.pieces['UDM'].name)) {
+                                                    await this.cube.move("F")
+                                                    break
+                                                }
+                                                else {
+                                                    if (pieces.includes(this.cube.pieces['UML'].name))  await this.cube.move("U")
+                                                    else await this.cube.move("U'")
+                                                }
+                                            }
+                                            break
+                                        case 'D':
+                                            while (true){
+                                                if (!pieces.includes(this.cube.pieces['UDM'].name)) {
+                                                    await this.cube.move("F'")
+                                                    break
+                                                }
+                                                else {
+                                                    if (pieces.includes(this.cube.pieces['UML'].name))  await this.cube.move("U")
+                                                    else await this.cube.move("U'")
+                                                }
+                                            }
+                                            break
+                                    }
+                                    break
+                            }
+                        }
+                    }
+                    if (a=10) break
                 }
-                if (a=10) break
             }
+            let wrong = false
+            for (const piece of pieces) {
+                let location = this.findPiece(piece)
+                if (!['U', "D"].includes(location[0])) wrong = true
+            }
+            if (!wrong )break
         }
 
         let placed = 0
@@ -150,7 +162,6 @@ export default class Solver{
                 }
 
                 if (position[0] === 'D') continue
-
                 let move = `U${Solver.brain.distances[current_connection[0]][natural_connection[0]]}`
                 if (move !== 'Uundefined') await this.cube.move(move)
                 await this.cube.move(`${natural_connection[0]}2`)
@@ -295,6 +306,7 @@ export default class Solver{
                 sum++
             }
         }
+        console.log(sum);
         if (sum === 0){
             await this.cube.move_using_(alg)
             await this.cube.move("U'")
@@ -352,16 +364,89 @@ export default class Solver{
 
             if (r_c[0] === r_l[0] && b_c[0] === b_l[0] && l_c[0] === l_l[0]) break
 
-            if (r_c[0] === r_l[0] || b_c[0] === b_l[0] || l_c[0] === l_l[0]) await this.cube.move_using_("Y")
+            if (r_c[0] === r_l[0] || b_c[0] === b_l[0] || l_c[0] === l_l[0]) await this.cube.move_using_(["Y", ...Solver.brain.UpperEdges])
             else await this.cube.move_using_(Solver.brain.UpperEdges)
 
         }
         return 'done'
     }
     async upperCorners(){
-        
+        const pieces = [["FUL", "UDL", "LUR"], ["RUL", "UDR", "FUR"], ["BUL", "UUR", "RUR"], ["LUL", "UUL", "BUR"]]
+        // const connections = [["FUL", "UDL", "LUR"], ["FUR", "UDR", "RUL"], ["RUR", "UUR", "BUL"], ["BUR", "UUL", "LUL"]]
+        function findConnection(piece){ return `${piece[0]}MM` }
+
+        function findGroup(piece){ for (const group of pieces) if (group.includes(piece)) return group }
+
+        function findGroupConnectionsLocation(group, solver){ 
+            return [`${solver.findPiece(`${group[0][0]}MM`)[0]}MM`, `${solver.findPiece(`${group[1][0]}MM`)[0]}MM`, `${solver.findPiece(`${group[2][0]}MM`)[0]}MM`] 
+        }
+        let solved = false
+        while (!solved){
+            let corner = 0
+            let good_corners = 0
+            for (const group of pieces) {
+                let good_corner = 0
+                for (const piece of group) {
+                    let location = this.findPiece(piece)
+                    let g_c_location = findGroupConnectionsLocation(group, this)
+                    
+                    for (const l of g_c_location) if (l[0] === location[0]) good_corner++
+    
+                }
+                if (good_corner === 3) {
+                    corner = group
+                    good_corners++
+                }
+            }
+            if (good_corners === 4) break
+            if (corner){
+                console.log(corner, "WINNER");
+                let location = this.findPiece(corner[0])
+                location = findGroup(location)[0]
+    
+                let move = `Y${Solver.brain.distances[location[0]]['F']}`
+                if (move !== 'Yundefined') await this.cube.move(move)
+    
+                await this.cube.move_using_(Solver.brain.UpperCorners)
+
+            } else await this.cube.move_using_(Solver.brain.UpperCorners)
+        }
 
         return "done"
+    }
+    async alignUpperCorners(){
+        const pieces = ['UDL', 'UDR', 'UUR', 'UUL']
+        const target = ['FUR', 'UDR', 'RUL']
+        for (const piece of pieces) {
+            console.log(piece);
+            while (true){
+                let solved = true
+                let location = this.findPiece(piece) 
+                if (location[0] !== 'U'){
+                    solved = false
+                    if (!target.includes(location)){
+                        let move = `U${Solver.brain.distances[location[0]]['F']}`
+                        if (move !== 'Uundefined') await this.cube.move(move)
+                    }
+                    location = this.findPiece(piece)
+                    if (!target.includes(location)) await this.cube.move("U'")
+                    else await this.cube.move_using_(Solver.brain.UpperCornersOrientation)
+                }
+                if (solved) break
+            }
+        }
+        return 'done'
+    }
+    async lastPermutation(){
+        let location = this.findPiece('FUM')
+        let c_location = this.findPiece('FMM')
+        console.log(location, c_location);
+        if(location[0] !== c_location[0]){
+            let move = `U${Solver.brain.distances[location[0]][c_location[0]]}`
+            if (move !== 'Uundefined') await this.cube.move(move)
+            console.log(move);
+        }
+        return 'done'
     }
     findPiece(piece){
         return Object.keys(this.cube.pieces).find(key => this.cube.pieces[key].name === piece);

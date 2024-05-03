@@ -675,10 +675,10 @@ export class Cube3d extends Cube{
                     this.updateMatrix(group, this, move_raw)
                     setTimeout(() => {
                         resolve("ready");
-                    }, 0);
+                    }, 50);
                 },
                 
-                duration: 0.0001 * times
+                duration: 0.3 * times
             })
         })
         return await ready

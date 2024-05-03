@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="public/settings.js"></script>
     <script src="html.js"></script>
     <script src="app.js" type="module"></script> 
 
@@ -37,16 +38,99 @@
         </graphic>
     </loading>
     <div id="menu">
-        <div class="tab">Settings
+        <div class="tab" onclick="openModal('general-settings')">Settings
 
-                        <!-- <input id="main-color-picker" type="range" min="0" max="360" value="200" class="slider" oninput="document.documentElement.style.setProperty('--main-hue', this.value)"> -->
+            <dialog class="modal-settings" id="general-settings">
+                <div class="button-area carved">
+                    <c-button onclick="closeModal('general-settings')">
+                        <graphic>
+                            <line class="diagonal-incline"></line>
+                            <line class="diagonal-decline"></line>
+                        </graphic>
+                    </c-button>
+                </div>
 
+            </dialog>
         </div>
-        <div class="tab">Fonts
+        <div class="tab"  onclick="openModal('color-settings')">Colors
+            <dialog class="modal-settings" id="color-settings">
+                <div class="button-area carved">
+                    <c-button onclick="closeModal('color-settings')">
+                        <graphic>
+                            <line class="diagonal-incline"></line>
+                            <line class="diagonal-decline"></line>
+                        </graphic>
+                    </c-button>
+                </div>
+                <h3>Main color</h3>
+                <input id="main-color-picker" type="range" min="0" max="360" value="200" class="slider" oninput="document.documentElement.style.setProperty('--main-hue', this.value)">
+            </dialog>
         </div>
-        <div class="tab">Preferences
+        <div class="tab"  onclick="openModal('moves-settings')">Controls
+            <dialog class="modal-settings" id="moves-settings">
+                <div class="button-area carved">
+                    <c-button onclick="closeModal('moves-settings')">
+                        <graphic>
+                            <line class="diagonal-incline"></line>
+                            <line class="diagonal-decline"></line>
+                        </graphic>
+                    </c-button>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 16px; justify-content: space-around; ">
+                    <div>
+                        <h3><u>Face turns</u></h3>
+                        <ul>
+                            <li>J - top face *c</li>
+                            <li>F - top face *cc</li>
+                            <li>S - bottom face *c</li>
+                            <li>L - bottom face *cc</li>
+                            <li>C - left face *c</li>
+                            <li>T - left face *cc</li>
+                            <li>U - right face *c</li>
+                            <li>M - right face *cc</li>
+                            <li>w - back face *c</li>
+                            <li>O - back face *cc</li>
+                            <li>N - front face *c</li>
+                            <li>V - front face *cc</li>
+                    </div>
+                    <div>
+                        <h3><u>Slice moves</u></h3>
+                            <ul>
+                            <li>E - E slice *c</li>
+                            <li>R - E slice *cc</li>
+                        </ul>
+
+                    </div>
+                    <div>
+                        <h3><u>Cube roatations</u></h3>
+                            <ul>
+                            <li>Y - around Y-axis *c</li>
+                            <li>X - around Y-axis *cc</li>
+                        </ul>
+
+                    </div>
+                    <div>
+                        <h3><u>Extra controls</u></h3>
+                            <ul>
+                            <li>G - scramble randomly</li>
+                            <li>P - Solve</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </dialog>
         </div>
-        <div class="tab">Import/Export
+        <div class="tab"  onclick="openModal('import-export')">Import/Export
+            <dialog class="modal-settings" id="import-export">
+                <div class="button-area carved">
+                    <c-button onclick="closeModal('import-export')">
+                        <graphic>
+                            <line class="diagonal-incline"></line>
+                            <line class="diagonal-decline"></line>
+                        </graphic>
+                    </c-button>
+                </div>
+            </dialog>
         </div>
     </div>
     <app>
@@ -64,15 +148,6 @@
                     <h1 class="left-oc-header">Chart</h1>
                     <side-content id="canvas-div"><canvas id="myChart"></canvas></side-c>
                 </side-app>
-                <side-app class="carved add-app">
-                    <!-- <c-button id="add-tracker">
-                        <graphic class="add-graphic">
-                            <line class="vertical-line"></line>
-                            <div class="add-options"></div>
-                            <line class="horizontal-line"></line>
-                        </graphic>
-                    </c-button> -->
-                </side-app>
             </div>
 
             <div class="sizer"></div>
@@ -87,18 +162,15 @@
                 <div id="cube-div">
                 </div>
             </tab>
-            <tab id="td-tab" class="hidden">
-            </tab>
-            <tab id="smt-tab" class="hidden">
+            <tab id="3D-tab" class="hidden">
+
             </tab>
 
-
-            <div class="nav-bar button-area carved">
-                <c-button id="timer-tab-button" onclick="changePage(this)"></c-button>
-                <c-button id="td-tab-button" onclick="changePage(this)"></c-button>
-                <c-button id="smt-tab-button" onclick="changePage(this)"></c-button> 
-                <indicator class="shadow"></indicator>
-            </div>
+            <nav-bar class="button-area carved">
+                <!-- <c-button id="timer-tab-button" onclick="changePage(this)"></c-button>
+                <c-button id="3d-button" onclick="changePage(this)"></c-button>
+                <indicator class="shadow"></indicator> -->
+            </nav-bar>
         </wrapper>    
         <wrapper id="right-screen">
             <div id="algs-div" class="side-inner">

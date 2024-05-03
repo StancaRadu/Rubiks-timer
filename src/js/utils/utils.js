@@ -82,5 +82,28 @@ async function create_deck(deck) {
     }
 
 }
+function create_navbars(){
+    const navs = document.querySelectorAll('nav-bar')
+    for (const nav of navs) {
+        const tabs = Array.from(nav.parentNode.querySelectorAll('tab'))
+        for (const tab in tabs) {
+            const button = document.createElement('c-button')
+            button.onclick = function(){navTo(nav, tabs, tab)}
+            nav.appendChild(button)
+        }
+        const indicator = document.createElement('indicator')
+        nav.appendChild(indicator)
+    }
+}
 
-export {scrambleToText, timeStampToDate, loadTimes, average, create_deck}
+function navTo(nav, tabs, index){
+    const tab = tabs[index]
+    for (const check of tabs) check.classList.add('hidden')
+    tab.classList.remove('hidden')
+    nav.querySelector('indicator').style.transform = `translateX(${index*100}%)`;
+    tab.parentNode.style.backgroundColor = `hsl(calc(var(--main-hue) + var(--main-modifier)*${index}), var(--main-saturation), var(--main-lightness))`
+    nav.querySelector('indicator').style.backgroundColor = `hsl(calc(var(--main-hue) + var(--main-modifier)*${index}), var(--main-saturation), var(--main-lightness))`
+    
+}
+
+export {scrambleToText, timeStampToDate, loadTimes, average, create_deck, create_navbars}
