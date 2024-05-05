@@ -6,14 +6,7 @@ def flipper(pairs):
         pair[1] = p0
     print(pairs)
 
-flipper([["FDR", "RDR"], ["RDR", "BDR"], ["BDR", "LDR"], ["LDR", "FDR"],
-                ["FDL", "RDL"], ["RDL", "BDL"], ["BDL", "LDL"], ["LDL", "FDL"],
-                ["FDM", "RDM"], ["RDM", "BDM"], ["BDM", "LDM"], ["LDM", "FDM"],
+flipper([['FUM', 'DUM'], ['DUM', 'BDM'], ['BDM', 'UUM'], ['UUM', 'FUM'],
+                ['FDM', 'DDM'], ['DDM', 'BUM'], ['BUM', 'UDM'], ['UDM', 'FDM'],
 
-                ["DUL", "DUR"], ["DUR", "DDR"], ["DDR", "DDL"], ["DDL", "DUL"],
-                ["DML", "DUM"], ["DUM", "DMR"], ["DMR", "DDM"], ["DDM", "DML"],
-
-                ['FML', 'RML'], ['RML', 'BML'], ['BML', 'LML'], ['LML', 'FML'],
-                ['FMR', 'RMR'], ['RMR', 'BMR'], ['BMR', 'LMR'], ['LMR', 'FMR'],
-
-                ['FMM', 'RMM'], ['RMM', 'BMM'], ['BMM', 'LMM'], ['LMM', 'FMM']])
+                ['FMM', 'DMM'], ['DMM', 'BMM'], ['BMM', 'UMM'], ['UMM', 'FMM']])

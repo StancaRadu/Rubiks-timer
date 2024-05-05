@@ -58,37 +58,16 @@ function average(rows, seconds = false){
     return avg
 }
 
-async function create_deck(deck) {
-    const algs = (await fetch("../static-DB/algs.json")).json()
-    
-    deck.innerHTML = ''
-    let b = await algs
-    for (const name of Object.keys(await algs)) {
-        const wrapper = document.createElement("card-wrapper")
-        let cube_area = document.createElement("cube_area")
-        wrapper.innerHTML = `
-            <card>
-                <h1>${name}</h1>
-            </card>
-        `
-        let card = wrapper.children[0]
-        card.insertBefore(cube_area, card.children[0])
-        let cube = new Cube2d(cube_area, null, null, "top")
-        wrapper.addEventListener("click", (e)=>{
-            if (document.getElementById("td-tab").classList.contains("hidden")) return
-            main.cubes[0].move_using_(b[name])
-        })
-        deck.appendChild(wrapper)
-    }
-
-}
 function create_navbars(){
     const navs = document.querySelectorAll('nav-bar')
-    for (const nav of navs) {
+    for (const nav of navs) 
+    {
         const tabs = Array.from(nav.parentNode.querySelectorAll('tab'))
-        for (const tab in tabs) {
+        for (const tab in tabs)
+        {
             const button = document.createElement('c-button')
             button.onclick = function(){navTo(nav, tabs, tab)}
+            button.style.backgroundColor = changeColor(tab)
             nav.appendChild(button)
         }
         const indicator = document.createElement('indicator')
@@ -96,14 +75,30 @@ function create_navbars(){
     }
 }
 
-function navTo(nav, tabs, index){
+function navTo(nav, tabs, index)
+{
     const tab = tabs[index]
+    const indicator = nav.querySelector('indicator').style
     for (const check of tabs) check.classList.add('hidden')
     tab.classList.remove('hidden')
-    nav.querySelector('indicator').style.transform = `translateX(${index*100}%)`;
-    tab.parentNode.style.backgroundColor = `hsl(calc(var(--main-hue) + var(--main-modifier)*${index}), var(--main-saturation), var(--main-lightness))`
-    nav.querySelector('indicator').style.backgroundColor = `hsl(calc(var(--main-hue) + var(--main-modifier)*${index}), var(--main-saturation), var(--main-lightness))`
-    
+    tab.parentNode.style.backgroundColor = changeColor(index)
+    indicator.transform = `translateX(${index*100}%)`;
+    indicator.backgroundColor = changeColor(index)
 }
 
-export {scrambleToText, timeStampToDate, loadTimes, average, create_deck, create_navbars}
+function changeColor(ammount)
+{
+    return `hsl(calc(var(--main-hue) + var(--main-modifier)*${ammount}), var(--main-saturation), var(--main-lightness))`
+}
+
+function reverseScramble(scramble){
+    let reversed = []
+    for (const move of scramble) {
+        if (move.includes('2')) reversed.push(move)
+        else if (move.includes("'")) reversed.push(move.replace("'", ""))
+        else if (!move.includes("'") && !move.includes('2')) reversed.push(`${move}'`)
+    }
+    return reversed.reverse()
+}
+
+export {scrambleToText, timeStampToDate, loadTimes, average, create_navbars, reverseScramble}

@@ -1,6 +1,7 @@
 import main from "../../../app"
 import Database from "../utils/Database"
-import { average, loadTimes } from "../utils/utils"
+import { average, loadTimes, reverseScramble } from "../utils/utils"
+import { Cube2d } from "./Cube"
 
 class UI{
     constructor(){
@@ -180,13 +181,64 @@ class UI{
         return table
     }
 
-    static sideApp(styles = {}){
+    static sideApp(children, styles = {}){
         let app = document.createElement("side-app")
         app.classList.add("carved")
         for (const style in styles) {
             title.style[style] = styles[style]
         }
+        app.replaceChildren(...children)
         return app
+    }
+
+    static async decks(location, styles = {}){
+        let decks = await (await fetch("../static-DB/algs.json")).json()
+
+        for (const title in decks) {
+            const deck = document.createElement('deck')
+            location.appendChild(deck)
+            for (const style in styles) deck.style[style] = styles[style]
+
+            const title_card = document.createElement('title-card')
+            deck.appendChild(title_card)
+
+            let description = decks[title]['description']
+            let algs = decks[title]['algs']
+
+            for (const alg in algs) {
+                const wrapper = document.createElement('card-wrapper')
+                wrapper.innerHTML = `
+                    <card>
+                        <cube_area></cube_area>
+                        <h1>${alg}</h1>
+                    </card>
+                    `
+                let cube_area = wrapper.querySelector("cube_area")
+                let cube = new Cube2d(cube_area, null, null, "top")
+                cube.move_using_(reverseScramble(algs[alg]))
+                wrapper.addEventListener("click", (e)=>{
+                    main.cubes[0].move_using_(algs[alg])
+                })
+                deck.appendChild(wrapper)
+                
+            }
+            title_card.innerHTML = `<h1>${title}</h1><div><div id='title-card-description'>${description}</div></div>`
+
+            function scrollFunction() {
+                if (deck.scrollLeft > 8) {
+                    title_card.style.width = '2lh'
+                    title_card.querySelector('h1').style.transform = 'rotate(90deg)'
+                    title_card.querySelector('#title-card-description').style.transform = 'rotate(90deg) translateY(200%)'
+                } else if (deck.scrollLeft === 0){
+                    title_card.style.width = '20ch'
+                    title_card.querySelector('h1').style.transform = 'none'
+                    title_card.querySelector('#title-card-description').style.transform = 'none'
+                }
+            }
+
+            deck.onscroll = function(){ scrollFunction() }
+        }
+
     }
 
     static sideTitle(text, styles = {}){

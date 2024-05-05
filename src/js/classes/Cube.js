@@ -314,6 +314,23 @@ export default class Cube{
             ],
             axes: { x: 0, y: 1, z: 0 }
         },
+        M : {
+            pieces: [
+                'FUM', 'FMM', 'FDM',
+                'DUM', 'DMM', 'DDM',
+                'BDM', 'BMM', 'BUM',
+                'UUM', 'UMM', 'UDM'
+            ],
+
+            pairs: [
+                ['FUM', 'DUM'], ['DUM', 'BDM'], ['BDM', 'UUM'], ['UUM', 'FUM'],
+                ['FDM', 'DDM'], ['DDM', 'BUM'], ['BUM', 'UDM'], ['UDM', 'FDM'],
+
+                ['FMM', 'DMM'], ['DMM', 'BMM'], ['BMM', 'UMM'], ['UMM', 'FMM']
+            ],
+
+            axes: { x: 1, y: 0, z: 0 },
+        },
         Y : {
             pieces: [
                 'FUL', 'FUM', 'FUR', 'FML', 'FMM', 'FMR', 'FDL', 'FDM', 'FDR',
@@ -345,6 +362,29 @@ export default class Cube{
             ],
             axes: { x: 0, y: -1, z: 0 },
 
+        },
+        r: {
+            pieces: [
+                "FDR", "FMR", "FUR", "UDR", "UMR", "UUR", "BUL", "BML", "BDL", "DDR", "DMR", "DUR",
+                "RUR", "RUM", "RUL", "RMR", "RMM", "RML", "RDR", "RDM", "RDL",
+                'FUM', 'FMM', 'FDM',
+                'DUM', 'DMM', 'DDM',
+                'BDM', 'BMM', 'BUM',
+                'UUM', 'UMM', 'UDM'
+            ],
+            pairs: [
+                ["FUR", "UUR"], ["UUR", "BDL"], ["BDL", "DUR"], ["DUR", "FUR"],
+                ["FDR", "UDR"], ["UDR", "BUL"], ["BUL", "DDR"], ["DDR", "FDR"],
+                ["FMR", "UMR"], ["UMR", "BML"], ["BML", "DMR"], ["DMR", "FMR"],
+
+                ["RUL", "RUR"], ["RUR", "RDR"], ["RDR", "RDL"], ["RDL", "RUL"],
+                ["RUM", "RMR"], ["RMR", "RDM"], ["RDM", "RML"], ["RML", "RUM"],
+
+                ['DUM', 'FUM'], ['BDM', 'DUM'], ['UUM', 'BDM'], ['FUM', 'UUM'],
+                ['DDM', 'FDM'], ['BUM', 'DDM'], ['UDM', 'BUM'], ['FDM', 'UDM'],
+                ['DMM', 'FMM'], ['BMM', 'DMM'], ['UMM', 'BMM'], ['FMM', 'UMM']
+            ],
+            axes: { x: -1, y: 0, z: 0 },
         }
 
     }
@@ -450,7 +490,6 @@ export default class Cube{
         this.scramble = scramble
         return scramble
     }
-    
     displayScramble(new_scramble){
         let scramble = this.scramble
         if (new_scramble) scramble = this.generateScramble()
@@ -539,9 +578,12 @@ export class Cube2d extends Cube{
             let face = id[0]
             let location = id.slice(1,3)
             let html = this.cube.querySelector(`face.${face}`)
-            this.pieces[id].className = ""
-            this.pieces[id].classList.add(location)
-            html.append(this.pieces[id])
+            try {
+                this.pieces[id].className = ""
+                this.pieces[id].classList.add(location)
+                html.append(this.pieces[id])
+            }
+            catch (e) {}
             // html.style.backgroundColor = 
         }
     }
@@ -648,6 +690,7 @@ export class Cube3d extends Cube{
     }
 
     async move(move_raw){
+        if (this.canvas.parent.parentNode.classList.contains('hidden')) return
         if (this.moving) return
         this.moving = true
 
@@ -719,7 +762,7 @@ export class Cube3d extends Cube{
     }
     addKeyInputs(cube){
         document.addEventListener('keyup', (event) => {
-            if (this.canvas.parent.classList.contains("hidden")) return
+            if (this.canvas.parent.parentNode.classList.contains("hidden")) return
             if (event.code == "KeyG") {
                 console.log(cube.generateScramble())
                 cube.move_using_()

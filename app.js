@@ -22,64 +22,57 @@ main.tables = []
 main.charts = []
 main.cubes = []
 
-window.onload = async function(){
+window.onload = async function()
+{
+    document.querySelector('#left-screen c-button').click()
     await Database.open()
-    Utils.create_navbars()
-    document.getElementById("website-loading").style.opacity = "0"
-    document.getElementById("website-loading").style.display = "none"
+
 
     main.charts.push(new AvgChart())
     let default_table = UI.table(['Seconds', 'Avg. 5', "Avg. 12"])
-    main.tables.push(default_table)
-    let history_app = UI.sideApp()
-        history_app.replaceChildren(UI.sideTitle("History"), default_table.container)
-    console.log(history_app);
-    document.getElementById("statistics-div").appendChild(history_app)
-    // main.charts.push(UI.table('Avg. 5', "Avg. 12"))
+    document.getElementById("statistics-div").appendChild(UI.sideApp([UI.sideTitle("History"), default_table.container]))
+    await UI.decks(document.getElementById("algs-div"))
     
-    let cube3d = new Cube3d("3D-tab")
+    let cube3d = new Cube3d("3D-cube")
     let cube2d = new Cube2d(document.getElementById("cube-div"), "scramble", "timer-div")
     main.cubes.push(...[cube3d, cube2d])
     let solver = new Solver(cube3d)
-    
+
     cube2d.displayScramble(true)
     cube2d.move_using_()
 
-    Utils.loadTimes()
 
-    // UI.__add_tracker(document.getElementById("add-tracker"))
-
-    document.querySelector("#menu").onmousemove = (e) => {
+    document.querySelector("#menu").onmousemove = (e) => 
+    {
         const { currentTarget: target } = e;
 
         const rect = target.getBoundingClientRect(),
             x = e.clientX - rect.left,
             y = e.clientY - rect.top;
-
-        target.style.setProperty('--mouse-x', `${x}px`)
+            
+            target.style.setProperty('--mouse-x', `${x}px`)
         target.style.setProperty('--mouse-y', `${y}px`)
     }
-    await Utils.create_deck(document.querySelector("deck"))
 
-    document.querySelectorAll("card-wrapper").forEach(wrapper => {
+    document.querySelectorAll("card-wrapper").forEach(wrapper =>
+    {
         wrapper.onmousemove = (e) => {
             const { currentTarget: target } = e;
-    
+            
             const rect = target.getBoundingClientRect(),
-                x = e.clientX - rect.left,
-                y = e.clientY - rect.top;
-    
+            x = e.clientX - rect.left,
+            y = e.clientY - rect.top;
+            
             target.style.setProperty('--mouse-x', `${x}px`)
             target.style.setProperty('--mouse-y', `${y}px`)
         }
     });
 
-    for (const tab of document.querySelector("#menu").getElementsByClassName("tab")) {
-        tab.addEventListener("click", (e) =>{
-        })
-    }
-    
+    Utils.loadTimes()
+    Utils.create_navbars()
 
+    document.getElementById("website-loading").style.opacity = "0"
+    document.getElementById("website-loading").style.display = "none"
 }
 
 export default main 

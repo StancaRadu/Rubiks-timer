@@ -1,7 +1,9 @@
 while True:
     string = input()
     moves = ["F", "B", "U", "D", "L", "R",
-             "f", "b", "u", "d", "l", "r"]
+             "f", "b", "u", "d", "l", "r",
+             "M", "E", "S",
+             "X", "Y", "Z"]
     modifiers = ["'", "2"]
 
     alg_string = ''

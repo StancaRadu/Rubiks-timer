@@ -47,5 +47,6 @@ function openModal(id){
 }
 function closeModal(id){
     let dialog = document.getElementById(id)
+    console.log(1, dialog);
     dialog.close()
 }
