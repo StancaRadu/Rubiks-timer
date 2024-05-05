@@ -17,7 +17,7 @@ class Timer{
         this.interval;
 
         document.addEventListener('keyup', (event) => {
-            if (this.div.classList.contains("hidden")) return
+            if (document.getElementById("timer-tab").classList.contains('hidden')) return
             if (event.code == "Space" && !this.counting && this.ready && this.waited){
                 this.ready = false;
                 this.instructions.innerHTML = "Press space"
@@ -34,7 +34,7 @@ class Timer{
             }
         });
         document.addEventListener('keydown', (event) => {
-            if (this.div.classList.contains("hidden")) return
+            if (document.getElementById("timer-tab").classList.contains('hidden')) return
             if (event.code == "Space") {
                 event.preventDefault()
                 
@@ -85,6 +85,7 @@ class Timer{
         this.div.appendChild(this.instructions)
     }
     start(){
+
         if (this.counting) return
         this.sTime = 0;
         this.nTime = 0;
