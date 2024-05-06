@@ -80,7 +80,7 @@ body {
   transform: translateZ(-48px) translateY(-5px);
   box-shadow: 0 0 1px 2px var(--main-light-gray);
 }
-#menu .modal-settings[open] {
+#menu .modal-settings {
   color: var(--main-text);
   font-size: medium;
   min-width: 60%;
@@ -92,12 +92,16 @@ body {
   padding: 40px 8px 8px;
   place-self: center;
 }
-#menu .modal-settings[open] ul {
+#menu .modal-settings ul {
   list-style-type: none;
 }
-#menu .modal-settings[open]::backdrop {
+#menu .modal-settings::backdrop {
   background-image: linear-gradient(180deg, var(--main-light-gray), var(--main-dark-gray) 20%);
   opacity: 0.75;
+}
+#menu .modal-settings seting {
+  background-color: red;
+  height: 20px;
 }
 #menu #main-color-picker {
   width: calc(100% - 16px);
@@ -387,8 +391,15 @@ app wrapper tab {
   padding: 8px;
 }
 #right-screen .side-inner deck title-card h1 {
-  transform-origin: center;
+  line-height: calc(2lh - 16px);
+  transform-origin: bottom left;
   transition: 0.5s;
+  width: calc(100% - 16px);
+  min-width: max-content;
+  align-self: center;
+  position: absolute;
+  top: 8px;
+  left: 8px;
 }
 #right-screen .side-inner deck title-card div {
   display: flex;

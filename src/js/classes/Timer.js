@@ -2,9 +2,9 @@ import DataBase from "../utils/Database"
 import main from "../../../app"
 
 class Timer{
-    constructor(id = "timer-div", cube){
+    constructor(location = "timer-div", cube){
         this.cube = cube
-        this.div = document.getElementById(id)
+        this.div = document.getElementById(location)
 
         this.wait_to_start = main.timer_wait
         this.sTime = 0;
@@ -60,7 +60,7 @@ class Timer{
         this.create(this)
     }
 
-    create(location){
+    create(){
         this.timer = document.createElement("p")
         this.minutes = document.createElement("span")
         this.seconds = document.createElement("span")

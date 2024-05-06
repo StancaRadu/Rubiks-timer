@@ -4,208 +4,8 @@ import * as THREE from "three"
 import gsap from "gsap";
 import main from "../../../app";
 
-class __cl{
-    constructor(){
-        this.structure = {
-            pieces: {
-                F:{
-                    stickers: {
-                        FMM: null,
-                    },
-                },
-                B:{
-                    stickers: {
-                        BMM: null,
-                    },
-                },
-                U:{
-                    stickers: {
-                        UMM: null,
-                    },
-                },
-                D:{
-                    stickers: {
-                        DMM: null,
-                    },
-                },
-                L:{
-                    stickers: {
-                        LMM: null,
-                    },
-                },
-                R:{
-                    stickers: {
-                        RMM: null,
-                    },
-                },
 
-                FDL:{
-                    stickers: {
-                        FDL: null,
-                        LDR: null,
-                        DUL: null,
-                    },
-                    relations: {
-                        F: {
-                            piece: "FUL",
-                            stickers: ["FDL", "FUL"]
-                        },
-                        D: {},
-                        L: {},
-                    }
-                },
-                FDR:{
-                    stickers: {
-                        FDR: null,
-                        RDL: null,
-                        DUR: null,
-                    },
-                },
-                FUL:{
-                    stickers: {
-                        FUL: null,
-                        LUR: null,
-                        UDL: null,
-                    },
-                },
-                FUR:{
-                    stickers: {
-                        FUR: null,
-                        RUL: null,
-                        UDR: null,
-                    },
-                },
-                FL:{
-                    stickers: {
-                        FML: null,
-                        LMR: null,
-                    },
-                },
-                FR:{
-                    stickers: {
-                        FMR: null,
-                        RML: null,
-                    },
-                },
-                FU:{
-                    stickers: {
-                        FUM: null,
-                        UDM: null,
-                    },
-                },
-                FD:{
-                    stickers: {
-                        FDM: null,
-                        DUM: null,
-                    },
-                },
-
-                BDL:{
-                    stickers: {
-                        BDL: null,
-                        RDL: null,
-                        DDR: null,
-                    },
-                },
-                BDR:{
-                    stickers: {
-                        BDR: null,
-                        LDL: null,
-                        DDR: null,
-                    },
-                },
-                BUL:{
-                    stickers: {
-                        BUL: null,
-                        LUL: null,
-                        UUL: null,
-                    },
-                },
-                BUR:{
-                    stickers: {
-                        BUR: null,
-                        LUL: null,
-                        UUL: null,
-                    },
-                },
-                BL:{
-                    stickers: {
-                        BML: null,
-                        RMR: null,
-                    },
-                },
-                BR:{
-                    stickers: {
-                        BMR: null,
-                        LML: null,
-                    },
-                },
-                BU:{
-                    stickers: {
-                        BUM: null,
-                        UUM: null,
-                    },
-                },
-                BD:{
-                    stickers: {
-                        BDM: null,
-                        DDM: null,
-                    },
-                },
-
-                LU:{
-                    stickers: {
-                        LUM: null,
-                        UML: null,
-                    },
-                },
-                LD:{
-                    stickers: {
-                        LDM: null,
-                        DML: null,
-                    },
-                },
-                RU:{
-                    stickers: {
-                        RUM: null,
-                        UMR: null,
-                    },
-                },
-                RD:{
-                    stickers: {
-                        LDR: null,
-                        DMR: null,
-                    },
-                },
-            },
-            stickers_id: [
-                "FUL", "FUM", "FUR", "FML", "FMM", "FMR", "FDL", "FDM", "FDR",
-                "BUL", "BUM", "BUR", "BML", "BMM", "BMR", "BDL", "BDM", "BDR", 
-                "UUL", "UUM", "UUR", "UML", "UMM", "UMR", "UDL", "UDM", "UDR", 
-                "DUL", "DUM", "DUR", "DML", "DMM", "DMR", "DDL", "DDM", "DDR", 
-                "RUL", "RUM", "RUR", "RML", "RMM", "RMR", "RDL", "RDM", "RDR",
-                "LUL", "LUM", "LUR", "LML", "LMM", "LMR", "LDL", "LDM", "LDR",
-            ],
-        }
-    }
-
-    find(sticker){
-
-    }
-    interator(){
-        for (const piece in this.structure['pieces']) {
-            for (const sticker in this.structure["pieces"][piece]["stickers"]) {
-            }
-        }
-    }
-}
-class Sticker{
-}
-class Piece{
-}
-
-
-export default class Cube{
+export default class Cube{n
 
     static ammount = 0
     static moves = {
@@ -389,7 +189,6 @@ export default class Cube{
 
     }
     static faces = ["F", "B", "U", "D", "L", "R"]
-         
     static move_decoder(move){
         let side = move[0]
         let times = /\d/.test(move) ? parseInt(move.replace(/\D/g,'')) : 1;
@@ -405,9 +204,7 @@ export default class Cube{
         
 
     }
-
     // STATIC
-    
     constructor(type, scramble_location=null, timer_location=null){
         this.id = Cube.ammount;
         Cube.ammount++;
@@ -432,7 +229,6 @@ export default class Cube{
         }
 
     }
-
     updatePieces(move){
         move = Cube.move_decoder(move)
         let side = move["side"]
@@ -501,10 +297,7 @@ export default class Cube{
 
         document.getElementById(this.scramble_location).innerHTML = text
     }
-
-
 }
-
 export class Cube2d extends Cube{
     constructor(location, scramble_location, timer_location, type = "normal"){
         super("2d", scramble_location, timer_location)
@@ -598,9 +391,7 @@ export class Cube2d extends Cube{
             if (html) html.replaceChildren()
         });
     }
-
 }
-
 export class Cube3d extends Cube{
     static keys = {
         KeyN: "F",
@@ -620,7 +411,6 @@ export class Cube3d extends Cube{
         KeyY: "Y",
         KeyX: "Y'"
     }
-
     constructor(location, scramble_position, timer_location){
         super("3d", scramble_position, timer_location)
         this.canvas = new Canvas3d(location)
@@ -637,7 +427,6 @@ export class Cube3d extends Cube{
         this.addKeyInputs(this)
         this.create3dPieces()
     }
-
     create3dPieces(){
         let ROTATION = -0.5 * Math.PI;
 
@@ -688,7 +477,6 @@ export class Cube3d extends Cube{
         }
         
     }
-
     async move(move_raw){
         if (this.canvas.parent.parentNode.classList.contains('hidden')) return
         if (this.moving) return
@@ -726,7 +514,6 @@ export class Cube3d extends Cube{
         })
         return await ready
     }
-
     async move_using_(scramble = this.scramble){
         if (this.set_moving) return
         this.set_moving = true
@@ -771,7 +558,6 @@ export class Cube3d extends Cube{
             cube.move(Cube3d.keys[event.code])
         });
     }
-
 }
 
 

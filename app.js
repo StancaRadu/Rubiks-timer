@@ -25,6 +25,7 @@ main.cubes = []
 window.onload = async function()
 {
     document.querySelector('#left-screen c-button').click()
+    document.querySelector('#right-screen c-button').click()
     await Database.open()
 
 
