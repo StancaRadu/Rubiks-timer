@@ -50,3 +50,22 @@ function closeModal(id){
     console.log(1, dialog);
     dialog.close()
 }
+
+function changeMainColor(slider){
+    document.documentElement.style.setProperty('--main-hue',  slider.value)
+    localStorage.setItem('--main-hue', slider.value)
+}function changeBrightness(slider){
+    document.documentElement.style.setProperty('--main-lightness',  `${slider.value}%`)
+    localStorage.setItem('--main-lightness', `${slider.value}%`)
+}
+function changeCubeSpeed(slider){
+    localStorage.setItem('cube_speed', slider.value)
+}
+function changeCubePause(slider){
+    localStorage.setItem('cube_pause', slider.value)
+}
+function changeFontSize(number){
+    localStorage.setItem('font-size', `${number.value}px`)
+    document.documentElement.style.setProperty('font-size', localStorage.getItem('font-size'))
+
+}
