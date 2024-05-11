@@ -5,6 +5,8 @@ import { Cube2d, Cube3d} from "./src/js/classes/Cube"
 import UI from "./src/js/classes/UI"
 import Solver from "./src/js/classes/Solver"
 
+
+
 let main = Object
 main.style = getComputedStyle(document.body)
 main.exclude_from_avg = 10
@@ -23,9 +25,15 @@ main.charts = []
 main.cubes = []
 
 window.onload = async function()
-{
-    document.querySelector('#left-screen c-button').click()
-    document.querySelector('#right-screen c-button').click()
+{   
+    function adjustHTMLObjects(){
+        document.getElementById('main-hue-picker').value = localStorage.getItem('--main-hue')
+        document.getElementById('speed-range').value = localStorage.getItem('cube_speed')
+        document.getElementById('pause-range').value = localStorage.getItem('cube_pause')
+        document.getElementById('font-size').value = localStorage.getItem('font-size').replace(/\D/g,'')
+    }
+    adjustHTMLObjects()
+
     await Database.open()
 
 

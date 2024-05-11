@@ -50,11 +50,13 @@
                     </c-button>
                 </div>
 
-                <setting id="cube-speed"></setting>
-                <setting></setting>
-                <setting></setting>
-                <setting></setting>
-
+                <setting id="cube-speed">Cube movement speed:
+                        <input id="speed-range" type="range" min="0" value="0.3" max="2" step="0.05" class="slider" oninput="changeCubeSpeed(this)">
+                </setting>
+                <setting id="cube-pause-time">Pause before new move:
+                    <input id="pause-range" type="range" min="0" value="50" max="2000" step="50" class="slider" oninput="changeCubePause(this)">
+                </setting>
+                <setting>Font size: <input type="number" id="font-size" min="8" max="24" onchange="changeFontSize(this)"/></setting>
             </dialog>
         </div>
         <div class="tab"  onclick="openModal('color-settings')">Colors
@@ -67,8 +69,9 @@
                         </graphic>
                     </c-button>
                 </div>
-                <h3>Main color</h3>
-                <input id="main-color-picker" type="range" min="0" max="360" value="200" class="slider" oninput="document.documentElement.style.setProperty('--main-hue', this.value)">
+                <setting>
+                    Main color: <input id="main-hue-picker" type="range" min="0" max="360" value="200" class="slider" oninput="changeMainColor(this)">
+                </setting>
             </dialog>
         </div>
         <div class="tab"  onclick="openModal('moves-settings')">Controls

@@ -506,10 +506,10 @@ export class Cube3d extends Cube{
                     this.updateMatrix(group, this, move_raw)
                     setTimeout(() => {
                         resolve("ready");
-                    }, 50);
+                    }, localStorage.getItem('cube_pause'));
                 },
                 
-                duration: 0.3 * times
+                duration: localStorage.getItem('cube_speed') * times
             })
         })
         return await ready

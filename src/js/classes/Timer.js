@@ -133,6 +133,8 @@ class Timer{
         this.log(this.time/1000)
     }
     log(time){
+        this.cube.clearFaces()
+        this.cube.move_using_(this.cube.scramble)
         DataBase.add("sd", time)
     }
 }

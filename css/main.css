@@ -13,6 +13,7 @@
   --timer-font: "Roboto Mono", cursive;
   --scramble-font: "Rubik", cursive;
   --general-font: "Titillium Web", sans-serif;
+  font-size: 16px;
 }
 
 html {
@@ -80,36 +81,55 @@ body {
   transform: translateZ(-48px) translateY(-5px);
   box-shadow: 0 0 1px 2px var(--main-light-gray);
 }
-#menu .modal-settings {
+#menu .modal-settings[open] {
   color: var(--main-text);
   font-size: medium;
   min-width: 60%;
+  max-height: 500px;
   background-color: var(--main-color);
   border: none;
   border-radius: 5px;
   box-shadow: inset 0px 4px 10px -4px var(--main-light);
   border-top: solid 1px var(--main-light);
-  padding: 40px 8px 8px;
+  padding: 40px 8px 16px 24px;
   place-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: scroll;
 }
-#menu .modal-settings ul {
+#menu .modal-settings[open] ul {
   list-style-type: none;
 }
-#menu .modal-settings::backdrop {
+#menu .modal-settings[open]::backdrop {
   background-image: linear-gradient(180deg, var(--main-light-gray), var(--main-dark-gray) 20%);
   opacity: 0.75;
 }
-#menu .modal-settings seting {
-  background-color: red;
-  height: 20px;
+#menu .modal-settings[open] setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  min-height: 48px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(to right, var(--main-light), rgba(0, 0, 0, 0)) 100% 1;
+  border-top: 0;
+  font-size: 1rem;
 }
-#menu #main-color-picker {
-  width: calc(100% - 16px);
+#menu #main-hue-picker {
+  background: -webkit-linear-gradient(left, hsl(0, 100%, 50%), hsl(120, 100%, 50%), hsl(240, 100%, 50%), hsl(0, 100%, 50%));
+}
+#menu .slider {
+  width: 50%;
   height: 8px;
   border-radius: 10px;
-  background: -webkit-linear-gradient(left, hsl(0, 100%, 50%), hsl(120, 100%, 50%), hsl(240, 100%, 50%), hsl(0, 100%, 50%));
   -webkit-appearance: none;
   appearance: none;
+}
+#menu .slider#speed-range {
+  direction: rtl;
 }
 
 app {
